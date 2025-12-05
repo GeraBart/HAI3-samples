@@ -1,0 +1,141 @@
+{
+  "title": "Overview",
+  "description": "Dashboard overview screen",
+  "tabs": {
+    "dashboard": "Dashboard"
+  },
+  "actions": {
+    "add_tab": "Add tab",
+    "add_widget": "Add widget",
+    "download": "Download",
+    "send": "Send",
+    "expand": "Expand"
+  },
+  "add_tab_dialog": {
+    "title": "Add tab",
+    "placeholder": "Tab name",
+    "cancel": "Cancel",
+    "add": "Add"
+  },
+  "edit_tab_dialog": {
+    "title": "Edit tab",
+    "placeholder": "Tab name",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "empty_state": {
+    "title": "Build your first dashboard",
+    "subtitle": "Add data widgets to customize your view and track what matters most.",
+    "view_demo": "View Demo",
+    "how_to_create": "How to create dashboard?",
+    "copy_existing": "Copy from existing dashboard"
+  },
+  "widgets": {
+    "protection_status": {
+      "title": "Protection status",
+      "machines": "Machines",
+      "protected": "Protected",
+      "unprotected": "Unprotected",
+      "managed": "Managed",
+      "discovered": "Discovered"
+    },
+    "active_alerts": {
+      "title": "Active alerts summary",
+      "total": "Total",
+      "machine_offline": "Machine is offline",
+      "cannot_protect": "Cannot protect a device",
+      "azure_deletion": "Agent for Azure deletion",
+      "backup_failed": "Backup failed",
+      "activity_failed": "Activity failed",
+      "plan_conflict": "Protection plan conflict",
+      "activity_succeeded": "Activity succeeded with...",
+      "other": "Other"
+    },
+    "activities": {
+      "title": "Activities",
+      "total": "Total",
+      "danger": "Danger",
+      "critical": "Critical",
+      "success": "Success"
+    },
+    "patch_installation": {
+      "title": "Patch installation status",
+      "no_items": "There are no items to show in this view"
+    },
+    "missing_updates": {
+      "title": "Missing updates by category",
+      "updates": "Updates",
+      "security": "Security updates",
+      "critical": "Critical updates",
+      "other": "Other"
+    },
+    "disk_health": {
+      "title": "Disk health status",
+      "total": "Total",
+      "critical": "Critical",
+      "warning": "Warning",
+      "ok": "Ok",
+      "calculating": "Calculating disk data"
+    },
+    "alerts_table": {
+      "title": "Active alerts details",
+      "alert_time": "Alert time",
+      "alert_type": "Alert type",
+      "alert_severity": "Alert severity",
+      "device_name": "Device name",
+      "plan_name": "Plan name",
+      "alert_message": "Alert message"
+    }
+  },
+  "ai_panel": {
+    "insights_title": "Insights for Alert Activity",
+    "insight_1": "A total of 871 alerts were generated in the last 7 days.",
+    "insight_2": "The most frequent alert was \"Machine is offline for more than 30 minutes\", accounting for 790 alerts (approximately 90.7% of all alerts).",
+    "insight_3": "The second most frequent issue was \"Activity failed\" with 32 alerts, followed by \"Backup failed\" with 25 alerts.",
+    "insight_4": "Critical offline issues (combined \"offline for more than 30 min\" and \"offline for more than 20 min\") account for 794 out of 871 alerts, or 91.1% of total alerts.",
+    "insight_5": "Alerts related to agent or protection issues (Agent is offline, Protection plan conflict, Cannot protect a device) contributed 19 alerts (about 2.2% of total alerts)."
+  },
+  "add_widget_panel": {
+    "title": "Add widget",
+    "custom_widget": "Custom widget",
+    "widget_catalog": "Widget catalog",
+    "data_source": "Data source",
+    "general": "General",
+    "name_placeholder": "Name",
+    "description_placeholder": "Description",
+    "save_to_catalog": "Save this widget to custom widgets catalog",
+    "properties": "Properties",
+    "label_placeholder": "Label",
+    "value_placeholder": "Value",
+    "sort_placeholder": "Sort",
+    "sort_order_placeholder": "Sort order",
+    "colour_scheme_placeholder": "Colour scheme",
+    "show_summary": "Show summary",
+    "show_legend": "Show legend",
+    "filters": "Filters",
+    "filter_1": "Filter #1",
+    "filter_2": "Filter #2",
+    "add_widget": "Add widget",
+    "cancel": "Cancel"
+  },
+  "sidebar": {
+    "monitoring": "Monitoring",
+    "add_new_section": "Add new section",
+    "rename": "Rename",
+    "move_up": "Move up the list",
+    "move_down": "Move down the list",
+    "delete": "Delete",
+    "add_section_dialog": {
+      "title": "Add new section",
+      "placeholder": "Section name",
+      "cancel": "Cancel",
+      "add": "Add"
+    },
+    "rename_dialog": {
+      "title": "Rename section",
+      "placeholder": "Section name",
+      "cancel": "Cancel",
+      "save": "Save"
+    }
+  }
+}

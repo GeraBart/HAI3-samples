@@ -1,0 +1,165 @@
+{
+  "widgets": [
+    {
+      "id": "cti.a.p.wr.item.v1.0~a.p.widget.v1.0~a.summit_2025_wr_nextgen.active_alerts_table.v1.0",
+      "icon": "",
+      "title": "Active alerts details",
+      "description": "Shows active alerts in a detailed table view",
+      "hsize": "LARGE",
+      "vsize": "SMALL",
+      "categories": ["alerts"],
+      "settings": {
+        "datasource": {
+          "func": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.active_alerts_table.v1.0"
+        },
+        "template": {
+          "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.table.v1.0",
+          "config": {
+            "title": "Active Alerts",
+            "columns": [
+              { "field": "customer_name", "label": "Customer", "width": 150, "sortable": true },
+              { "field": "alert_type", "label": "Alert Type", "sortable": true },
+              { "field": "severity", "label": "Severity", "width": 100 },
+              { "field": "resource_name", "label": "Device", "sortable": true },
+              { "field": "category", "label": "Category", "width": 120 }
+            ],
+            "alignment": "left",
+            "striped": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cti.a.p.wr.item.v1.0~a.p.widget.v1.0~a.summit_2025_wr_nextgen.alerts_summary.v1.0",
+      "icon": "",
+      "title": "Active alerts summary",
+      "description": "Shows the total number of active alerts divided by type",
+      "hsize": "SMALL",
+      "vsize": "SMALL",
+      "categories": ["alerts"],
+      "settings": {
+        "datasource": {
+          "func": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.alerts_summary.v1.0"
+        },
+        "template": {
+          "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.pie_chart.v1.0",
+          "config": {
+            "title": "Alerts by Type",
+            "label_field": "type",
+            "value_field": "count",
+            "sort_field": "value",
+            "sort_order": "desc",
+            "color_scheme": "severity",
+            "summary": true,
+            "legend": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cti.a.p.wr.item.v1.0~a.p.widget.v1.0~a.summit_2025_wr_nextgen.protection_status.v1.0",
+      "icon": "",
+      "title": "Protection Status",
+      "description": "Shows machine protection status breakdown",
+      "hsize": "SMALL",
+      "vsize": "SMALL",
+      "categories": ["protection"],
+      "settings": {
+        "datasource": {
+          "func": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.protection_status.v1.0"
+        },
+        "template": {
+          "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.pie_chart.v1.0",
+          "config": {
+            "title": "Protection Status",
+            "label_field": "status",
+            "value_field": "count",
+            "sort_field": "value",
+            "sort_order": "desc",
+            "color_scheme": "status",
+            "summary": true,
+            "legend": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cti.a.p.wr.item.v1.0~a.p.widget.v1.0~a.summit_2025_wr_nextgen.cpu_usage_chart.v1.0",
+      "icon": "",
+      "title": "CPU Usage",
+      "description": "Shows CPU usage over time",
+      "hsize": "MEDIUM",
+      "vsize": "SMALL",
+      "categories": ["monitoring"],
+      "settings": {
+        "datasource": {
+          "func": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.cpu_usage.v1.0"
+        },
+        "template": {
+          "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.line_chart.v1.0",
+          "config": {
+            "title": "CPU Usage",
+            "label_field": "timestamp",
+            "value_field": "usage",
+            "x_grid": true,
+            "y_grid": true,
+            "legend": false
+          }
+        }
+      }
+    },
+    {
+      "id": "cti.a.p.wr.item.v1.0~a.p.widget.v1.0~a.summit_2025_wr_nextgen.devices_table.v1.0",
+      "icon": "",
+      "title": "Devices",
+      "description": "Shows all managed devices",
+      "hsize": "LARGE",
+      "vsize": "MEDIUM",
+      "categories": ["devices"],
+      "settings": {
+        "datasource": {
+          "func": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.resource_summary_table.v1.0"
+        },
+        "template": {
+          "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.table.v1.0",
+          "config": {
+            "title": "Devices",
+            "columns": [
+              { "field": "resource_name", "label": "Device Name", "sortable": true },
+              { "field": "customer_name", "label": "Customer", "sortable": true },
+              { "field": "agent_state", "label": "Status", "width": 100 },
+              { "field": "os_version", "label": "OS" },
+              { "field": "resource_status", "label": "Protection", "width": 120 }
+            ],
+            "alignment": "left",
+            "striped": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cti.a.p.wr.item.v1.0~a.p.widget.v1.0~a.summit_2025_wr_nextgen.tickets_bar.v1.0",
+      "icon": "",
+      "title": "Weekly Tickets",
+      "description": "Shows ticket resolution breakdown by week",
+      "hsize": "MEDIUM",
+      "vsize": "SMALL",
+      "categories": ["tickets"],
+      "settings": {
+        "datasource": {
+          "func": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.tickets_data.v1.0"
+        },
+        "template": {
+          "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.bar_chart.v1.0",
+          "config": {
+            "title": "Weekly Tickets",
+            "label_field": "week",
+            "value_field": "total_tickets",
+            "stacked": false,
+            "legend": true
+          }
+        }
+      }
+    }
+  ]
+}

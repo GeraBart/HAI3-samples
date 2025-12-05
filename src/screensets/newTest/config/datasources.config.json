@@ -1,0 +1,304 @@
+{
+  "datasources": [
+    {
+      "name": "Active alerts",
+      "func": {
+        "id": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.active_alerts_table.v1.0",
+        "params": {
+          "query": {
+            "limit": 10
+          }
+        },
+        "returns": {
+          "items": [],
+          "cursor": {
+            "before": null,
+            "after": null,
+            "total": 0
+          }
+        }
+      },
+      "mock": {
+        "items": [
+          {
+            "bc_redirect_id": "3351938",
+            "uid": "4BEB17AD-A984-5BAD-9BD8-BDBE769C38FC",
+            "alert_type": "Restart required to complete the agent installation",
+            "category": "System",
+            "monitoring_type": "-",
+            "activity_error": "Installation of agent '25.2.39539' completed successfully. Please restart 'Chucks-Laptop' to apply the changes.",
+            "resource_name": "Chucks-Laptop",
+            "plan_name": "-",
+            "customer_name": "ed_rd1",
+            "folder_name": "-",
+            "raised_ts": 1740729011,
+            "date": 1740700800,
+            "severity": "warning"
+          },
+          {
+            "bc_redirect_id": "3385781",
+            "uid": "4DA07250-E8BF-5A6F-924E-B845A401C994",
+            "alert_type": "Patch installation failed",
+            "category": "Management",
+            "monitoring_type": "-",
+            "activity_error": null,
+            "resource_name": "DESKTOP-11NQIGC",
+            "plan_name": "VA_PM",
+            "customer_name": "vscustnew",
+            "folder_name": "-",
+            "raised_ts": 1738158932,
+            "date": 1738108800,
+            "severity": "warning"
+          },
+          {
+            "bc_redirect_id": "3389033",
+            "uid": "26CF16C4-D107-4BD0-B2F6-D6F72C9170CF",
+            "alert_type": "Conflict detected between Real-time antimalware protection and a security product",
+            "category": "Antimalware protection",
+            "monitoring_type": "-",
+            "activity_error": "Real-time antimalware protection was not enabled because it conflicts with another security solution.",
+            "resource_name": "WIN-SNLM0UPU30C",
+            "plan_name": "New protection plan",
+            "customer_name": "ed_b1",
+            "folder_name": "-",
+            "raised_ts": 1734377504,
+            "date": 1734307200,
+            "severity": "warning"
+          },
+          {
+            "bc_redirect_id": "3385781",
+            "uid": "0008AB02-C8CD-433A-B3DC-108139D44515",
+            "alert_type": "Malware is detected in a backup",
+            "category": "Antimalware protection",
+            "monitoring_type": "-",
+            "activity_error": "Anti-Malware Protection has detected malware 'SFS:Application.DealAgent.DCD' in a backup.",
+            "resource_name": "DESKTOP-U29MT1H",
+            "plan_name": "New backup scanning",
+            "customer_name": "vscustnew",
+            "folder_name": "-",
+            "raised_ts": 1726751287,
+            "date": 1726704000,
+            "severity": "warning"
+          },
+          {
+            "bc_redirect_id": "2012514",
+            "uid": "03E4BBB5-D818-5CD5-8538-5D8C3681395A",
+            "alert_type": "Website URL is blocked",
+            "category": "URL filtering",
+            "monitoring_type": "-",
+            "activity_error": "Web Protection blocked the URL related to the prohibited category",
+            "resource_name": "beta-ilya-current",
+            "plan_name": "urlfiltering-crash24.09",
+            "customer_name": "ilya2104",
+            "folder_name": "-",
+            "raised_ts": 1733326847,
+            "date": 1733270400,
+            "severity": "warning"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Active alerts summary",
+      "func": {
+        "id": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.alerts_summary.v1.0",
+        "params": {
+          "query": {}
+        },
+        "returns": {
+          "items": []
+        }
+      },
+      "mock": {
+        "items": [
+          { "type": "Machine is offline for more than 30 days", "severity": "critical", "count": 387 },
+          { "type": "Backup failed", "severity": "critical", "count": 2 },
+          { "type": "Backup is not responding", "severity": "critical", "count": 2 },
+          { "type": "Backup scanning for malware did not start", "severity": "error", "count": 722 },
+          { "type": "Backup is canceled", "severity": "warning", "count": 3 },
+          { "type": "System restart required", "severity": "warning", "count": 1 },
+          { "type": "High memory usage by process", "severity": "warning", "count": 22 },
+          { "type": "Malware is detected in a backup", "severity": "warning", "count": 9 },
+          { "type": "Anomaly with the CPU usage", "severity": "warning", "count": 10 }
+        ]
+      }
+    },
+    {
+      "name": "Devices",
+      "func": {
+        "id": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.resource_summary_table.v1.0",
+        "params": {
+          "query": { "limit": 10 }
+        },
+        "returns": {
+          "items": [],
+          "cursor": {}
+        }
+      },
+      "mock": {
+        "items": [
+          {
+            "agent": "acp-auto-win10-x64",
+            "agent_state": "online",
+            "agent_version": "25.6.40118",
+            "customer_name": "Good Solutions",
+            "folder_name": "-",
+            "os_version": "Microsoft Windows 10 Pro",
+            "owner_user": "test@example.com",
+            "resource_name": "acp-auto-win10-x64",
+            "resource_state": "idle",
+            "resource_status": "not_protected",
+            "resource_type": "machine"
+          },
+          {
+            "agent": "server-prod-01",
+            "agent_state": "online",
+            "agent_version": "25.6.40118",
+            "customer_name": "Acme Corp",
+            "folder_name": "Production",
+            "os_version": "Windows Server 2019",
+            "owner_user": "admin@acme.com",
+            "resource_name": "server-prod-01",
+            "resource_state": "active",
+            "resource_status": "protected",
+            "resource_type": "server"
+          },
+          {
+            "agent": "dev-machine-02",
+            "agent_state": "offline",
+            "agent_version": "25.5.39000",
+            "customer_name": "Tech Startup",
+            "folder_name": "Development",
+            "os_version": "Ubuntu 22.04",
+            "owner_user": "dev@startup.io",
+            "resource_name": "dev-machine-02",
+            "resource_state": "idle",
+            "resource_status": "warning",
+            "resource_type": "machine"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CPU usage",
+      "func": {
+        "id": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.cpu_usage.v1.0",
+        "params": {},
+        "returns": {
+          "items": [],
+          "cursor": {}
+        }
+      },
+      "mock": {
+        "items": [
+          { "timestamp": "2022-09-30T16:00:00.000Z", "usage": 38, "name": "CPU" },
+          { "timestamp": "2022-10-01T19:48:51.000Z", "usage": 36.5, "name": "CPU" },
+          { "timestamp": "2022-10-03T03:18:15.000Z", "usage": 38, "name": "CPU" },
+          { "timestamp": "2022-10-03T21:26:40.000Z", "usage": 20.5, "name": "CPU" },
+          { "timestamp": "2022-10-04T18:33:01.000Z", "usage": 35.5, "name": "CPU" },
+          { "timestamp": "2022-10-06T00:16:49.000Z", "usage": 26.5, "name": "CPU" },
+          { "timestamp": "2022-10-06T20:10:54.000Z", "usage": 36.5, "name": "CPU" },
+          { "timestamp": "2022-10-08T00:03:26.000Z", "usage": 27.5, "name": "CPU" },
+          { "timestamp": "2022-10-08T22:35:25.000Z", "usage": 36, "name": "CPU" },
+          { "timestamp": "2022-10-09T21:18:52.000Z", "usage": 30, "name": "CPU" }
+        ]
+      }
+    },
+    {
+      "name": "RAM usage",
+      "func": {
+        "id": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.ram_usage.v1.0",
+        "params": {},
+        "returns": {
+          "items": [],
+          "cursor": {}
+        }
+      },
+      "mock": {
+        "items": [
+          { "timestamp": "2022-09-30T16:00:00.000Z", "usage": 25, "name": "RAM" },
+          { "timestamp": "2022-10-01T19:48:51.000Z", "usage": 23.5, "name": "RAM" },
+          { "timestamp": "2022-10-03T03:18:15.000Z", "usage": 25, "name": "RAM" },
+          { "timestamp": "2022-10-03T21:26:40.000Z", "usage": 7.5, "name": "RAM" },
+          { "timestamp": "2022-10-04T18:33:01.000Z", "usage": 13.5, "name": "RAM" },
+          { "timestamp": "2022-10-06T00:16:49.000Z", "usage": 23.5, "name": "RAM" },
+          { "timestamp": "2022-10-06T20:10:54.000Z", "usage": 23, "name": "RAM" },
+          { "timestamp": "2022-10-08T00:03:26.000Z", "usage": 17, "name": "RAM" },
+          { "timestamp": "2022-10-08T22:35:25.000Z", "usage": 18, "name": "RAM" },
+          { "timestamp": "2022-10-09T21:18:52.000Z", "usage": 23.5, "name": "RAM" }
+        ]
+      }
+    },
+    {
+      "name": "Backups",
+      "func": {
+        "id": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.backups.v1.0",
+        "params": {
+          "query": { "limit": 10 }
+        },
+        "returns": {
+          "items": [],
+          "cursor": {}
+        }
+      },
+      "mock": {
+        "items": [
+          {
+            "display_name": "acp-auto-win10-x64 - New protection plan (1)",
+            "last_backup_created": "2025-09-04T07:10:14Z",
+            "size": 749568,
+            "backup_plan_name": "New protection plan (1)",
+            "encryption_algorithm": "none"
+          },
+          {
+            "display_name": "acp-auto-win11 - folder-backup",
+            "last_backup_created": "2025-09-03T14:42:36Z",
+            "size": 733270016,
+            "backup_plan_name": "folder-backup",
+            "encryption_algorithm": "aes_256"
+          },
+          {
+            "display_name": "server-prod-01 - Daily backup",
+            "last_backup_created": "2025-09-04T02:00:00Z",
+            "size": 1073741824,
+            "backup_plan_name": "Daily backup",
+            "encryption_algorithm": "aes_256"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Weekly Tickets",
+      "func": {
+        "id": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.tickets_data.v1.0",
+        "params": { "query": {} },
+        "returns": { "items": [], "cursor": {} }
+      },
+      "mock": {
+        "items": [
+          { "ai_resolved_tickets": 0, "human_ai_resolved_tickets": 0, "manual_tickets": 220, "total_tickets": 220, "week": "Sep 4" },
+          { "ai_resolved_tickets": 0, "human_ai_resolved_tickets": 12, "manual_tickets": 190, "total_tickets": 202, "week": "Oct 16" },
+          { "ai_resolved_tickets": 8, "human_ai_resolved_tickets": 55, "manual_tickets": 135, "total_tickets": 198, "week": "Nov 6" },
+          { "ai_resolved_tickets": 25, "human_ai_resolved_tickets": 65, "manual_tickets": 108, "total_tickets": 198, "week": "Nov 13" },
+          { "ai_resolved_tickets": 45, "human_ai_resolved_tickets": 72, "manual_tickets": 92, "total_tickets": 209, "week": "Nov 20" },
+          { "ai_resolved_tickets": 72, "human_ai_resolved_tickets": 80, "manual_tickets": 48, "total_tickets": 200, "week": "Dec 4" }
+        ]
+      }
+    },
+    {
+      "name": "Protection status",
+      "func": {
+        "id": "cti.a.p.dts.func.v1.0~a.p.wr.query.v1.0~a.summit_2025_wr_nextgen.protection_status.v1.0",
+        "params": { "query": {} },
+        "returns": { "items": [] }
+      },
+      "mock": {
+        "items": [
+          { "status": "Protected", "count": 88 },
+          { "status": "Unprotected", "count": 2079 },
+          { "status": "Managed", "count": 2167 }
+        ]
+      }
+    }
+  ]
+}
