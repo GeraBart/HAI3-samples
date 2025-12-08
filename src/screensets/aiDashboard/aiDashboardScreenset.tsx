@@ -1,5 +1,5 @@
 /**
- * acronisAnalytics Screenset
+ * aiDashboard Screenset
  * Template screenset with full structure
  */
 
@@ -13,18 +13,18 @@ import {
   apiRegistry,
   screensetRegistry,
 } from '@hai3/uicore';
-import {ACRONIS_ANALYTICS_SCREENSET_ID, EMPTY_DASHBOARD_SCREEN_ID, HOME_SCREEN_ID} from './ids';
+import { AI_DASHBOARD_SCREENSET_ID, HOME_SCREEN_ID } from './ids';
 import { HomeIcon, HOME_ICON_ID } from './uikit/icons/HomeIcon';
-import acronisAnalyticsSlice from './slices/acronisAnalyticsSlice';
-import { initializeAcronisAnalyticsEffects } from './effects/acronisAnalyticsEffects';
+import aiDashboardSlice from './slices/aiDashboardSlice';
+import { initializeAiDashboardEffects } from './effects/aiDashboardEffects';
 
 // Import for side effect - register API service
-import { ACRONIS_ANALYTICS_DOMAIN } from './api/acronisAnalyticsApiService';
-import './api/acronisAnalyticsApiService';
-import { acronisAnalyticsMockMap } from './api/mocks';
+import { AI_DASHBOARD_DOMAIN } from './api/aiDashboardApiService';
+import './api/aiDashboardApiService';
+import { aiDashboardMockMap } from './api/mocks';
 
 // Register mock data for API service
-apiRegistry.registerMocks(ACRONIS_ANALYTICS_DOMAIN, acronisAnalyticsMockMap);
+apiRegistry.registerMocks(AI_DASHBOARD_DOMAIN, aiDashboardMockMap);
 
 /**
  * Screenset-level translations
@@ -79,16 +79,16 @@ uikitRegistry.registerIcons({
 /**
  * Register slices with effects
  */
-registerSlice(acronisAnalyticsSlice, (dispatch) => {
-  initializeAcronisAnalyticsEffects(dispatch);
+registerSlice(aiDashboardSlice, (dispatch) => {
+  initializeAiDashboardEffects(dispatch);
 });
 
 /**
- * acronisAnalytics Screenset Configuration
+ * aiDashboard Screenset Configuration
  */
-export const acronisAnalyticsScreenset: ScreensetConfig = {
-  id: ACRONIS_ANALYTICS_SCREENSET_ID,
-  name: 'acronisAnalytics',
+export const aiDashboardScreenset: ScreensetConfig = {
+  id: AI_DASHBOARD_SCREENSET_ID,
+  name: 'aiDashboard',
   category: ScreensetCategory.Mockups,
   defaultScreen: HOME_SCREEN_ID,
   localization: screensetTranslations,
@@ -96,18 +96,10 @@ export const acronisAnalyticsScreenset: ScreensetConfig = {
     {
       menuItem: {
         id: HOME_SCREEN_ID,
-        label: `screenset.${ACRONIS_ANALYTICS_SCREENSET_ID}:menu_items.acronisAnalytics.label`,
+        label: `screenset.${AI_DASHBOARD_SCREENSET_ID}:menu_items.aiDashboard.label`,
         icon: HOME_ICON_ID,
       },
       screen: () => import('./screens/home/HomeScreen'),
-    },
-    {
-      menuItem: {
-        id: EMPTY_DASHBOARD_SCREEN_ID,
-        label: `screenset.${ACRONIS_ANALYTICS_SCREENSET_ID}:menu_items.acronisAnalytics.label`,
-        icon: EMPTY_DASHBOARD_SCREEN_ID,
-      },
-      screen: () => import('./screens/empty-dashboard/EmptyDashboardScreen'),
     },
   ],
 };
@@ -115,4 +107,4 @@ export const acronisAnalyticsScreenset: ScreensetConfig = {
 /**
  * Self-register screenset
  */
-screensetRegistry.register(acronisAnalyticsScreenset);
+screensetRegistry.register(aiDashboardScreenset);

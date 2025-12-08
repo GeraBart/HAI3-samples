@@ -21,7 +21,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from '@hai3/uikit';
-import { Plus, X, Send, MoreHorizontal } from 'lucide-react';
+import { Plus, X } from 'lucide-react';
 import { ACRONIS_ANALYTICS_SCREENSET_ID, HOME_SCREEN_ID } from '../../ids';
 import { selectAcronisAnalyticsState, type DashboardTab } from '../../slices/acronisAnalyticsSlice';
 import {
