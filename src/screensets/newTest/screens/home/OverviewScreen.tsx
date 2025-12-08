@@ -41,6 +41,11 @@ import { NEW_TEST_SCREENSET_ID, OVERVIEW_SCREEN_ID } from '../../ids';
 import { DashboardWidgetsGrid, AddWidgetPanel, CustomWidgetConfig } from './components/DashboardWidgets';
 import { SidebarSections, SectionItem } from './components/SidebarSections';
 
+// Import aiDashboard screenset for Analytics section
+// This import ensures the slice and effects are registered
+import '../../../aiDashboard/aiDashboardScreenset';
+import { HomeScreen as AiDashboardHomeScreen } from '../../../aiDashboard/screens/home/HomeScreen';
+
 /**
  * Screen-level translations (loaded lazily when screen mounts)
  */
@@ -153,9 +158,11 @@ export const OverviewScreen: React.FC = () => {
   const [editingTabId, setEditingTabId] = useState<string | null>(null);
   const [editingTabName, setEditingTabName] = useState('');
 
-  // Sidebar sections state - MONITORING child sections (only Overview as default)
+  // Sidebar sections state - MONITORING child sections
+  // System sections (overview, analytics) cannot be moved, edited, or deleted
   const [sections, setSections] = useState<SectionItem[]>([
-    { id: 'overview', name: 'Overview' },
+    { id: 'overview', name: 'Overview', isSystem: true },
+    { id: 'analytics', name: 'Analytics', isSystem: true },
   ]);
   const [activeSectionId, setActiveSectionId] = useState('overview');
 
@@ -250,6 +257,14 @@ export const OverviewScreen: React.FC = () => {
     colourScheme?: string;
     showSummary?: boolean;
     showLegend?: boolean;
+    // Bar chart specific
+    groupField?: string;
+    barThickness?: number;
+    stacked?: boolean;
+    // Table specific
+    columns?: { id: string; field: string; label: string; sortable: boolean; hidden: boolean }[];
+    gridAlignment?: 'left' | 'center' | 'right';
+    stripedGrid?: boolean;
   }) => {
     const newWidget: CustomWidgetConfig = {
       id: `custom-widget-${Date.now()}`,
@@ -264,6 +279,14 @@ export const OverviewScreen: React.FC = () => {
       colourScheme: config.colourScheme,
       showSummary: config.showSummary,
       showLegend: config.showLegend,
+      // Bar chart specific
+      groupField: config.groupField,
+      barThickness: config.barThickness,
+      stacked: config.stacked,
+      // Table specific
+      columns: config.columns,
+      gridAlignment: config.gridAlignment,
+      stripedGrid: config.stripedGrid,
     };
     // Add widget to current tab
     setWidgetsByTab(prev => ({
@@ -319,6 +342,11 @@ export const OverviewScreen: React.FC = () => {
 
       {/* Main Content Area */}
       <div className="flex flex-1 flex-col">
+        {/* Render aiDashboard when Analytics section is active */}
+        {activeSectionId === 'analytics' ? (
+          <AiDashboardHomeScreen />
+        ) : (
+        <>
         {/* Dashboard Header */}
       <div className="flex items-center justify-between border-b border-border px-6 py-3">
         {/* Tabs Row */}
@@ -578,6 +606,8 @@ export const OverviewScreen: React.FC = () => {
         onClose={() => setIsAddWidgetOpen(false)}
         onAddWidget={handleAddWidget}
       />
+        </>
+        )}
       </div>
     </div>
   );

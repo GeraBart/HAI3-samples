@@ -6,7 +6,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from '@hai3/uicore';
-import { Sparkles, BarChart2, Pencil, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Sparkles, BarChart2, Pencil, X, ChevronDown, ChevronUp, Plus } from 'lucide-react';
 import { Input, Button, ButtonVariant } from '@hai3/uikit';
 import { NEW_TEST_SCREENSET_ID, OVERVIEW_SCREEN_ID } from '../../../ids';
 import { useWidgetConfigData } from '../../../hooks/useWidgetConfigData';
@@ -909,76 +909,143 @@ interface AiInsightsModalProps {
   widgetId: string;
   isOpen: boolean;
   onClose: () => void;
+  customWidgetConfig?: CustomWidgetConfig;
 }
 
-const AiInsightsModal: React.FC<AiInsightsModalProps> = ({ widgetId, isOpen, onClose }) => {
+const AiInsightsModal: React.FC<AiInsightsModalProps> = ({ widgetId, isOpen, onClose, customWidgetConfig }) => {
   const { t } = useTranslation();
+  const { getMockData } = useWidgetConfigData();
 
   if (!isOpen) return null;
 
-  const data = getWidgetData(widgetId, t);
+  // Check if this is a custom widget
+  const isCustomWidget = widgetId.startsWith('custom-widget-') && customWidgetConfig;
+  
+  // Get data for predefined widgets
+  const data = !isCustomWidget ? getWidgetData(widgetId, t) : null;
+  
+  // Get mock data for custom widgets
+  const customMockData = isCustomWidget && customWidgetConfig?.datasource 
+    ? getMockData(customWidgetConfig.datasource) 
+    : [];
+  
+  // Generate insights for custom widget based on its data
+  const getCustomWidgetInsights = (): string[] => {
+    if (!customWidgetConfig) return [];
+    const dataCount = customMockData.length;
+    const widgetType = customWidgetConfig.type;
+    
+    // Generate contextual insights based on widget type and data
+    const insights: string[] = [];
+    
+    if (dataCount === 0) {
+      insights.push('No data is currently available for this widget.');
+      insights.push('Verify that the datasource is properly configured.');
+    } else {
+      insights.push(`This ${widgetType} widget is displaying ${dataCount} data points.`);
+      
+      if (widgetType === 'donut' || widgetType === 'bar') {
+        const valueField = customWidgetConfig.valueField || 'count';
+        const total = customMockData.reduce((sum, item) => sum + (Number(item[valueField]) || 0), 0);
+        insights.push(`Total value across all items: ${total.toLocaleString()}`);
+        
+        if (customMockData.length > 0) {
+          const maxItem = customMockData.reduce((max, item) => 
+            (Number(item[valueField]) || 0) > (Number(max[valueField]) || 0) ? item : max
+          );
+          const labelField = customWidgetConfig.labelField || 'type';
+          insights.push(`Highest value: "${maxItem[labelField]}" with ${Number(maxItem[valueField]).toLocaleString()}`);
+        }
+      }
+      
+      if (widgetType === 'table') {
+        const columns = customWidgetConfig.columns || [];
+        const visibleColumns = columns.filter(c => !c.hidden);
+        insights.push(`Displaying ${visibleColumns.length} columns of data.`);
+      }
+    }
+    
+    insights.push('Recommendation: Review the data trends and take action if needed.');
+    insights.push('Consider setting up alerts for significant changes in these metrics.');
+    
+    return insights;
+  };
+
+  // Get title and insights based on widget type
+  const title = isCustomWidget ? customWidgetConfig.name : data?.title || 'Widget';
+  const insights = isCustomWidget ? getCustomWidgetInsights() : data?.insights || [];
 
   return (
     <>
       {/* Floating Widget Summary Card */}
       <div className="fixed left-1/2 top-1/3 z-50 -translate-x-1/2 -translate-y-1/2">
-        <div className="rounded-lg border border-border bg-card p-4 shadow-lg">
+        <div className="rounded-lg border border-border bg-card p-4 shadow-lg min-w-[400px]">
           {/* Widget Header */}
           <div className="mb-3 flex items-center justify-between gap-16">
-            <h3 className="font-medium">{data.title}</h3>
-            {data.timeframe && <span className="text-sm text-muted-foreground">{data.timeframe}</span>}
-          </div>
-
-          {/* Widget Content */}
-          <div className="flex items-start gap-4">
-            {/* Donut Chart */}
-            <div className="flex flex-col items-center">
-              <div className="relative flex h-20 w-20 items-center justify-center">
-                <svg className="absolute inset-0 -rotate-90" viewBox="0 0 100 100">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    className="text-muted/20"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    strokeDasharray={data.total > 0 ? "227 25" : "0 252"}
-                    className={data.chartColor}
-                  />
-                </svg>
-                <div className="text-center">
-                  <div className={`text-lg font-bold ${data.chartColor}`}>{data.total}</div>
-                  <div className="text-xs text-muted-foreground">{data.totalLabel}</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Legend */}
-            {data.items.length > 0 ? (
-              <div className="flex flex-col gap-0.5 text-xs">
-                {data.items.map((item, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <div className={`h-2 w-2 rounded-full ${item.color}`} />
-                    <span className="max-w-[200px] truncate">{item.label}</span>
-                    <span className="ml-auto font-medium">{item.value}</span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="flex items-center text-sm text-muted-foreground">
-                No data available
-              </div>
+            <h3 className="font-medium">{title}</h3>
+            {!isCustomWidget && data?.timeframe && (
+              <span className="text-sm text-muted-foreground">{data.timeframe}</span>
             )}
           </div>
+
+          {/* Widget Content - Render based on type */}
+          {isCustomWidget && customWidgetConfig ? (
+            // Render custom widget preview
+            <CustomWidget 
+              config={customWidgetConfig} 
+              onAiClick={() => {}} 
+              onClose={() => {}}
+            />
+          ) : data ? (
+            // Render predefined widget (donut chart)
+            <div className="flex items-start gap-4">
+              <div className="flex flex-col items-center">
+                <div className="relative flex h-20 w-20 items-center justify-center">
+                  <svg className="absolute inset-0 -rotate-90" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      className="text-muted/20"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      strokeDasharray={data.total > 0 ? "227 25" : "0 252"}
+                      className={data.chartColor}
+                    />
+                  </svg>
+                  <div className="text-center">
+                    <div className={`text-lg font-bold ${data.chartColor}`}>{data.total}</div>
+                    <div className="text-xs text-muted-foreground">{data.totalLabel}</div>
+                  </div>
+                </div>
+              </div>
+
+              {data.items.length > 0 ? (
+                <div className="flex flex-col gap-0.5 text-xs">
+                  {data.items.map((item, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <div className={`h-2 w-2 rounded-full ${item.color}`} />
+                      <span className="max-w-[200px] truncate">{item.label}</span>
+                      <span className="ml-auto font-medium">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex items-center text-sm text-muted-foreground">
+                  No data available
+                </div>
+              )}
+            </div>
+          ) : null}
         </div>
       </div>
 
@@ -986,7 +1053,7 @@ const AiInsightsModal: React.FC<AiInsightsModalProps> = ({ widgetId, isOpen, onC
       <div className="fixed right-0 top-0 z-50 h-full w-80 border-l border-border bg-card p-4 shadow-lg">
         {/* Header with close button */}
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold">{data.title}</h2>
+          <h2 className="text-lg font-semibold">{title}</h2>
           <button
             onClick={onClose}
             className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -998,12 +1065,12 @@ const AiInsightsModal: React.FC<AiInsightsModalProps> = ({ widgetId, isOpen, onC
         {/* Insights Header */}
         <div className="mb-4 flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-primary" />
-          <span className="font-medium">Insights for {data.title}</span>
+          <span className="font-medium">Insights for {title}</span>
         </div>
 
         {/* AI Generated Insights */}
         <div className="flex flex-col gap-3 text-sm">
-          {data.insights.map((insight, index) => (
+          {insights.map((insight, index) => (
             <p key={index}>• {insight}</p>
           ))}
         </div>
@@ -1018,6 +1085,15 @@ const AiInsightsModal: React.FC<AiInsightsModalProps> = ({ widgetId, isOpen, onC
 /**
  * Custom Widget Configuration
  */
+// Table column interface
+export interface TableColumnConfig {
+  id: string;
+  field: string;
+  label: string;
+  sortable: boolean;
+  hidden: boolean;
+}
+
 export interface CustomWidgetConfig {
   id: string;
   name: string;
@@ -1031,6 +1107,14 @@ export interface CustomWidgetConfig {
   colourScheme?: string;
   showSummary?: boolean;
   showLegend?: boolean;
+  // Bar chart specific
+  groupField?: string;
+  barThickness?: number;
+  stacked?: boolean;
+  // Table specific
+  columns?: TableColumnConfig[];
+  gridAlignment?: 'left' | 'center' | 'right';
+  stripedGrid?: boolean;
 }
 
 /**
@@ -1194,7 +1278,145 @@ const CustomWidget: React.FC<{ config: CustomWidgetConfig; onAiClick?: () => voi
             </div>
           </>
         )}
-        {(config.type === 'bar' || config.type === 'bar-v' || config.type === 'bar-h') && (
+        {(config.type === 'bar' || config.type === 'bar-v' || config.type === 'bar-h') && processedData && (() => {
+          const thickness = config.barThickness || 12;
+          const isStacked = config.stacked && config.groupField;
+          const groupField = config.groupField || '';
+          const chartHeight = 112; // h-28 = 112px
+          
+          // Stacked bar colors
+          const stackColors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4'];
+          
+          // For stacked bars, group data by groupField and calculate totals
+          let barData: { label: string; segments: { value: number; color: string; groupLabel: string }[] }[] = [];
+          let uniqueGroups: string[] = [];
+          let maxValue = 0;
+          
+          if (isStacked && groupField) {
+            // Get unique group values (these become the legend items)
+            uniqueGroups = [...new Set(processedData.items.map(item => String(item[groupField] || '')))];
+            
+            // Each item becomes a bar, colored by its group field value
+            processedData.items.slice(0, 10).forEach((item) => {
+              const groupValue = String(item[groupField] || '');
+              const groupIndex = uniqueGroups.indexOf(groupValue);
+              barData.push({
+                label: String(item[labelField] || ''),
+                segments: [{
+                  value: Number(item[valueField]) || 0,
+                  color: stackColors[groupIndex % stackColors.length],
+                  groupLabel: groupValue,
+                }],
+              });
+              maxValue = Math.max(maxValue, Number(item[valueField]) || 0);
+            });
+          } else {
+            // Non-stacked: each item is a single bar
+            maxValue = Math.max(...processedData.items.map(i => Number(i[valueField]) || 0), 1);
+            barData = processedData.items.slice(0, 10).map((item, index) => ({
+              label: String(item[labelField] || ''),
+              segments: [{
+                value: Number(item[valueField]) || 0,
+                color: processedData.getColor(item, index),
+                groupLabel: String(item[labelField] || ''),
+              }],
+            }));
+          }
+          
+          // Round up to nice number for Y-axis
+          const yAxisMax = Math.ceil(maxValue / 25) * 25 || 100;
+          const yAxisSteps = [yAxisMax, Math.round(yAxisMax * 0.66), Math.round(yAxisMax * 0.33), 0];
+          
+          return (
+            <div className="flex w-full flex-col gap-2">
+              {/* Chart area with Y-axis */}
+              <div className="flex">
+                {/* Y-axis labels */}
+                <div className="flex flex-col justify-between pr-2 text-[10px] text-muted-foreground h-28">
+                  {yAxisSteps.map((val, i) => (
+                    <span key={i}>{val}</span>
+                  ))}
+                </div>
+                
+                {/* Chart grid and bars */}
+                <div className="flex-1 relative h-28 border-l border-b border-border">
+                  {/* Horizontal grid lines */}
+                  <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                    {[0, 1, 2].map((i) => (
+                      <div key={i} className="border-t border-border/50 w-full" />
+                    ))}
+                  </div>
+                  
+                  {/* Bars */}
+                  <div className="absolute inset-0 flex items-end justify-around px-1">
+                    {barData.slice(0, 10).map((bar, barIndex) => (
+                      <div key={barIndex} className="flex flex-col items-center" style={{ width: `${thickness}px` }}>
+                        {/* Stacked segments (rendered bottom to top) */}
+                        <div className="flex flex-col-reverse w-full">
+                          {bar.segments.map((segment, segIndex) => {
+                            const segmentHeight = Math.max((segment.value / yAxisMax) * chartHeight, segment.value > 0 ? 4 : 0);
+                            return (
+                              <div 
+                                key={segIndex}
+                                className={`w-full transition-all ${segIndex === bar.segments.length - 1 ? 'rounded-t' : ''}`}
+                                style={{ 
+                                  height: `${segmentHeight}px`,
+                                  backgroundColor: segment.color,
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              {/* X-axis labels */}
+              <div className="flex pl-6">
+                <div className="flex-1 flex justify-around text-[10px] text-muted-foreground">
+                  {barData.slice(0, 10).map((_, index) => (
+                    <span key={index} className="truncate text-center" style={{ width: `${thickness}px` }}>
+                      {index + 1}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Legend */}
+              {showLegend && (
+                <div className="flex flex-wrap gap-3 text-xs mt-1">
+                  {isStacked ? (
+                    // For stacked: show unique groups with stackColors
+                    uniqueGroups.slice(0, 6).map((group, index) => (
+                      <div key={index} className="flex items-center gap-1">
+                        <div 
+                          className="h-2 w-2 rounded-full flex-shrink-0" 
+                          style={{ backgroundColor: stackColors[index % stackColors.length] }}
+                        />
+                        <span className="truncate">{group}</span>
+                      </div>
+                    ))
+                  ) : (
+                    // For non-stacked: show items
+                    processedData.items.slice(0, 4).map((item, index) => (
+                      <div key={index} className="flex items-center gap-1">
+                        <div 
+                          className="h-2 w-2 rounded-full flex-shrink-0" 
+                          style={{ backgroundColor: processedData.getColor(item, index) }}
+                        />
+                        <span className="truncate">{String(item[labelField] || '')}</span>
+                        <span className="font-medium">{String(item[valueField] || '')}</span>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })()}
+        {(config.type === 'bar' || config.type === 'bar-v' || config.type === 'bar-h') && !processedData && (
           <div className="flex h-20 w-full items-end gap-2">
             <div className="h-1/3 flex-1 rounded-t bg-primary/30" />
             <div className="h-1/2 flex-1 rounded-t bg-primary/40" />
@@ -1213,10 +1435,177 @@ const CustomWidget: React.FC<{ config: CustomWidgetConfig; onAiClick?: () => voi
             </svg>
           </div>
         )}
-        {config.type === 'table' && (
-          <div className="w-full text-sm text-muted-foreground">
-            <div className="border-b border-border pb-2 font-medium">No data available</div>
-            <div className="py-2">-</div>
+        {config.type === 'table' && (() => {
+          const columns = config.columns || [];
+          const visibleColumns = columns.filter(col => !col.hidden && col.field);
+          const alignment = config.gridAlignment || 'left';
+          const striped = config.stripedGrid || false;
+          const alignClass = alignment === 'center' ? 'text-center' : alignment === 'right' ? 'text-right' : 'text-left';
+          
+          if (visibleColumns.length === 0 || mockData.length === 0) {
+            return (
+              <div className="w-full text-sm text-muted-foreground">
+                <div className="border-b border-border pb-2 font-medium">No data available</div>
+                <div className="py-2">-</div>
+              </div>
+            );
+          }
+          
+          return (
+            <div className="w-full overflow-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border">
+                    {visibleColumns.map((col) => (
+                      <th 
+                        key={col.id} 
+                        className={`pb-2 font-medium text-muted-foreground ${alignClass}`}
+                      >
+                        {col.label || col.field}
+                        {col.sortable && <span className="ml-1 text-primary text-xs">↕</span>}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {mockData.slice(0, 5).map((row, rowIndex) => (
+                    <tr 
+                      key={rowIndex} 
+                      className={`border-b border-border/50 ${striped && rowIndex % 2 === 1 ? 'bg-muted/30' : ''}`}
+                    >
+                      {visibleColumns.map((col) => (
+                        <td key={col.id} className={`py-2 ${alignClass}`}>
+                          {String(row[col.field] || '-').slice(0, 25)}
+                          {String(row[col.field] || '').length > 25 && '...'}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        })()}
+        {config.type === 'list' && processedData && (
+          <div className="flex flex-col gap-2 w-full">
+            {processedData.items.slice(0, 8).map((item, index) => (
+              <div key={index} className="flex items-center gap-3">
+                <div 
+                  className="h-2 w-2 rounded-full flex-shrink-0" 
+                  style={{ backgroundColor: processedData.getColor(item, index) }}
+                />
+                <span className="text-sm truncate flex-1">{String(item[labelField] || '')}</span>
+                <span className="text-sm font-medium text-muted-foreground">{String(item[valueField] || '')}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        {config.type === 'list' && !processedData && (
+          <div className="flex flex-col gap-2 w-full">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className="h-2 w-2 rounded-full bg-primary/30 flex-shrink-0" />
+                <div className="h-3 flex-1 rounded bg-muted" />
+              </div>
+            ))}
+          </div>
+        )}
+        {config.type === 'legend' && processedData && (
+          <div className="grid grid-cols-2 gap-x-6 gap-y-2 w-full">
+            {processedData.items.slice(0, 10).map((item, index) => (
+              <div key={index} className="flex items-center gap-2">
+                <div 
+                  className="h-2 w-2 rounded-full flex-shrink-0" 
+                  style={{ backgroundColor: processedData.getColor(item, index) }}
+                />
+                <span className="text-sm truncate">{String(item[labelField] || '')}</span>
+                <span className="text-sm font-medium text-muted-foreground">{String(item[valueField] || '')}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        {config.type === 'legend' && !processedData && (
+          <div className="grid grid-cols-2 gap-x-6 gap-y-2 w-full">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-primary/30 flex-shrink-0" />
+                <div className="h-3 flex-1 rounded bg-muted" />
+              </div>
+            ))}
+          </div>
+        )}
+        {config.type === 'treemap' && processedData && (() => {
+          const items = processedData.items.slice(0, 8);
+          const total = items.reduce((sum, item) => sum + (Number(item[valueField]) || 0), 0);
+          
+          const sortedItems = [...items].sort((a, b) => 
+            (Number(b[valueField]) || 0) - (Number(a[valueField]) || 0)
+          );
+          
+          const layout = sortedItems.map((item, index) => ({
+            percent: total > 0 ? (Number(item[valueField]) || 0) / total * 100 : 0,
+            color: processedData.getColor(item, index),
+            label: String(item[labelField] || ''),
+          }));
+          
+          return (
+            <div className="h-40 w-full">
+              <div className="flex h-full gap-1">
+                {layout[0] && (
+                  <div 
+                    className="rounded flex items-end p-2 min-w-[30%]"
+                    style={{ backgroundColor: layout[0].color, flex: layout[0].percent }}
+                  >
+                    <span className="text-xs text-white font-medium truncate drop-shadow-sm">
+                      {layout[0].label}
+                    </span>
+                  </div>
+                )}
+                {layout.length > 1 && (
+                  <div className="flex flex-col gap-1 flex-1">
+                    <div className="flex gap-1 flex-1">
+                      {layout.slice(1, 3).map((item, idx) => (
+                        <div 
+                          key={idx}
+                          className="rounded flex items-end p-1.5"
+                          style={{ backgroundColor: item.color, flex: item.percent || 1 }}
+                        >
+                          <span className="text-[10px] text-white font-medium truncate drop-shadow-sm">
+                            {item.label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    {layout.length > 3 && (
+                      <div className="flex gap-1 flex-1">
+                        {layout.slice(3, 6).map((item, idx) => (
+                          <div 
+                            key={idx}
+                            className="rounded flex items-end p-1"
+                            style={{ backgroundColor: item.color, flex: item.percent || 1 }}
+                          >
+                            <span className="text-[10px] text-white font-medium truncate drop-shadow-sm">
+                              {item.label}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })()}
+        {config.type === 'treemap' && !processedData && (
+          <div className="h-40 w-full">
+            <div className="flex h-full gap-1">
+              <div className="w-1/2 rounded bg-primary/20" />
+              <div className="flex flex-1 flex-col gap-1">
+                <div className="flex-1 rounded bg-primary/15" />
+                <div className="flex-1 rounded bg-primary/10" />
+              </div>
+            </div>
           </div>
         )}
         {(config.type === 'dots' || config.type === 'heatmap') && (
@@ -1347,7 +1736,8 @@ export const DashboardWidgetsGrid: React.FC<DashboardWidgetsGridProps> = ({
       <AiInsightsModal 
         widgetId={selectedWidgetId || ''} 
         isOpen={!!selectedWidgetId} 
-        onClose={handleCloseAiPanel} 
+        onClose={handleCloseAiPanel}
+        customWidgetConfig={customWidgets.find(w => w.id === selectedWidgetId)}
       />
     </div>
   );
@@ -1370,6 +1760,14 @@ interface WidgetConfig {
   colourScheme?: string;
   showSummary?: boolean;
   showLegend?: boolean;
+  // Bar chart specific
+  groupField?: string;
+  barThickness?: number;
+  stacked?: boolean;
+  // Table specific
+  columns?: TableColumnConfig[];
+  gridAlignment?: 'left' | 'center' | 'right';
+  stripedGrid?: boolean;
 }
 
 interface AddWidgetPanelProps {
@@ -1404,6 +1802,20 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
   const [barThickness, setBarThickness] = useState<number>(12);
   const [stacked, setStacked] = useState(false);
   
+  // Properties state - Table specific
+  interface TableColumn {
+    id: string;
+    field: string;
+    label: string;
+    sortable: boolean;
+    hidden: boolean;
+  }
+  const [tableColumns, setTableColumns] = useState<TableColumn[]>([
+    { id: `col-${Date.now()}`, field: '', label: '', sortable: false, hidden: false }
+  ]);
+  const [gridAlignment, setGridAlignment] = useState<'left' | 'center' | 'right'>('left');
+  const [stripedGrid, setStripedGrid] = useState(false);
+  
   // Get datasources from config
   const { datasourceNames, datasources, getAvailableFields, getMockData, saveWidgetToCatalog, catalogWidgets } = useWidgetConfigData();
   
@@ -1412,6 +1824,22 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
   
   // Get mock data for preview
   const mockData = selectedDatasource ? getMockData(selectedDatasource) : [];
+  
+  // Auto-select label and value fields when datasource changes
+  React.useEffect(() => {
+    if (availableFields.length > 0 && !labelField) {
+      // Try to find a good label field (prefer 'type', 'name', 'label', or first string field)
+      const labelCandidates = ['type', 'name', 'label', 'title', 'description'];
+      const foundLabel = labelCandidates.find(f => availableFields.includes(f)) || availableFields[0];
+      setLabelField(foundLabel);
+    }
+    if (availableFields.length > 1 && !valueField) {
+      // Try to find a good value field (prefer 'count', 'value', or first numeric field)
+      const valueCandidates = ['count', 'value', 'total', 'amount'];
+      const foundValue = valueCandidates.find(f => availableFields.includes(f)) || availableFields[1];
+      setValueField(foundValue);
+    }
+  }, [availableFields, labelField, valueField]);
   
   // Detect if severity/status fields exist for colour scheme options
   const hasSeverityField = availableFields.includes('severity');
@@ -1527,6 +1955,14 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
       colourScheme,
       showSummary,
       showLegend,
+      // Bar chart specific
+      groupField,
+      barThickness,
+      stacked,
+      // Table specific
+      columns: tableColumns,
+      gridAlignment,
+      stripedGrid,
     });
     // Reset form
     setWidgetName('');
@@ -1541,6 +1977,14 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
     setShowSummary(true);
     setShowLegend(true);
     setSaveToCustom(false);
+    // Reset bar chart fields
+    setGroupField('');
+    setBarThickness(12);
+    setStacked(false);
+    // Reset table fields
+    setTableColumns([{ id: `col-${Date.now()}`, field: '', label: '', sortable: false, hidden: false }]);
+    setGridAlignment('left');
+    setStripedGrid(false);
     onClose();
   };
 
@@ -1694,126 +2138,403 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
             </div>
           )}
           
-          {/* Bar Chart Skeleton */}
+          {/* Bar Chart Preview */}
           {selectedType === 'bar' && (
-            <div className="flex items-end justify-center gap-4 h-32">
-              <div className="w-10 h-1/3 rounded-t bg-blue-200" />
-              <div className="w-10 h-2/3 rounded-t bg-blue-200" />
-              <div className="w-10 h-1/2 rounded-t bg-blue-200" />
-              <div className="w-10 h-full rounded-t bg-blue-200" />
-              <div className="w-10 h-3/4 rounded-t bg-blue-200" />
-              <div className="w-10 h-1/2 rounded-t bg-blue-200" />
+            <div className="flex flex-col gap-2">
+              {previewData ? (() => {
+                const isStacked = stacked && groupField;
+                const chartHeight = 128; // h-32 = 128px
+                
+                // Stacked bar colors
+                const stackColors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4'];
+                
+                // For stacked bars, group data and calculate totals
+                let barData: { label: string; segments: { value: number; color: string; groupLabel: string }[] }[] = [];
+                let uniqueGroups: string[] = [];
+                let maxValue = 0;
+                
+                if (isStacked && groupField) {
+                  // Get unique group values (these become the stacked segments)
+                  uniqueGroups = [...new Set(previewData.items.map(item => String(item[groupField] || '')))];
+                  
+                  // Each item becomes a bar position, with segments for each group value it contains
+                  // For data like Active Alerts Summary, we create one bar per item
+                  // and color by the group field (severity)
+                  previewData.items.slice(0, 10).forEach((item) => {
+                    const groupValue = String(item[groupField] || '');
+                    const groupIndex = uniqueGroups.indexOf(groupValue);
+                    barData.push({
+                      label: String(item[labelField] || ''),
+                      segments: [{
+                        value: Number(item[valueField]) || 0,
+                        color: stackColors[groupIndex % stackColors.length],
+                        groupLabel: groupValue,
+                      }],
+                    });
+                    maxValue = Math.max(maxValue, Number(item[valueField]) || 0);
+                  });
+                } else {
+                  maxValue = Math.max(...previewData.items.map(i => Number(i[valueField]) || 0), 1);
+                  barData = previewData.items.slice(0, 10).map((item, index) => ({
+                    label: String(item[labelField] || ''),
+                    segments: [{
+                      value: Number(item[valueField]) || 0,
+                      color: previewData.getColor(item, index),
+                      groupLabel: String(item[labelField] || ''),
+                    }],
+                  }));
+                }
+                
+                const yAxisMax = Math.ceil(maxValue / 25) * 25 || 100;
+                const yAxisSteps = [yAxisMax, Math.round(yAxisMax * 0.66), Math.round(yAxisMax * 0.33), 0];
+                
+                return (
+                  <>
+                    {/* Chart area with Y-axis */}
+                    <div className="flex">
+                      {/* Y-axis labels */}
+                      <div className="flex flex-col justify-between pr-2 text-[10px] text-muted-foreground h-32">
+                        {yAxisSteps.map((val, i) => (
+                          <span key={i}>{val}</span>
+                        ))}
+                      </div>
+                      
+                      {/* Chart grid and bars */}
+                      <div className="flex-1 relative h-32 border-l border-b border-border">
+                        {/* Horizontal grid lines */}
+                        <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                          {[0, 1, 2].map((i) => (
+                            <div key={i} className="border-t border-border/50 w-full" />
+                          ))}
+                        </div>
+                        
+                        {/* Bars */}
+                        <div className="absolute inset-0 flex items-end justify-around px-1">
+                          {barData.slice(0, 10).map((bar, barIndex) => (
+                            <div key={barIndex} className="flex flex-col items-center" style={{ width: `${barThickness}px` }}>
+                              <div className="flex flex-col-reverse w-full">
+                                {bar.segments.map((segment, segIndex) => {
+                                  const segmentHeight = Math.max((segment.value / yAxisMax) * chartHeight, segment.value > 0 ? 4 : 0);
+                                  return (
+                                    <div 
+                                      key={segIndex}
+                                      className={`w-full transition-all ${segIndex === bar.segments.length - 1 ? 'rounded-t' : ''}`}
+                                      style={{ 
+                                        height: `${segmentHeight}px`,
+                                        backgroundColor: segment.color,
+                                      }}
+                                    />
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* X-axis labels */}
+                    <div className="flex pl-6">
+                      <div className="flex-1 flex justify-around text-[10px] text-muted-foreground">
+                        {barData.slice(0, 10).map((_, index) => (
+                          <span key={index} className="text-center" style={{ width: `${barThickness}px` }}>
+                            {index + 1}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Legend */}
+                    {showLegend && (
+                      <div className="flex flex-wrap gap-3 text-xs mt-1 justify-center">
+                        {isStacked ? (
+                          uniqueGroups.slice(0, 6).map((group, index) => (
+                            <div key={index} className="flex items-center gap-1">
+                              <div 
+                                className="h-2 w-2 rounded-full flex-shrink-0" 
+                                style={{ backgroundColor: stackColors[index % stackColors.length] }}
+                              />
+                              <span className="truncate">{group}</span>
+                            </div>
+                          ))
+                        ) : (
+                          previewData.items.slice(0, 4).map((item, index) => (
+                            <div key={index} className="flex items-center gap-1">
+                              <div 
+                                className="h-2 w-2 rounded-full flex-shrink-0" 
+                                style={{ backgroundColor: previewData.getColor(item, index) }}
+                              />
+                              <span className="truncate">{String(item[labelField] || '')}</span>
+                              <span className="font-medium">{String(item[valueField] || '')}</span>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    )}
+                  </>
+                );
+              })() : (
+                // Skeleton bar chart with axes
+                <div className="flex flex-col gap-2">
+                  <div className="flex">
+                    <div className="flex flex-col justify-between pr-2 text-[10px] text-muted-foreground/50 h-32">
+                      <span>100</span>
+                      <span>66</span>
+                      <span>33</span>
+                      <span>0</span>
+                    </div>
+                    <div className="flex-1 relative h-32 border-l border-b border-border/50">
+                      <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                        {[0, 1, 2].map((i) => (
+                          <div key={i} className="border-t border-border/30 w-full" />
+                        ))}
+                      </div>
+                      <div className="absolute inset-0 flex items-end justify-around px-2">
+                        <div className="w-8 h-1/3 rounded-t bg-blue-200" />
+                        <div className="w-8 h-2/3 rounded-t bg-blue-200" />
+                        <div className="w-8 h-1/2 rounded-t bg-blue-200" />
+                        <div className="w-8 h-full rounded-t bg-blue-200" />
+                        <div className="w-8 h-3/4 rounded-t bg-blue-200" />
+                        <div className="w-8 h-1/2 rounded-t bg-blue-200" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex pl-6">
+                    <div className="flex-1 flex justify-around text-[10px] text-muted-foreground/50">
+                      {[1, 2, 3, 4, 5, 6].map((n) => (
+                        <span key={n}>{n}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
           
-          {/* Table Skeleton */}
-          {selectedType === 'table' && (
-            <div className="w-full">
-              {/* Table Header */}
-              <div className="mb-3 flex gap-4">
-                <div className="flex items-center gap-2 flex-1">
-                  <div className="h-2 w-2 rounded-full bg-blue-300" />
-                  <div className="h-3 flex-1 rounded bg-blue-200" />
-                </div>
-                <div className="flex items-center gap-2 flex-1">
-                  <div className="h-2 w-2 rounded-full bg-blue-300" />
-                  <div className="h-3 flex-1 rounded bg-blue-200" />
-                </div>
-                <div className="flex items-center gap-2 flex-1">
-                  <div className="h-2 w-2 rounded-full bg-blue-300" />
-                  <div className="h-3 flex-1 rounded bg-blue-200" />
-                </div>
-                <div className="flex items-center gap-2 flex-1">
-                  <div className="h-2 w-2 rounded-full bg-blue-300" />
-                  <div className="h-3 flex-1 rounded bg-blue-200" />
-                </div>
-                <div className="flex items-center gap-2 flex-1">
-                  <div className="h-2 w-2 rounded-full bg-blue-300" />
-                  <div className="h-3 flex-1 rounded bg-blue-200" />
-                </div>
-                <div className="flex items-center gap-2 flex-1">
-                  <div className="h-2 w-2 rounded-full bg-blue-300" />
-                  <div className="h-3 flex-1 rounded bg-blue-200" />
-                </div>
+          {/* Table Preview */}
+          {selectedType === 'table' && (() => {
+            // Get visible columns (not hidden)
+            const visibleColumns = tableColumns.filter(col => !col.hidden && col.field);
+            const hasConfiguredColumns = visibleColumns.length > 0;
+            
+            // Get alignment class
+            const alignClass = gridAlignment === 'center' ? 'text-center' : gridAlignment === 'right' ? 'text-right' : 'text-left';
+            
+            return (
+              <div className="w-full overflow-hidden">
+                {hasConfiguredColumns && mockData.length > 0 ? (
+                  // Real table with configured columns
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr className="border-b border-border">
+                        {visibleColumns.map((col) => (
+                          <th 
+                            key={col.id} 
+                            className={`pb-2 font-medium text-muted-foreground ${alignClass}`}
+                          >
+                            {col.label || col.field}
+                            {col.sortable && <span className="ml-1 text-primary">↕</span>}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {mockData.slice(0, 4).map((row, rowIndex) => (
+                        <tr 
+                          key={rowIndex} 
+                          className={`border-b border-border/50 ${stripedGrid && rowIndex % 2 === 1 ? 'bg-muted/30' : ''}`}
+                        >
+                          {visibleColumns.map((col) => (
+                            <td key={col.id} className={`py-2 ${alignClass}`}>
+                              {String(row[col.field] || '-').slice(0, 20)}
+                              {String(row[col.field] || '').length > 20 && '...'}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  // Skeleton table
+                  <>
+                    <div className="mb-3 flex gap-4">
+                      {[1, 2, 3, 4].map((i) => (
+                        <div key={i} className="flex items-center gap-2 flex-1">
+                          <div className="h-2 w-2 rounded-full bg-blue-300" />
+                          <div className="h-3 flex-1 rounded bg-blue-200" />
+                        </div>
+                      ))}
+                    </div>
+                    {[1, 2, 3, 4].map((row) => (
+                      <div key={row} className={`mb-2 flex gap-4 ${stripedGrid && row % 2 === 0 ? 'bg-muted/30 rounded' : ''}`}>
+                        {[1, 2, 3, 4].map((col) => (
+                          <div key={col} className="h-3 flex-1 rounded bg-blue-100" />
+                        ))}
+                      </div>
+                    ))}
+                  </>
+                )}
               </div>
-              {/* Table Rows */}
-              {[1, 2, 3, 4].map((row) => (
-                <div key={row} className="mb-2 flex gap-4">
-                  <div className="h-3 flex-1 rounded bg-blue-100" />
-                  <div className="h-3 flex-1 rounded bg-blue-100" />
-                  <div className="h-3 flex-1 rounded bg-blue-100" />
-                  <div className="h-3 flex-1 rounded bg-blue-100" />
-                  <div className="h-3 flex-1 rounded bg-blue-100" />
-                  <div className="h-3 flex-1 rounded bg-blue-100" />
-                </div>
-              ))}
-            </div>
-          )}
+            );
+          })()}
           
-          {/* List Skeleton - Single column list */}
+          {/* List Preview */}
           {selectedType === 'list' && (
-            <div className="flex flex-col gap-4 w-full">
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full bg-blue-300" />
-                <div className="h-3 flex-1 rounded bg-blue-100" />
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full bg-blue-300" />
-                <div className="h-3 flex-1 rounded bg-blue-100" />
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full bg-blue-300" />
-                <div className="h-3 flex-1 rounded bg-blue-100" />
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full bg-blue-300" />
-                <div className="h-3 flex-1 rounded bg-blue-100" />
-              </div>
+            <div className="flex flex-col gap-2 w-full">
+              {previewData ? (
+                // Real list with data
+                previewData.items.slice(0, 6).map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div 
+                      className="h-2 w-2 rounded-full flex-shrink-0" 
+                      style={{ backgroundColor: previewData.getColor(item, index) }}
+                    />
+                    <span className="text-sm truncate flex-1">{String(item[labelField] || '')}</span>
+                    <span className="text-sm font-medium text-muted-foreground">{String(item[valueField] || '')}</span>
+                  </div>
+                ))
+              ) : (
+                // Skeleton list
+                [1, 2, 3, 4, 5].map((i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="h-2 w-2 rounded-full bg-blue-300 flex-shrink-0" />
+                    <div className="h-3 flex-1 rounded bg-blue-100" />
+                  </div>
+                ))
+              )}
             </div>
           )}
           
-          {/* Legend Skeleton - Two column grid */}
+          {/* Legend Preview - Two column grid */}
           {selectedType === 'legend' && (
-            <div className="grid grid-cols-2 gap-4 w-full">
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full bg-blue-300" />
-                <div className="h-3 flex-1 rounded bg-blue-100" />
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full bg-blue-300" />
-                <div className="h-3 flex-1 rounded bg-blue-100" />
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full bg-blue-300" />
-                <div className="h-3 flex-1 rounded bg-blue-100" />
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full bg-blue-300" />
-                <div className="h-3 flex-1 rounded bg-blue-100" />
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full bg-blue-300" />
-                <div className="h-3 flex-1 rounded bg-blue-100" />
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full bg-blue-300" />
-                <div className="h-3 flex-1 rounded bg-blue-100" />
-              </div>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-2 w-full">
+              {previewData ? (
+                // Real legend with data
+                previewData.items.slice(0, 8).map((item, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div 
+                      className="h-2 w-2 rounded-full flex-shrink-0" 
+                      style={{ backgroundColor: previewData.getColor(item, index) }}
+                    />
+                    <span className="text-sm truncate">{String(item[labelField] || '')}</span>
+                    <span className="text-sm font-medium text-muted-foreground">{String(item[valueField] || '')}</span>
+                  </div>
+                ))
+              ) : (
+                // Skeleton legend
+                [1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-blue-300 flex-shrink-0" />
+                    <div className="h-3 flex-1 rounded bg-blue-100" />
+                  </div>
+                ))
+              )}
             </div>
           )}
           
-          {/* Treemap Skeleton - Colored blocks */}
-          {selectedType === 'treemap' && (
-            <div className="h-32 w-full">
-              <div className="flex h-full gap-2">
-                <div className="w-1/2 rounded bg-blue-200" />
-                <div className="flex flex-1 flex-col gap-2">
-                  <div className="flex-1 rounded bg-blue-100" />
-                  <div className="flex-1 rounded bg-blue-150" />
+          {/* Treemap Preview */}
+          {selectedType === 'treemap' && (() => {
+            if (!previewData || previewData.items.length === 0) {
+              // Skeleton treemap
+              return (
+                <div className="h-32 w-full">
+                  <div className="flex h-full gap-1">
+                    <div className="w-1/2 rounded bg-blue-200" />
+                    <div className="flex flex-1 flex-col gap-1">
+                      <div className="flex-1 rounded bg-blue-100" />
+                      <div className="flex-1 rounded bg-blue-50" />
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+            
+            // Calculate treemap layout
+            const items = previewData.items.slice(0, 8);
+            const total = items.reduce((sum, item) => sum + (Number(item[valueField]) || 0), 0);
+            
+            // Simple treemap algorithm - split into rows based on value
+            const getTreemapLayout = () => {
+              if (items.length === 0) return [];
+              
+              const sortedItems = [...items].sort((a, b) => 
+                (Number(b[valueField]) || 0) - (Number(a[valueField]) || 0)
+              );
+              
+              return sortedItems.map((item, index) => ({
+                item,
+                percent: total > 0 ? (Number(item[valueField]) || 0) / total * 100 : 0,
+                color: previewData.getColor(item, index),
+                label: String(item[labelField] || ''),
+                value: Number(item[valueField]) || 0,
+              }));
+            };
+            
+            const layout = getTreemapLayout();
+            
+            // Render treemap with nested flex layout
+            return (
+              <div className="h-36 w-full">
+                <div className="flex h-full gap-1">
+                  {/* First column - largest item */}
+                  {layout[0] && (
+                    <div 
+                      className="rounded flex items-end p-2 min-w-[30%]"
+                      style={{ 
+                        backgroundColor: layout[0].color,
+                        flex: layout[0].percent,
+                      }}
+                    >
+                      <span className="text-xs text-white font-medium truncate drop-shadow-sm">
+                        {layout[0].label}
+                      </span>
+                    </div>
+                  )}
+                  {/* Second column - stacked items */}
+                  {layout.length > 1 && (
+                    <div className="flex flex-col gap-1 flex-1">
+                      {/* Top row */}
+                      <div className="flex gap-1 flex-1">
+                        {layout.slice(1, 3).map((item, idx) => (
+                          <div 
+                            key={idx}
+                            className="rounded flex items-end p-1.5"
+                            style={{ 
+                              backgroundColor: item.color,
+                              flex: item.percent || 1,
+                            }}
+                          >
+                            <span className="text-[10px] text-white font-medium truncate drop-shadow-sm">
+                              {item.label}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Bottom row */}
+                      {layout.length > 3 && (
+                        <div className="flex gap-1 flex-1">
+                          {layout.slice(3, 6).map((item, idx) => (
+                            <div 
+                              key={idx}
+                              className="rounded flex items-end p-1"
+                              style={{ 
+                                backgroundColor: item.color,
+                                flex: item.percent || 1,
+                              }}
+                            >
+                              <span className="text-[10px] text-white font-medium truncate drop-shadow-sm">
+                                {item.label}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
         </div>
       </div>
       
@@ -2224,10 +2945,142 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
               
               {/* Table-specific Fields */}
               {selectedType === 'table' && (
-                <p className="text-sm text-muted-foreground">Table configuration coming soon...</p>
+                <>
+                  {/* Grid Alignment Dropdown */}
+                  <select 
+                    className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm"
+                    value={gridAlignment}
+                    onChange={(e) => setGridAlignment(e.target.value as 'left' | 'center' | 'right')}
+                  >
+                    <option value="left">Grid alignment - Left</option>
+                    <option value="center">Grid alignment - Center</option>
+                    <option value="right">Grid alignment - Right</option>
+                  </select>
+                  
+                  {/* Striped Grid Checkbox */}
+                  <label className="flex items-center gap-2 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={stripedGrid}
+                      onChange={(e) => setStripedGrid(e.target.checked)}
+                      className="rounded border-border"
+                    />
+                    <span className="text-muted-foreground">Striped grid</span>
+                  </label>
+                </>
               )}
             </div>
           </div>
+
+          {/* Columns Section - Only for Table type */}
+          {selectedType === 'table' && (
+            <div className="border-t border-border pt-4">
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-sm font-medium">Columns</span>
+                <button
+                  onClick={() => setTableColumns([...tableColumns, { 
+                    id: `col-${Date.now()}`, 
+                    field: '', 
+                    label: '', 
+                    sortable: false, 
+                    hidden: false 
+                  }])}
+                  className="flex items-center gap-1 text-sm text-primary hover:underline"
+                >
+                  <Plus className="h-4 w-4" />
+                  New column
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {tableColumns.map((column, index) => (
+                  <div key={column.id} className="rounded-md border border-border p-3">
+                    {/* Column Field (Name) */}
+                    <select 
+                      className="mb-2 w-full rounded-md border border-border bg-background px-3 py-2 text-sm"
+                      value={column.field}
+                      onChange={(e) => {
+                        const newColumns = [...tableColumns];
+                        newColumns[index].field = e.target.value;
+                        // Auto-fill label if empty
+                        if (!newColumns[index].label) {
+                          newColumns[index].label = e.target.value;
+                        }
+                        setTableColumns(newColumns);
+                      }}
+                      disabled={!selectedDatasource}
+                    >
+                      <option value="">Name (field)</option>
+                      {availableFields.map((field) => (
+                        <option key={field} value={field}>{field}</option>
+                      ))}
+                    </select>
+                    
+                    {/* Column Label */}
+                    <input
+                      type="text"
+                      className="mb-2 w-full rounded-md border border-border bg-background px-3 py-2 text-sm"
+                      placeholder="Label"
+                      value={column.label}
+                      onChange={(e) => {
+                        const newColumns = [...tableColumns];
+                        newColumns[index].label = e.target.value;
+                        setTableColumns(newColumns);
+                      }}
+                    />
+                    
+                    {/* Column Options */}
+                    <div className="flex flex-col gap-2">
+                      <label className="flex items-center gap-2 text-sm">
+                        <input
+                          type="checkbox"
+                          checked={column.sortable}
+                          onChange={(e) => {
+                            const newColumns = [...tableColumns];
+                            newColumns[index].sortable = e.target.checked;
+                            setTableColumns(newColumns);
+                          }}
+                          className="rounded border-border"
+                        />
+                        <span className="text-muted-foreground">Make column sortable</span>
+                      </label>
+                      
+                      <label className="flex items-center gap-2 text-sm">
+                        <input
+                          type="checkbox"
+                          checked={column.hidden}
+                          onChange={(e) => {
+                            const newColumns = [...tableColumns];
+                            newColumns[index].hidden = e.target.checked;
+                            setTableColumns(newColumns);
+                          }}
+                          className="rounded border-border"
+                        />
+                        <span className="text-muted-foreground">Hide column</span>
+                      </label>
+                    </div>
+                    
+                    {/* Delete Button - disabled if only 1 column */}
+                    <button
+                      onClick={() => {
+                        if (tableColumns.length > 1) {
+                          setTableColumns(tableColumns.filter((_, i) => i !== index));
+                        }
+                      }}
+                      disabled={tableColumns.length <= 1}
+                      className={`mt-2 text-sm ${
+                        tableColumns.length <= 1 
+                          ? 'text-muted-foreground cursor-not-allowed' 
+                          : 'text-red-500 hover:underline'
+                      }`}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Filters Section */}
           <div className="border-t border-border pt-4">

@@ -39,6 +39,7 @@ const tk = (key: string) => `screen.${NEW_TEST_SCREENSET_ID}.${OVERVIEW_SCREEN_I
 export interface SectionItem {
   id: string;
   name: string;
+  isSystem?: boolean; // true = cannot be moved, edited, or deleted
 }
 
 /**
@@ -176,7 +177,8 @@ export const SidebarSections: React.FC<SidebarSectionsProps> = ({
           >
             <span className="text-sm">{section.name}</span>
             
-            {/* Child 3-dot menu */}
+            {/* Child 3-dot menu - only show for non-system sections */}
+            {!section.isSystem && (
             <div className="relative">
               <button
                 onClick={(e) => {
@@ -259,6 +261,7 @@ export const SidebarSections: React.FC<SidebarSectionsProps> = ({
                 </>
               )}
             </div>
+            )}
           </div>
         ))}
       </div>

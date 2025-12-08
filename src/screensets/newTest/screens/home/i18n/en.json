@@ -2,7 +2,8 @@
   "title": "Overview",
   "description": "Dashboard overview screen",
   "tabs": {
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "analytics": "Analytics"
   },
   "actions": {
     "add_tab": "Add tab",
