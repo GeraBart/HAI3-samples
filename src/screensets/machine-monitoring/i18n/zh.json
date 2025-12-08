@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "机器监控",
+      "description": "监控系统指标和进程"
+    },
+    "machines-list": {
+      "title": "机器集群",
+      "description": "所有托管主机和虚拟机概览"
+    }
+  }
+}

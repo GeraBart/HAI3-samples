@@ -1,0 +1,62 @@
+{
+  "title": "مشینوں کا بیڑا",
+  "subtitle": "اپنے بنیادی ڈھانچے میں تمام میزبانوں اور ورچوئل مشینوں کی نگرانی کریں",
+  "showing": "دکھا رہا ہے",
+  "of": "میں سے",
+  "machines": "مشینیں",
+  "stats": {
+    "title": "بیڑے کا جائزہ",
+    "total_machines": "کل مشینیں",
+    "online": "آن لائن",
+    "offline": "آف لائن",
+    "maintenance": "دیکھ بھال",
+    "machine_types": "مشین کی اقسام",
+    "physical": "جسمانی",
+    "virtual": "ورچوئل",
+    "by_location": "مقام کے مطابق"
+  },
+  "issues": {
+    "title": "مسائل کا جائزہ",
+    "critical": "نازک",
+    "warning": "انتباہ",
+    "info": "معلومات",
+    "hardware": "ہارڈویئر",
+    "software": "سافٹ ویئر",
+    "security": "سیکیورٹی",
+    "backup": "بیک اپ",
+    "network": "نیٹ ورک"
+  },
+  "filter": {
+    "search_placeholder": "نام، hostname، IP یا ٹیگ سے تلاش کریں...",
+    "location": "مقام",
+    "all_locations": "تمام مقامات",
+    "status": "حیثیت",
+    "all_status": "تمام حیثیتیں",
+    "issue_type": "مسئلے کی قسم",
+    "all_issues": "تمام مسائل",
+    "reset": "ری سیٹ"
+  },
+  "location": {
+    "datacenter": "ڈیٹا سینٹر",
+    "cloud": "کلاؤڈ",
+    "office": "دفتر",
+    "remote": "ریموٹ"
+  },
+  "status": {
+    "online": "آن لائن",
+    "offline": "آف لائن",
+    "maintenance": "دیکھ بھال"
+  },
+  "machine": {
+    "ram": "ریم",
+    "disk": "ڈسک",
+    "status": "حیثیت",
+    "no_issues": "کوئی مسئلہ نہیں ملا",
+    "just_now": "ابھی",
+    "ago": "پہلے"
+  },
+  "no_results": {
+    "title": "کوئی مشین نہیں ملی",
+    "description": "اپنے فلٹرز یا تلاش کی شرائط کو ایڈجسٹ کرنے کی کوشش کریں"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Maschinenüberwachung",
+      "description": "Systemmetriken und Prozesse überwachen"
+    },
+    "machines-list": {
+      "title": "Maschinenflotte",
+      "description": "Übersicht aller verwalteten Hosts und virtuellen Maschinen"
+    }
+  }
+}

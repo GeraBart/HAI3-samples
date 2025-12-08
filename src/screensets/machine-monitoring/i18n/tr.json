@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Makine İzleme",
+      "description": "Sistem metriklerini ve süreçleri izleyin"
+    },
+    "machines-list": {
+      "title": "Makine Filosu",
+      "description": "Tüm yönetilen ana bilgisayarlar ve sanal makinelere genel bakış"
+    }
+  }
+}

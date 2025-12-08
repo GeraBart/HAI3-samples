@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Monitorizare Mașini",
+      "description": "Monitorizați metricile sistemului și procesele"
+    },
+    "machines-list": {
+      "title": "Flotă de Mașini",
+      "description": "Prezentare generală a tuturor gazdelor și mașinilor virtuale gestionate"
+    }
+  }
+}

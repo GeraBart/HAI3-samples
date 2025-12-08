@@ -1,0 +1,62 @@
+{
+  "title": "मशीन फ्लीट",
+  "subtitle": "अपने बुनियादी ढांचे में सभी होस्ट और वर्चुअल मशीनों की निगरानी करें",
+  "showing": "दिखा रहा है",
+  "of": "में से",
+  "machines": "मशीनें",
+  "stats": {
+    "title": "फ्लीट अवलोकन",
+    "total_machines": "कुल मशीनें",
+    "online": "ऑनलाइन",
+    "offline": "ऑफलाइन",
+    "maintenance": "रखरखाव",
+    "machine_types": "मशीन प्रकार",
+    "physical": "भौतिक",
+    "virtual": "वर्चुअल",
+    "by_location": "स्थान के अनुसार"
+  },
+  "issues": {
+    "title": "समस्याओं का अवलोकन",
+    "critical": "गंभीर",
+    "warning": "चेतावनी",
+    "info": "जानकारी",
+    "hardware": "हार्डवेयर",
+    "software": "सॉफ्टवेयर",
+    "security": "सुरक्षा",
+    "backup": "बैकअप",
+    "network": "नेटवर्क"
+  },
+  "filter": {
+    "search_placeholder": "नाम, hostname, IP या टैग से खोजें...",
+    "location": "स्थान",
+    "all_locations": "सभी स्थान",
+    "status": "स्थिति",
+    "all_status": "सभी स्थिति",
+    "issue_type": "समस्या प्रकार",
+    "all_issues": "सभी समस्याएं",
+    "reset": "रीसेट"
+  },
+  "location": {
+    "datacenter": "डेटासेंटर",
+    "cloud": "क्लाउड",
+    "office": "कार्यालय",
+    "remote": "रिमोट"
+  },
+  "status": {
+    "online": "ऑनलाइन",
+    "offline": "ऑफलाइन",
+    "maintenance": "रखरखाव"
+  },
+  "machine": {
+    "ram": "रैम",
+    "disk": "डिस्क",
+    "status": "स्थिति",
+    "no_issues": "कोई समस्या नहीं मिली",
+    "just_now": "अभी",
+    "ago": "पहले"
+  },
+  "no_results": {
+    "title": "कोई मशीन नहीं मिली",
+    "description": "अपने फ़िल्टर या खोज शब्दों को समायोजित करने का प्रयास करें"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "title": "Đội Máy",
+  "subtitle": "Giám sát tất cả máy chủ và máy ảo trong cơ sở hạ tầng của bạn",
+  "showing": "Đang hiển thị",
+  "of": "trong",
+  "machines": "máy",
+  "stats": {
+    "title": "Tổng Quan Đội",
+    "total_machines": "Tổng số Máy",
+    "online": "Trực tuyến",
+    "offline": "Ngoại tuyến",
+    "maintenance": "Bảo trì",
+    "machine_types": "Loại Máy",
+    "physical": "Vật lý",
+    "virtual": "Ảo",
+    "by_location": "Theo Vị trí"
+  },
+  "issues": {
+    "title": "Tổng Quan Vấn Đề",
+    "critical": "Nghiêm trọng",
+    "warning": "Cảnh báo",
+    "info": "Thông tin",
+    "hardware": "Phần cứng",
+    "software": "Phần mềm",
+    "security": "Bảo mật",
+    "backup": "Sao lưu",
+    "network": "Mạng"
+  },
+  "filter": {
+    "search_placeholder": "Tìm theo tên, hostname, IP hoặc thẻ...",
+    "location": "Vị trí",
+    "all_locations": "Tất cả Vị trí",
+    "status": "Trạng thái",
+    "all_status": "Tất cả Trạng thái",
+    "issue_type": "Loại Vấn đề",
+    "all_issues": "Tất cả Vấn đề",
+    "reset": "Đặt lại"
+  },
+  "location": {
+    "datacenter": "Trung tâm Dữ liệu",
+    "cloud": "Đám mây",
+    "office": "Văn phòng",
+    "remote": "Từ xa"
+  },
+  "status": {
+    "online": "Trực tuyến",
+    "offline": "Ngoại tuyến",
+    "maintenance": "Bảo trì"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Ổ đĩa",
+    "status": "Trạng thái",
+    "no_issues": "Không phát hiện vấn đề",
+    "just_now": "Vừa xong",
+    "ago": "trước"
+  },
+  "no_results": {
+    "title": "Không tìm thấy máy",
+    "description": "Hãy thử điều chỉnh bộ lọc hoặc từ khóa tìm kiếm"
+  }
+}

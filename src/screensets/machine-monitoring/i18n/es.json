@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Monitoreo de máquinas",
+      "description": "Monitorear métricas del sistema y procesos"
+    },
+    "machines-list": {
+      "title": "Flota de Máquinas",
+      "description": "Resumen de todos los hosts y máquinas virtuales administradas"
+    }
+  }
+}

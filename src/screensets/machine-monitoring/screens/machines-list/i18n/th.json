@@ -1,0 +1,82 @@
+{
+  "title": "กองเครื่อง",
+  "subtitle": "ตรวจสอบโฮสต์และเครื่องเสมือนทั้งหมดในโครงสร้างพื้นฐานของคุณ",
+  "showing": "แสดง",
+  "of": "จาก",
+  "machines": "เครื่อง",
+  "stats": {
+    "title": "ภาพรวมกองเครื่อง",
+    "total_machines": "เครื่องทั้งหมด",
+    "online": "ออนไลน์",
+    "offline": "ออฟไลน์",
+    "maintenance": "บำรุงรักษา",
+    "machine_types": "ประเภทเครื่อง",
+    "physical": "กายภาพ",
+    "virtual": "เสมือน",
+    "by_location": "ตามสถานที่"
+  },
+  "issues": {
+    "title": "ภาพรวมปัญหา",
+    "critical": "วิกฤต",
+    "warning": "เตือน",
+    "info": "ข้อมูล",
+    "hardware": "ฮาร์ดแวร์",
+    "software": "ซอฟต์แวร์",
+    "security": "ความปลอดภัย",
+    "backup": "สำรองข้อมูล",
+    "network": "เครือข่าย"
+  },
+  "filter": {
+    "search_placeholder": "ค้นหาตามชื่อ, hostname, IP หรือแท็ก...",
+    "location": "สถานที่",
+    "all_locations": "ทุกสถานที่",
+    "status": "สถานะ",
+    "all_status": "ทุกสถานะ",
+    "issue_type": "ประเภทปัญหา",
+    "all_issues": "ทุกปัญหา",
+    "reset": "รีเซ็ต"
+  },
+  "location": {
+    "datacenter": "ศูนย์ข้อมูล",
+    "cloud": "คลาวด์",
+    "office": "สำนักงาน",
+    "remote": "ระยะไกล"
+  },
+  "status": {
+    "online": "ออนไลน์",
+    "offline": "ออฟไลน์",
+    "maintenance": "บำรุงรักษา"
+  },
+  "machine": {
+    "ram": "แรม",
+    "disk": "ดิสก์",
+    "status": "สถานะ",
+    "no_issues": "ไม่พบปัญหา",
+    "just_now": "เมื่อกี้",
+    "ago": "ที่แล้ว"
+  },
+  "no_results": {
+    "title": "ไม่พบเครื่อง",
+    "description": "ลองปรับตัวกรองหรือคำค้นหาของคุณ"
+  },
+  "view": {
+    "grid": "มุมมองกริด",
+    "table": "มุมมองตาราง"
+  },
+  "table": {
+    "name": "ชื่อ",
+    "ip": "ที่อยู่ IP",
+    "os": "ระบบปฏิบัติการ",
+    "type": "ประเภท",
+    "location": "สถานที่",
+    "ram": "แรม",
+    "disk": "ดิสก์",
+    "uptime": "เวลาทำงาน",
+    "issues": "ปัญหา"
+  },
+  "ssh": {
+    "connect": "เชื่อมต่อผ่าน SSH",
+    "hint": "พิมพ์ 'help' สำหรับคำสั่งที่ใช้ได้",
+    "credentials": "ข้อมูลรับรอง"
+  }
+}

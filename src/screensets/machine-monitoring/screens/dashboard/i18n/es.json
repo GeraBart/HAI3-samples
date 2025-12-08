@@ -1,0 +1,56 @@
+{
+  "title": "Panel de Monitoreo de Máquinas",
+  "subtitle": "Monitorea métricas del sistema y procesos en ejecución en tiempo real",
+  "machine_selector": {
+    "label": "Seleccionar Máquina",
+    "placeholder": "Elige una máquina para monitorear"
+  },
+  "metrics": {
+    "cpu": "Uso de CPU",
+    "ram": "Uso de RAM",
+    "disk": "Uso de Disco",
+    "network": "Red",
+    "gpu": "Uso de GPU",
+    "in": "Entrada",
+    "out": "Salida"
+  },
+  "summary": {
+    "title": "Resumen de Máquina",
+    "os": "Sistema Operativo",
+    "uptime": "Tiempo de Actividad",
+    "cpu_model": "Modelo de CPU",
+    "gpu_model": "Modelo de GPU",
+    "total_ram": "RAM Total",
+    "total_disk": "Disco Total",
+    "days": "días",
+    "hours": "horas",
+    "minutes": "minutos"
+  },
+  "processes": {
+    "title": "Procesos en Ejecución",
+    "search_placeholder": "Buscar por PID o comando...",
+    "pid": "PID",
+    "name": "Nombre",
+    "cpu": "CPU %",
+    "rss": "Memoria RSS",
+    "virtual": "Memoria Virtual",
+    "start_time": "Hora de Inicio",
+    "command": "Comando",
+    "status": "Estado",
+    "sort_by": "Ordenar por",
+    "no_results": "No se encontraron procesos que coincidan con tu búsqueda"
+  },
+  "chart": {
+    "past_week": "Métricas de la Última Semana",
+    "time": "Tiempo",
+    "usage": "Uso (%)",
+    "mbps": "Mbps"
+  },
+  "time_range": {
+    "label": "Rango de Tiempo",
+    "30min": "30 Minutos",
+    "4hours": "4 Horas",
+    "1day": "1 Día",
+    "7days": "7 Días"
+  }
+}

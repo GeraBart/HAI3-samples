@@ -1,0 +1,82 @@
+{
+  "title": "أسطول الأجهزة",
+  "subtitle": "راقب جميع المضيفين والأجهزة الافتراضية في بنيتك التحتية",
+  "showing": "عرض",
+  "of": "من",
+  "machines": "أجهزة",
+  "stats": {
+    "title": "نظرة عامة على الأسطول",
+    "total_machines": "إجمالي الأجهزة",
+    "online": "متصل",
+    "offline": "غير متصل",
+    "maintenance": "صيانة",
+    "machine_types": "أنواع الأجهزة",
+    "physical": "فعلي",
+    "virtual": "افتراضي",
+    "by_location": "حسب الموقع"
+  },
+  "issues": {
+    "title": "نظرة عامة على المشاكل",
+    "critical": "حرج",
+    "warning": "تحذير",
+    "info": "معلومات",
+    "hardware": "الأجهزة",
+    "software": "البرمجيات",
+    "security": "الأمان",
+    "backup": "النسخ الاحتياطي",
+    "network": "الشبكة"
+  },
+  "filter": {
+    "search_placeholder": "البحث بالاسم أو اسم المضيف أو IP أو العلامة...",
+    "location": "الموقع",
+    "all_locations": "جميع المواقع",
+    "status": "الحالة",
+    "all_status": "جميع الحالات",
+    "issue_type": "نوع المشكلة",
+    "all_issues": "جميع المشاكل",
+    "reset": "إعادة تعيين"
+  },
+  "location": {
+    "datacenter": "مركز البيانات",
+    "cloud": "السحابة",
+    "office": "المكتب",
+    "remote": "عن بُعد"
+  },
+  "status": {
+    "online": "متصل",
+    "offline": "غير متصل",
+    "maintenance": "صيانة"
+  },
+  "machine": {
+    "ram": "الذاكرة",
+    "disk": "القرص",
+    "status": "الحالة",
+    "no_issues": "لم يتم اكتشاف مشاكل",
+    "just_now": "الآن",
+    "ago": "منذ"
+  },
+  "no_results": {
+    "title": "لم يتم العثور على أجهزة",
+    "description": "حاول تعديل الفلاتر أو مصطلحات البحث"
+  },
+  "view": {
+    "grid": "عرض الشبكة",
+    "table": "عرض الجدول"
+  },
+  "table": {
+    "name": "الاسم",
+    "ip": "عنوان IP",
+    "os": "نظام التشغيل",
+    "type": "النوع",
+    "location": "الموقع",
+    "ram": "الذاكرة",
+    "disk": "القرص",
+    "uptime": "وقت التشغيل",
+    "issues": "المشاكل"
+  },
+  "ssh": {
+    "connect": "الاتصال عبر SSH",
+    "hint": "اكتب 'help' للأوامر المتاحة",
+    "credentials": "بيانات الاعتماد"
+  }
+}

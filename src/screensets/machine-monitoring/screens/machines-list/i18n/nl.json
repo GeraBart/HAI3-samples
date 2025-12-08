@@ -1,0 +1,62 @@
+{
+  "title": "Machinevloot",
+  "subtitle": "Monitor alle hosts en virtuele machines in uw infrastructuur",
+  "showing": "Weergave",
+  "of": "van",
+  "machines": "machines",
+  "stats": {
+    "title": "Vlootoverzicht",
+    "total_machines": "Totaal Machines",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Onderhoud",
+    "machine_types": "Machinetypes",
+    "physical": "Fysiek",
+    "virtual": "Virtueel",
+    "by_location": "Per Locatie"
+  },
+  "issues": {
+    "title": "Probleemoverzicht",
+    "critical": "Kritiek",
+    "warning": "Waarschuwing",
+    "info": "Informatie",
+    "hardware": "Hardware",
+    "software": "Software",
+    "security": "Beveiliging",
+    "backup": "Back-up",
+    "network": "Netwerk"
+  },
+  "filter": {
+    "search_placeholder": "Zoek op naam, hostname, IP of tag...",
+    "location": "Locatie",
+    "all_locations": "Alle Locaties",
+    "status": "Status",
+    "all_status": "Alle Statussen",
+    "issue_type": "Probleemtype",
+    "all_issues": "Alle Problemen",
+    "reset": "Reset"
+  },
+  "location": {
+    "datacenter": "Datacenter",
+    "cloud": "Cloud",
+    "office": "Kantoor",
+    "remote": "Op afstand"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Onderhoud"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Schijf",
+    "status": "Status",
+    "no_issues": "Geen problemen gedetecteerd",
+    "just_now": "Zojuist",
+    "ago": "geleden"
+  },
+  "no_results": {
+    "title": "Geen machines gevonden",
+    "description": "Probeer uw filters of zoektermen aan te passen"
+  }
+}

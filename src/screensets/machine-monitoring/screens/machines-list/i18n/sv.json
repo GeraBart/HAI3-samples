@@ -1,0 +1,62 @@
+{
+  "title": "Maskinflotta",
+  "subtitle": "Övervaka alla värdar och virtuella maskiner i din infrastruktur",
+  "showing": "Visar",
+  "of": "av",
+  "machines": "maskiner",
+  "stats": {
+    "title": "Flottöversikt",
+    "total_machines": "Totalt antal maskiner",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Underhåll",
+    "machine_types": "Maskintyper",
+    "physical": "Fysiska",
+    "virtual": "Virtuella",
+    "by_location": "Per plats"
+  },
+  "issues": {
+    "title": "Problemöversikt",
+    "critical": "Kritisk",
+    "warning": "Varning",
+    "info": "Information",
+    "hardware": "Hårdvara",
+    "software": "Mjukvara",
+    "security": "Säkerhet",
+    "backup": "Säkerhetskopiering",
+    "network": "Nätverk"
+  },
+  "filter": {
+    "search_placeholder": "Sök efter namn, hostname, IP eller tagg...",
+    "location": "Plats",
+    "all_locations": "Alla platser",
+    "status": "Status",
+    "all_status": "Alla statusar",
+    "issue_type": "Problemtyp",
+    "all_issues": "Alla problem",
+    "reset": "Återställ"
+  },
+  "location": {
+    "datacenter": "Datacenter",
+    "cloud": "Moln",
+    "office": "Kontor",
+    "remote": "Fjärr"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Underhåll"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Disk",
+    "status": "Status",
+    "no_issues": "Inga problem upptäckta",
+    "just_now": "Just nu",
+    "ago": "sedan"
+  },
+  "no_results": {
+    "title": "Inga maskiner hittades",
+    "description": "Försök justera dina filter eller söktermer"
+  }
+}

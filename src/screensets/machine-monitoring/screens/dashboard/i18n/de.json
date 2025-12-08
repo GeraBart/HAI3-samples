@@ -1,0 +1,56 @@
+{
+  "title": "Maschinenüberwachungs-Dashboard",
+  "subtitle": "Überwachen Sie Systemmetriken und laufende Prozesse in Echtzeit",
+  "machine_selector": {
+    "label": "Maschine Auswählen",
+    "placeholder": "Wählen Sie eine Maschine zur Überwachung"
+  },
+  "metrics": {
+    "cpu": "CPU-Auslastung",
+    "ram": "RAM-Auslastung",
+    "disk": "Festplattenauslastung",
+    "network": "Netzwerk",
+    "gpu": "GPU-Auslastung",
+    "in": "Eingang",
+    "out": "Ausgang"
+  },
+  "summary": {
+    "title": "Maschinenübersicht",
+    "os": "Betriebssystem",
+    "uptime": "Betriebszeit",
+    "cpu_model": "CPU-Modell",
+    "gpu_model": "GPU-Modell",
+    "total_ram": "Gesamt-RAM",
+    "total_disk": "Gesamter Speicher",
+    "days": "Tage",
+    "hours": "Stunden",
+    "minutes": "Minuten"
+  },
+  "processes": {
+    "title": "Laufende Prozesse",
+    "search_placeholder": "Nach PID oder Befehl suchen...",
+    "pid": "PID",
+    "name": "Name",
+    "cpu": "CPU %",
+    "rss": "RSS-Speicher",
+    "virtual": "Virtueller Speicher",
+    "start_time": "Startzeit",
+    "command": "Befehl",
+    "status": "Status",
+    "sort_by": "Sortieren nach",
+    "no_results": "Keine Prozesse gefunden, die Ihrer Suche entsprechen"
+  },
+  "chart": {
+    "past_week": "Metriken der letzten Woche",
+    "time": "Zeit",
+    "usage": "Auslastung (%)",
+    "mbps": "Mbps"
+  },
+  "time_range": {
+    "label": "Zeitraum",
+    "30min": "30 Minuten",
+    "4hours": "4 Stunden",
+    "1day": "1 Tag",
+    "7days": "7 Tage"
+  }
+}

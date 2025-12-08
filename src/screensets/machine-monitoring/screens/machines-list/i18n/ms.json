@@ -1,0 +1,62 @@
+{
+  "title": "Armada Mesin",
+  "subtitle": "Pantau semua hos dan mesin maya dalam infrastruktur anda",
+  "showing": "Menunjukkan",
+  "of": "daripada",
+  "machines": "mesin",
+  "stats": {
+    "title": "Gambaran Armada",
+    "total_machines": "Jumlah Mesin",
+    "online": "Dalam Talian",
+    "offline": "Luar Talian",
+    "maintenance": "Penyelenggaraan",
+    "machine_types": "Jenis Mesin",
+    "physical": "Fizikal",
+    "virtual": "Maya",
+    "by_location": "Mengikut Lokasi"
+  },
+  "issues": {
+    "title": "Gambaran Isu",
+    "critical": "Kritikal",
+    "warning": "Amaran",
+    "info": "Maklumat",
+    "hardware": "Perkakasan",
+    "software": "Perisian",
+    "security": "Keselamatan",
+    "backup": "Sandaran",
+    "network": "Rangkaian"
+  },
+  "filter": {
+    "search_placeholder": "Cari mengikut nama, hostname, IP atau tag...",
+    "location": "Lokasi",
+    "all_locations": "Semua Lokasi",
+    "status": "Status",
+    "all_status": "Semua Status",
+    "issue_type": "Jenis Isu",
+    "all_issues": "Semua Isu",
+    "reset": "Set Semula"
+  },
+  "location": {
+    "datacenter": "Pusat Data",
+    "cloud": "Awan",
+    "office": "Pejabat",
+    "remote": "Jauh"
+  },
+  "status": {
+    "online": "Dalam Talian",
+    "offline": "Luar Talian",
+    "maintenance": "Penyelenggaraan"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Cakera",
+    "status": "Status",
+    "no_issues": "Tiada isu dikesan",
+    "just_now": "Baru sahaja",
+    "ago": "yang lalu"
+  },
+  "no_results": {
+    "title": "Tiada mesin dijumpai",
+    "description": "Cuba laraskan penapis atau istilah carian anda"
+  }
+}

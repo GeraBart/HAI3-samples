@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Ufuatiliaji wa Mashine",
+      "description": "Fuatilia vipimo vya mfumo na michakato"
+    },
+    "machines-list": {
+      "title": "Msafara wa Mashine",
+      "description": "Muhtasari wa wenyeji wote wanaodhibitiwa na mashine pepe"
+    }
+  }
+}

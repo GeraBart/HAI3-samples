@@ -1,0 +1,82 @@
+{
+  "title": "マシンフリート",
+  "subtitle": "インフラストラクチャ全体のホストと仮想マシンを監視",
+  "showing": "表示中",
+  "of": "/",
+  "machines": "台",
+  "stats": {
+    "title": "フリート概要",
+    "total_machines": "総マシン数",
+    "online": "オンライン",
+    "offline": "オフライン",
+    "maintenance": "メンテナンス",
+    "machine_types": "マシンタイプ",
+    "physical": "物理",
+    "virtual": "仮想",
+    "by_location": "ロケーション別"
+  },
+  "issues": {
+    "title": "問題の概要",
+    "critical": "重大",
+    "warning": "警告",
+    "info": "情報",
+    "hardware": "ハードウェア",
+    "software": "ソフトウェア",
+    "security": "セキュリティ",
+    "backup": "バックアップ",
+    "network": "ネットワーク"
+  },
+  "filter": {
+    "search_placeholder": "名前、ホスト名、IP、タグで検索...",
+    "location": "ロケーション",
+    "all_locations": "すべてのロケーション",
+    "status": "ステータス",
+    "all_status": "すべてのステータス",
+    "issue_type": "問題タイプ",
+    "all_issues": "すべての問題",
+    "reset": "リセット"
+  },
+  "location": {
+    "datacenter": "データセンター",
+    "cloud": "クラウド",
+    "office": "オフィス",
+    "remote": "リモート"
+  },
+  "status": {
+    "online": "オンライン",
+    "offline": "オフライン",
+    "maintenance": "メンテナンス"
+  },
+  "machine": {
+    "ram": "メモリ",
+    "disk": "ディスク",
+    "status": "ステータス",
+    "no_issues": "問題は検出されませんでした",
+    "just_now": "たった今",
+    "ago": "前"
+  },
+  "no_results": {
+    "title": "マシンが見つかりません",
+    "description": "フィルターまたは検索条件を調整してください"
+  },
+  "view": {
+    "grid": "グリッド表示",
+    "table": "テーブル表示"
+  },
+  "table": {
+    "name": "名前",
+    "ip": "IPアドレス",
+    "os": "OS",
+    "type": "タイプ",
+    "location": "ロケーション",
+    "ram": "メモリ",
+    "disk": "ディスク",
+    "uptime": "稼働時間",
+    "issues": "問題"
+  },
+  "ssh": {
+    "connect": "SSH接続",
+    "hint": "'help'と入力すると利用可能なコマンドが表示されます",
+    "credentials": "認証情報"
+  }
+}

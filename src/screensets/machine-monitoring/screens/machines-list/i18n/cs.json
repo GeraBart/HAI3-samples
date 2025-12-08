@@ -1,0 +1,62 @@
+{
+  "title": "Flotila strojů",
+  "subtitle": "Monitorujte všechny hostitele a virtuální stroje ve vaší infrastruktuře",
+  "showing": "Zobrazeno",
+  "of": "z",
+  "machines": "strojů",
+  "stats": {
+    "title": "Přehled flotily",
+    "total_machines": "Celkem strojů",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Údržba",
+    "machine_types": "Typy strojů",
+    "physical": "Fyzické",
+    "virtual": "Virtuální",
+    "by_location": "Podle umístění"
+  },
+  "issues": {
+    "title": "Přehled problémů",
+    "critical": "Kritické",
+    "warning": "Varování",
+    "info": "Informace",
+    "hardware": "Hardware",
+    "software": "Software",
+    "security": "Bezpečnost",
+    "backup": "Záloha",
+    "network": "Síť"
+  },
+  "filter": {
+    "search_placeholder": "Hledat podle názvu, hostname, IP nebo tagu...",
+    "location": "Umístění",
+    "all_locations": "Všechna umístění",
+    "status": "Stav",
+    "all_status": "Všechny stavy",
+    "issue_type": "Typ problému",
+    "all_issues": "Všechny problémy",
+    "reset": "Resetovat"
+  },
+  "location": {
+    "datacenter": "Datové centrum",
+    "cloud": "Cloud",
+    "office": "Kancelář",
+    "remote": "Vzdálené"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Údržba"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Disk",
+    "status": "Stav",
+    "no_issues": "Nebyly zjištěny žádné problémy",
+    "just_now": "Právě teď",
+    "ago": "před"
+  },
+  "no_results": {
+    "title": "Nebyly nalezeny žádné stroje",
+    "description": "Zkuste upravit filtry nebo vyhledávací výrazy"
+  }
+}

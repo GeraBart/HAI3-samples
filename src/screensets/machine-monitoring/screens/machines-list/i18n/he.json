@@ -1,0 +1,82 @@
+{
+  "title": "צי מכונות",
+  "subtitle": "עקוב אחר כל המארחים והמכונות הווירטואליות בתשתית שלך",
+  "showing": "מציג",
+  "of": "מתוך",
+  "machines": "מכונות",
+  "stats": {
+    "title": "סקירת הצי",
+    "total_machines": "סה״כ מכונות",
+    "online": "מקוון",
+    "offline": "לא מקוון",
+    "maintenance": "תחזוקה",
+    "machine_types": "סוגי מכונות",
+    "physical": "פיזי",
+    "virtual": "וירטואלי",
+    "by_location": "לפי מיקום"
+  },
+  "issues": {
+    "title": "סקירת בעיות",
+    "critical": "קריטי",
+    "warning": "אזהרה",
+    "info": "מידע",
+    "hardware": "חומרה",
+    "software": "תוכנה",
+    "security": "אבטחה",
+    "backup": "גיבוי",
+    "network": "רשת"
+  },
+  "filter": {
+    "search_placeholder": "חפש לפי שם, hostname, IP או תגית...",
+    "location": "מיקום",
+    "all_locations": "כל המיקומים",
+    "status": "סטטוס",
+    "all_status": "כל הסטטוסים",
+    "issue_type": "סוג בעיה",
+    "all_issues": "כל הבעיות",
+    "reset": "איפוס"
+  },
+  "location": {
+    "datacenter": "מרכז נתונים",
+    "cloud": "ענן",
+    "office": "משרד",
+    "remote": "מרחוק"
+  },
+  "status": {
+    "online": "מקוון",
+    "offline": "לא מקוון",
+    "maintenance": "תחזוקה"
+  },
+  "machine": {
+    "ram": "זיכרון",
+    "disk": "דיסק",
+    "status": "סטטוס",
+    "no_issues": "לא זוהו בעיות",
+    "just_now": "עכשיו",
+    "ago": "לפני"
+  },
+  "no_results": {
+    "title": "לא נמצאו מכונות",
+    "description": "נסה להתאים את המסננים או מונחי החיפוש"
+  },
+  "view": {
+    "grid": "תצוגת רשת",
+    "table": "תצוגת טבלה"
+  },
+  "table": {
+    "name": "שם",
+    "ip": "כתובת IP",
+    "os": "מערכת הפעלה",
+    "type": "סוג",
+    "location": "מיקום",
+    "ram": "זיכרון",
+    "disk": "דיסק",
+    "uptime": "זמן פעילות",
+    "issues": "בעיות"
+  },
+  "ssh": {
+    "connect": "התחבר דרך SSH",
+    "hint": "הקלד 'help' לפקודות זמינות",
+    "credentials": "פרטי התחברות"
+  }
+}

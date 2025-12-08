@@ -1,0 +1,62 @@
+{
+  "title": "Armada Mesin",
+  "subtitle": "Pantau semua host dan mesin virtual di infrastruktur Anda",
+  "showing": "Menampilkan",
+  "of": "dari",
+  "machines": "mesin",
+  "stats": {
+    "title": "Ikhtisar Armada",
+    "total_machines": "Total Mesin",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Pemeliharaan",
+    "machine_types": "Jenis Mesin",
+    "physical": "Fisik",
+    "virtual": "Virtual",
+    "by_location": "Berdasarkan Lokasi"
+  },
+  "issues": {
+    "title": "Ikhtisar Masalah",
+    "critical": "Kritis",
+    "warning": "Peringatan",
+    "info": "Informasi",
+    "hardware": "Perangkat Keras",
+    "software": "Perangkat Lunak",
+    "security": "Keamanan",
+    "backup": "Cadangan",
+    "network": "Jaringan"
+  },
+  "filter": {
+    "search_placeholder": "Cari berdasarkan nama, hostname, IP, atau tag...",
+    "location": "Lokasi",
+    "all_locations": "Semua Lokasi",
+    "status": "Status",
+    "all_status": "Semua Status",
+    "issue_type": "Jenis Masalah",
+    "all_issues": "Semua Masalah",
+    "reset": "Reset"
+  },
+  "location": {
+    "datacenter": "Pusat Data",
+    "cloud": "Cloud",
+    "office": "Kantor",
+    "remote": "Jarak Jauh"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Pemeliharaan"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Disk",
+    "status": "Status",
+    "no_issues": "Tidak ada masalah terdeteksi",
+    "just_now": "Baru saja",
+    "ago": "yang lalu"
+  },
+  "no_results": {
+    "title": "Tidak ada mesin ditemukan",
+    "description": "Coba sesuaikan filter atau kata kunci pencarian Anda"
+  }
+}

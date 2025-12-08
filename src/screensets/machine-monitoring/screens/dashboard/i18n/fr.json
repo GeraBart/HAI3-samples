@@ -1,0 +1,56 @@
+{
+  "title": "Tableau de Bord de Surveillance des Machines",
+  "subtitle": "Surveillez les métriques système et les processus en cours en temps réel",
+  "machine_selector": {
+    "label": "Sélectionner une Machine",
+    "placeholder": "Choisissez une machine à surveiller"
+  },
+  "metrics": {
+    "cpu": "Utilisation CPU",
+    "ram": "Utilisation RAM",
+    "disk": "Utilisation Disque",
+    "network": "Réseau",
+    "gpu": "Utilisation GPU",
+    "in": "Entrée",
+    "out": "Sortie"
+  },
+  "summary": {
+    "title": "Résumé de la Machine",
+    "os": "Système d'Exploitation",
+    "uptime": "Temps de Fonctionnement",
+    "cpu_model": "Modèle CPU",
+    "gpu_model": "Modèle GPU",
+    "total_ram": "RAM Totale",
+    "total_disk": "Disque Total",
+    "days": "jours",
+    "hours": "heures",
+    "minutes": "minutes"
+  },
+  "processes": {
+    "title": "Processus en Cours",
+    "search_placeholder": "Rechercher par PID ou commande...",
+    "pid": "PID",
+    "name": "Nom",
+    "cpu": "CPU %",
+    "rss": "Mémoire RSS",
+    "virtual": "Mémoire Virtuelle",
+    "start_time": "Heure de Démarrage",
+    "command": "Commande",
+    "status": "Statut",
+    "sort_by": "Trier par",
+    "no_results": "Aucun processus trouvé correspondant à votre recherche"
+  },
+  "chart": {
+    "past_week": "Métriques de la Semaine Passée",
+    "time": "Temps",
+    "usage": "Utilisation (%)",
+    "mbps": "Mbps"
+  },
+  "time_range": {
+    "label": "Plage de Temps",
+    "30min": "30 Minutes",
+    "4hours": "4 Heures",
+    "1day": "1 Jour",
+    "7days": "7 Jours"
+  }
+}

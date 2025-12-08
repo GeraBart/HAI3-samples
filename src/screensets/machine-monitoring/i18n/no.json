@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Maskinovervåking",
+      "description": "Overvåk systemmetrikker og prosesser"
+    },
+    "machines-list": {
+      "title": "Maskinflåte",
+      "description": "Oversikt over alle administrerte verter og virtuelle maskiner"
+    }
+  }
+}

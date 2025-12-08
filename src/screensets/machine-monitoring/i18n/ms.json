@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Pemantauan Mesin",
+      "description": "Pantau metrik sistem dan proses"
+    },
+    "machines-list": {
+      "title": "Armada Mesin",
+      "description": "Gambaran semua hos dan mesin maya yang diurus"
+    }
+  }
+}

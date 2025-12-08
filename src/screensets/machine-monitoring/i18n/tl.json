@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Pagsubaybay sa Makina",
+      "description": "Subaybayan ang mga sukatan ng sistema at mga proseso"
+    },
+    "machines-list": {
+      "title": "Fleet ng Makina",
+      "description": "Pangkalahatang-ideya ng lahat ng pinamamahalaang host at virtual machine"
+    }
+  }
+}

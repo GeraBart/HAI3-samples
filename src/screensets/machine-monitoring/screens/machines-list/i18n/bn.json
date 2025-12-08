@@ -1,0 +1,62 @@
+{
+  "title": "মেশিন ফ্লিট",
+  "subtitle": "আপনার অবকাঠামো জুড়ে সমস্ত হোস্ট এবং ভার্চুয়াল মেশিন মনিটর করুন",
+  "showing": "দেখাচ্ছে",
+  "of": "এর মধ্যে",
+  "machines": "মেশিন",
+  "stats": {
+    "title": "ফ্লিট ওভারভিউ",
+    "total_machines": "মোট মেশিন",
+    "online": "অনলাইন",
+    "offline": "অফলাইন",
+    "maintenance": "রক্ষণাবেক্ষণ",
+    "machine_types": "মেশিনের ধরন",
+    "physical": "ফিজিক্যাল",
+    "virtual": "ভার্চুয়াল",
+    "by_location": "অবস্থান অনুযায়ী"
+  },
+  "issues": {
+    "title": "সমস্যার ওভারভিউ",
+    "critical": "জটিল",
+    "warning": "সতর্কতা",
+    "info": "তথ্য",
+    "hardware": "হার্ডওয়্যার",
+    "software": "সফটওয়্যার",
+    "security": "নিরাপত্তা",
+    "backup": "ব্যাকআপ",
+    "network": "নেটওয়ার্ক"
+  },
+  "filter": {
+    "search_placeholder": "নাম, হোস্টনেম, IP বা ট্যাগ দিয়ে অনুসন্ধান করুন...",
+    "location": "অবস্থান",
+    "all_locations": "সব অবস্থান",
+    "status": "স্ট্যাটাস",
+    "all_status": "সব স্ট্যাটাস",
+    "issue_type": "সমস্যার ধরন",
+    "all_issues": "সব সমস্যা",
+    "reset": "রিসেট"
+  },
+  "location": {
+    "datacenter": "ডেটাসেন্টার",
+    "cloud": "ক্লাউড",
+    "office": "অফিস",
+    "remote": "রিমোট"
+  },
+  "status": {
+    "online": "অনলাইন",
+    "offline": "অফলাইন",
+    "maintenance": "রক্ষণাবেক্ষণ"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "ডিস্ক",
+    "status": "স্ট্যাটাস",
+    "no_issues": "কোনো সমস্যা পাওয়া যায়নি",
+    "just_now": "এইমাত্র",
+    "ago": "আগে"
+  },
+  "no_results": {
+    "title": "কোনো মেশিন পাওয়া যায়নি",
+    "description": "আপনার ফিল্টার বা অনুসন্ধান শব্দ সামঞ্জস্য করার চেষ্টা করুন"
+  }
+}

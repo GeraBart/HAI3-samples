@@ -1,0 +1,56 @@
+{
+  "title": "Machine Monitoring Dashboard",
+  "subtitle": "Monitor system metrics and running processes in real-time",
+  "machine_selector": {
+    "label": "Select Machine",
+    "placeholder": "Choose a machine to monitor"
+  },
+  "metrics": {
+    "cpu": "CPU Usage",
+    "ram": "RAM Usage",
+    "disk": "Disk Usage",
+    "network": "Network",
+    "gpu": "GPU Usage",
+    "in": "In",
+    "out": "Out"
+  },
+  "summary": {
+    "title": "Machine Summary",
+    "os": "Operating System",
+    "uptime": "Uptime",
+    "cpu_model": "CPU Model",
+    "gpu_model": "GPU Model",
+    "total_ram": "Total RAM",
+    "total_disk": "Total Disk",
+    "days": "days",
+    "hours": "hours",
+    "minutes": "minutes"
+  },
+  "processes": {
+    "title": "Running Processes",
+    "search_placeholder": "Search by PID or command...",
+    "pid": "PID",
+    "name": "Name",
+    "cpu": "CPU %",
+    "rss": "RSS Memory",
+    "virtual": "Virtual Memory",
+    "start_time": "Start Time",
+    "command": "Command",
+    "status": "Status",
+    "sort_by": "Sort by",
+    "no_results": "No processes found matching your search"
+  },
+  "chart": {
+    "past_week": "Past Week Metrics",
+    "time": "Time",
+    "usage": "Usage (%)",
+    "mbps": "Mbps"
+  },
+  "time_range": {
+    "label": "Time Range",
+    "30min": "30 Minutes",
+    "4hours": "4 Hours",
+    "1day": "1 Day",
+    "7days": "7 Days"
+  }
+}

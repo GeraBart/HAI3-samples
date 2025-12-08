@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Machine Monitoring",
+      "description": "Monitor system metrics and processes"
+    },
+    "machines-list": {
+      "title": "Machines Fleet",
+      "description": "Overview of all managed hosts and virtual machines"
+    }
+  }
+}

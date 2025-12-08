@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Gépfigyelés",
+      "description": "Rendszermetrikák és folyamatok figyelése"
+    },
+    "machines-list": {
+      "title": "Gépflotta",
+      "description": "Az összes kezelt gazdagép és virtuális gép áttekintése"
+    }
+  }
+}

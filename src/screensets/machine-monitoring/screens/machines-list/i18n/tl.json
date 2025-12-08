@@ -1,0 +1,62 @@
+{
+  "title": "Fleet ng Makina",
+  "subtitle": "Subaybayan ang lahat ng host at virtual machine sa iyong infrastructure",
+  "showing": "Ipinapakita",
+  "of": "sa",
+  "machines": "makina",
+  "stats": {
+    "title": "Pangkalahatang-ideya ng Fleet",
+    "total_machines": "Kabuuang Makina",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Maintenance",
+    "machine_types": "Mga Uri ng Makina",
+    "physical": "Pisikal",
+    "virtual": "Virtual",
+    "by_location": "Ayon sa Lokasyon"
+  },
+  "issues": {
+    "title": "Pangkalahatang-ideya ng mga Isyu",
+    "critical": "Kritikal",
+    "warning": "Babala",
+    "info": "Impormasyon",
+    "hardware": "Hardware",
+    "software": "Software",
+    "security": "Seguridad",
+    "backup": "Backup",
+    "network": "Network"
+  },
+  "filter": {
+    "search_placeholder": "Maghanap ayon sa pangalan, hostname, IP o tag...",
+    "location": "Lokasyon",
+    "all_locations": "Lahat ng Lokasyon",
+    "status": "Status",
+    "all_status": "Lahat ng Status",
+    "issue_type": "Uri ng Isyu",
+    "all_issues": "Lahat ng Isyu",
+    "reset": "I-reset"
+  },
+  "location": {
+    "datacenter": "Data Center",
+    "cloud": "Cloud",
+    "office": "Opisina",
+    "remote": "Malayo"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Maintenance"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Disk",
+    "status": "Status",
+    "no_issues": "Walang nakitang isyu",
+    "just_now": "Ngayon lang",
+    "ago": "nakaraan"
+  },
+  "no_results": {
+    "title": "Walang nahanap na makina",
+    "description": "Subukang i-adjust ang iyong mga filter o search term"
+  }
+}

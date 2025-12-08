@@ -1,0 +1,62 @@
+{
+  "title": "Парк Машин",
+  "subtitle": "Моніторинг усіх хостів і віртуальних машин у вашій інфраструктурі",
+  "showing": "Показано",
+  "of": "з",
+  "machines": "машин",
+  "stats": {
+    "title": "Огляд Парку",
+    "total_machines": "Всього машин",
+    "online": "Онлайн",
+    "offline": "Офлайн",
+    "maintenance": "Обслуговування",
+    "machine_types": "Типи машин",
+    "physical": "Фізичні",
+    "virtual": "Віртуальні",
+    "by_location": "За розташуванням"
+  },
+  "issues": {
+    "title": "Огляд Проблем",
+    "critical": "Критичний",
+    "warning": "Попередження",
+    "info": "Інформація",
+    "hardware": "Обладнання",
+    "software": "Програмне забезпечення",
+    "security": "Безпека",
+    "backup": "Резервне копіювання",
+    "network": "Мережа"
+  },
+  "filter": {
+    "search_placeholder": "Пошук за ім'ям, hostname, IP або тегом...",
+    "location": "Розташування",
+    "all_locations": "Усі розташування",
+    "status": "Статус",
+    "all_status": "Усі статуси",
+    "issue_type": "Тип проблеми",
+    "all_issues": "Усі проблеми",
+    "reset": "Скинути"
+  },
+  "location": {
+    "datacenter": "Дата-центр",
+    "cloud": "Хмара",
+    "office": "Офіс",
+    "remote": "Віддалено"
+  },
+  "status": {
+    "online": "Онлайн",
+    "offline": "Офлайн",
+    "maintenance": "Обслуговування"
+  },
+  "machine": {
+    "ram": "ОЗП",
+    "disk": "Диск",
+    "status": "Статус",
+    "no_issues": "Проблем не виявлено",
+    "just_now": "Щойно",
+    "ago": "тому"
+  },
+  "no_results": {
+    "title": "Машини не знайдено",
+    "description": "Спробуйте змінити фільтри або пошукові запити"
+  }
+}

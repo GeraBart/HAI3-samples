@@ -1,0 +1,82 @@
+{
+  "title": "Parc de Machines",
+  "subtitle": "Surveillez tous les hôtes et machines virtuelles de votre infrastructure",
+  "showing": "Affichage de",
+  "of": "sur",
+  "machines": "machines",
+  "stats": {
+    "title": "Aperçu du Parc",
+    "total_machines": "Total des Machines",
+    "online": "En ligne",
+    "offline": "Hors ligne",
+    "maintenance": "Maintenance",
+    "machine_types": "Types de Machines",
+    "physical": "Physiques",
+    "virtual": "Virtuelles",
+    "by_location": "Par Emplacement"
+  },
+  "issues": {
+    "title": "Aperçu des Problèmes",
+    "critical": "Critique",
+    "warning": "Avertissement",
+    "info": "Information",
+    "hardware": "Matériel",
+    "software": "Logiciel",
+    "security": "Sécurité",
+    "backup": "Sauvegarde",
+    "network": "Réseau"
+  },
+  "filter": {
+    "search_placeholder": "Rechercher par nom, hostname, IP ou tag...",
+    "location": "Emplacement",
+    "all_locations": "Tous les Emplacements",
+    "status": "Statut",
+    "all_status": "Tous les Statuts",
+    "issue_type": "Type de Problème",
+    "all_issues": "Tous les Problèmes",
+    "reset": "Réinitialiser"
+  },
+  "location": {
+    "datacenter": "Centre de Données",
+    "cloud": "Cloud",
+    "office": "Bureau",
+    "remote": "Distant"
+  },
+  "status": {
+    "online": "En ligne",
+    "offline": "Hors ligne",
+    "maintenance": "Maintenance"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Disque",
+    "status": "Statut",
+    "no_issues": "Aucun problème détecté",
+    "just_now": "À l'instant",
+    "ago": "il y a"
+  },
+  "no_results": {
+    "title": "Aucune machine trouvée",
+    "description": "Essayez d'ajuster vos filtres ou termes de recherche"
+  },
+  "view": {
+    "grid": "Vue grille",
+    "table": "Vue tableau"
+  },
+  "table": {
+    "name": "Nom",
+    "ip": "Adresse IP",
+    "os": "SE",
+    "type": "Type",
+    "location": "Emplacement",
+    "ram": "RAM",
+    "disk": "Disque",
+    "uptime": "Temps de fonctionnement",
+    "issues": "Problèmes"
+  },
+  "ssh": {
+    "connect": "Connecter via SSH",
+    "hint": "Tapez 'help' pour les commandes disponibles",
+    "credentials": "Identifiants"
+  }
+}

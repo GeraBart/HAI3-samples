@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Giám sát Máy",
+      "description": "Giám sát các chỉ số hệ thống và quy trình"
+    },
+    "machines-list": {
+      "title": "Đội Máy",
+      "description": "Tổng quan về tất cả máy chủ và máy ảo được quản lý"
+    }
+  }
+}

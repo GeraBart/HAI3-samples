@@ -1,0 +1,62 @@
+{
+  "title": "Konelaivasto",
+  "subtitle": "Seuraa kaikkia isäntiä ja virtuaalikoneita infrastruktuurissasi",
+  "showing": "Näytetään",
+  "of": "/",
+  "machines": "konetta",
+  "stats": {
+    "title": "Laivaston yleiskatsaus",
+    "total_machines": "Koneita yhteensä",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Huolto",
+    "machine_types": "Konetyypit",
+    "physical": "Fyysinen",
+    "virtual": "Virtuaalinen",
+    "by_location": "Sijainnin mukaan"
+  },
+  "issues": {
+    "title": "Ongelmien yleiskatsaus",
+    "critical": "Kriittinen",
+    "warning": "Varoitus",
+    "info": "Tiedot",
+    "hardware": "Laitteisto",
+    "software": "Ohjelmisto",
+    "security": "Turvallisuus",
+    "backup": "Varmuuskopio",
+    "network": "Verkko"
+  },
+  "filter": {
+    "search_placeholder": "Hae nimellä, isäntänimellä, IP:llä tai tunnisteella...",
+    "location": "Sijainti",
+    "all_locations": "Kaikki sijainnit",
+    "status": "Tila",
+    "all_status": "Kaikki tilat",
+    "issue_type": "Ongelmatyyppi",
+    "all_issues": "Kaikki ongelmat",
+    "reset": "Nollaa"
+  },
+  "location": {
+    "datacenter": "Datakeskus",
+    "cloud": "Pilvi",
+    "office": "Toimisto",
+    "remote": "Etä"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Huolto"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Levy",
+    "status": "Tila",
+    "no_issues": "Ongelmia ei havaittu",
+    "just_now": "Juuri nyt",
+    "ago": "sitten"
+  },
+  "no_results": {
+    "title": "Koneita ei löytynyt",
+    "description": "Kokeile säätää suodattimia tai hakuehtoja"
+  }
+}

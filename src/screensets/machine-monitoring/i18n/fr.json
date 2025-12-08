@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Surveillance des machines",
+      "description": "Surveiller les métriques système et les processus"
+    },
+    "machines-list": {
+      "title": "Parc de Machines",
+      "description": "Aperçu de tous les hôtes et machines virtuelles gérés"
+    }
+  }
+}

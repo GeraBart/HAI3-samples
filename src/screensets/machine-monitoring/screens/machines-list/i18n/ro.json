@@ -1,0 +1,62 @@
+{
+  "title": "Flotă de Mașini",
+  "subtitle": "Monitorizați toate gazdele și mașinile virtuale din infrastructura dvs.",
+  "showing": "Se afișează",
+  "of": "din",
+  "machines": "mașini",
+  "stats": {
+    "title": "Prezentare Flotă",
+    "total_machines": "Total Mașini",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Întreținere",
+    "machine_types": "Tipuri de Mașini",
+    "physical": "Fizice",
+    "virtual": "Virtuale",
+    "by_location": "După Locație"
+  },
+  "issues": {
+    "title": "Prezentare Probleme",
+    "critical": "Critic",
+    "warning": "Avertisment",
+    "info": "Informație",
+    "hardware": "Hardware",
+    "software": "Software",
+    "security": "Securitate",
+    "backup": "Backup",
+    "network": "Rețea"
+  },
+  "filter": {
+    "search_placeholder": "Căutați după nume, hostname, IP sau etichetă...",
+    "location": "Locație",
+    "all_locations": "Toate Locațiile",
+    "status": "Status",
+    "all_status": "Toate Statusurile",
+    "issue_type": "Tip Problemă",
+    "all_issues": "Toate Problemele",
+    "reset": "Resetare"
+  },
+  "location": {
+    "datacenter": "Centru de Date",
+    "cloud": "Cloud",
+    "office": "Birou",
+    "remote": "La Distanță"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Întreținere"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Disc",
+    "status": "Status",
+    "no_issues": "Nu s-au detectat probleme",
+    "just_now": "Chiar acum",
+    "ago": "în urmă"
+  },
+  "no_results": {
+    "title": "Nu s-au găsit mașini",
+    "description": "Încercați să ajustați filtrele sau termenii de căutare"
+  }
+}

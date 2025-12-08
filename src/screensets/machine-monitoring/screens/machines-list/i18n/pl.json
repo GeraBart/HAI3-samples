@@ -1,0 +1,62 @@
+{
+  "title": "Flota Maszyn",
+  "subtitle": "Monitoruj wszystkie hosty i maszyny wirtualne w swojej infrastrukturze",
+  "showing": "Pokazano",
+  "of": "z",
+  "machines": "maszyn",
+  "stats": {
+    "title": "Przegląd Floty",
+    "total_machines": "Łączna liczba maszyn",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Konserwacja",
+    "machine_types": "Typy maszyn",
+    "physical": "Fizyczne",
+    "virtual": "Wirtualne",
+    "by_location": "Według lokalizacji"
+  },
+  "issues": {
+    "title": "Przegląd Problemów",
+    "critical": "Krytyczny",
+    "warning": "Ostrzeżenie",
+    "info": "Informacja",
+    "hardware": "Sprzęt",
+    "software": "Oprogramowanie",
+    "security": "Bezpieczeństwo",
+    "backup": "Kopia zapasowa",
+    "network": "Sieć"
+  },
+  "filter": {
+    "search_placeholder": "Szukaj po nazwie, hostname, IP lub tagu...",
+    "location": "Lokalizacja",
+    "all_locations": "Wszystkie lokalizacje",
+    "status": "Status",
+    "all_status": "Wszystkie statusy",
+    "issue_type": "Typ problemu",
+    "all_issues": "Wszystkie problemy",
+    "reset": "Resetuj"
+  },
+  "location": {
+    "datacenter": "Centrum danych",
+    "cloud": "Chmura",
+    "office": "Biuro",
+    "remote": "Zdalnie"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Konserwacja"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Dysk",
+    "status": "Status",
+    "no_issues": "Nie wykryto problemów",
+    "just_now": "Właśnie teraz",
+    "ago": "temu"
+  },
+  "no_results": {
+    "title": "Nie znaleziono maszyn",
+    "description": "Spróbuj dostosować filtry lub wyszukiwane hasła"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "title": "Maschinenflotte",
+  "subtitle": "Überwachen Sie alle Hosts und virtuellen Maschinen in Ihrer Infrastruktur",
+  "showing": "Zeige",
+  "of": "von",
+  "machines": "Maschinen",
+  "stats": {
+    "title": "Flottenübersicht",
+    "total_machines": "Gesamtzahl Maschinen",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Wartung",
+    "machine_types": "Maschinentypen",
+    "physical": "Physisch",
+    "virtual": "Virtuell",
+    "by_location": "Nach Standort"
+  },
+  "issues": {
+    "title": "Problemübersicht",
+    "critical": "Kritisch",
+    "warning": "Warnung",
+    "info": "Information",
+    "hardware": "Hardware",
+    "software": "Software",
+    "security": "Sicherheit",
+    "backup": "Backup",
+    "network": "Netzwerk"
+  },
+  "filter": {
+    "search_placeholder": "Suche nach Name, Hostname, IP oder Tag...",
+    "location": "Standort",
+    "all_locations": "Alle Standorte",
+    "status": "Status",
+    "all_status": "Alle Status",
+    "issue_type": "Problemtyp",
+    "all_issues": "Alle Probleme",
+    "reset": "Zurücksetzen"
+  },
+  "location": {
+    "datacenter": "Rechenzentrum",
+    "cloud": "Cloud",
+    "office": "Büro",
+    "remote": "Remote"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Wartung"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Festplatte",
+    "status": "Status",
+    "no_issues": "Keine Probleme erkannt",
+    "just_now": "Gerade eben",
+    "ago": "vor"
+  },
+  "no_results": {
+    "title": "Keine Maschinen gefunden",
+    "description": "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen"
+  },
+  "view": {
+    "grid": "Rasteransicht",
+    "table": "Tabellenansicht"
+  },
+  "table": {
+    "name": "Name",
+    "ip": "IP-Adresse",
+    "os": "BS",
+    "type": "Typ",
+    "location": "Standort",
+    "ram": "RAM",
+    "disk": "Festplatte",
+    "uptime": "Betriebszeit",
+    "issues": "Probleme"
+  },
+  "ssh": {
+    "connect": "Über SSH verbinden",
+    "hint": "Geben Sie 'help' für verfügbare Befehle ein",
+    "credentials": "Zugangsdaten"
+  }
+}

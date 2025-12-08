@@ -1,0 +1,62 @@
+{
+  "title": "机器集群",
+  "subtitle": "监控基础设施中的所有主机和虚拟机",
+  "showing": "显示",
+  "of": "/",
+  "machines": "台机器",
+  "stats": {
+    "title": "集群概览",
+    "total_machines": "机器总数",
+    "online": "在线",
+    "offline": "离线",
+    "maintenance": "维护中",
+    "machine_types": "机器类型",
+    "physical": "物理机",
+    "virtual": "虚拟机",
+    "by_location": "按位置"
+  },
+  "issues": {
+    "title": "问题概览",
+    "critical": "严重",
+    "warning": "警告",
+    "info": "信息",
+    "hardware": "硬件",
+    "software": "软件",
+    "security": "安全",
+    "backup": "备份",
+    "network": "网络"
+  },
+  "filter": {
+    "search_placeholder": "按名称、主机名、IP或标签搜索...",
+    "location": "位置",
+    "all_locations": "所有位置",
+    "status": "状态",
+    "all_status": "所有状态",
+    "issue_type": "问题类型",
+    "all_issues": "所有问题",
+    "reset": "重置"
+  },
+  "location": {
+    "datacenter": "数据中心",
+    "cloud": "云端",
+    "office": "办公室",
+    "remote": "远程"
+  },
+  "status": {
+    "online": "在线",
+    "offline": "离线",
+    "maintenance": "维护中"
+  },
+  "machine": {
+    "ram": "内存",
+    "disk": "磁盘",
+    "status": "状态",
+    "no_issues": "未检测到问题",
+    "just_now": "刚刚",
+    "ago": "前"
+  },
+  "no_results": {
+    "title": "未找到机器",
+    "description": "请尝试调整筛选条件或搜索词"
+  }
+}

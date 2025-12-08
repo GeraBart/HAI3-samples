@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "머신 모니터링",
+      "description": "시스템 메트릭 및 프로세스 모니터링"
+    },
+    "machines-list": {
+      "title": "머신 플릿",
+      "description": "모든 관리 호스트 및 가상 머신 개요"
+    }
+  }
+}

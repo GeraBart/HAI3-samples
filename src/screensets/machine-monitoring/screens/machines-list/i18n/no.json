@@ -1,0 +1,62 @@
+{
+  "title": "Maskinflåte",
+  "subtitle": "Overvåk alle verter og virtuelle maskiner i infrastrukturen din",
+  "showing": "Viser",
+  "of": "av",
+  "machines": "maskiner",
+  "stats": {
+    "title": "Flåteoversikt",
+    "total_machines": "Totalt maskiner",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Vedlikehold",
+    "machine_types": "Maskintyper",
+    "physical": "Fysisk",
+    "virtual": "Virtuell",
+    "by_location": "Etter plassering"
+  },
+  "issues": {
+    "title": "Problemoversikt",
+    "critical": "Kritisk",
+    "warning": "Advarsel",
+    "info": "Informasjon",
+    "hardware": "Maskinvare",
+    "software": "Programvare",
+    "security": "Sikkerhet",
+    "backup": "Sikkerhetskopiering",
+    "network": "Nettverk"
+  },
+  "filter": {
+    "search_placeholder": "Søk etter navn, hostname, IP eller tag...",
+    "location": "Plassering",
+    "all_locations": "Alle plasseringer",
+    "status": "Status",
+    "all_status": "Alle statuser",
+    "issue_type": "Problemtype",
+    "all_issues": "Alle problemer",
+    "reset": "Tilbakestill"
+  },
+  "location": {
+    "datacenter": "Datasenter",
+    "cloud": "Sky",
+    "office": "Kontor",
+    "remote": "Ekstern"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Vedlikehold"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Disk",
+    "status": "Status",
+    "no_issues": "Ingen problemer oppdaget",
+    "just_now": "Akkurat nå",
+    "ago": "siden"
+  },
+  "no_results": {
+    "title": "Ingen maskiner funnet",
+    "description": "Prøv å justere filtrene eller søkeordene dine"
+  }
+}

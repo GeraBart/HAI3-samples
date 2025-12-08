@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Maskinövervakning",
+      "description": "Övervaka systemmetrik och processer"
+    },
+    "machines-list": {
+      "title": "Maskinflotta",
+      "description": "Översikt över alla hanterade värdar och virtuella maskiner"
+    }
+  }
+}

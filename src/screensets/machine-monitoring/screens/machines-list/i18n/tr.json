@@ -1,0 +1,62 @@
+{
+  "title": "Makine Filosu",
+  "subtitle": "Altyapınızdaki tüm ana bilgisayarları ve sanal makineleri izleyin",
+  "showing": "Gösterilen",
+  "of": "/",
+  "machines": "makine",
+  "stats": {
+    "title": "Filo Genel Bakış",
+    "total_machines": "Toplam Makine",
+    "online": "Çevrimiçi",
+    "offline": "Çevrimdışı",
+    "maintenance": "Bakım",
+    "machine_types": "Makine Türleri",
+    "physical": "Fiziksel",
+    "virtual": "Sanal",
+    "by_location": "Konuma Göre"
+  },
+  "issues": {
+    "title": "Sorunlar Genel Bakış",
+    "critical": "Kritik",
+    "warning": "Uyarı",
+    "info": "Bilgi",
+    "hardware": "Donanım",
+    "software": "Yazılım",
+    "security": "Güvenlik",
+    "backup": "Yedekleme",
+    "network": "Ağ"
+  },
+  "filter": {
+    "search_placeholder": "Ad, hostname, IP veya etikete göre ara...",
+    "location": "Konum",
+    "all_locations": "Tüm Konumlar",
+    "status": "Durum",
+    "all_status": "Tüm Durumlar",
+    "issue_type": "Sorun Türü",
+    "all_issues": "Tüm Sorunlar",
+    "reset": "Sıfırla"
+  },
+  "location": {
+    "datacenter": "Veri Merkezi",
+    "cloud": "Bulut",
+    "office": "Ofis",
+    "remote": "Uzak"
+  },
+  "status": {
+    "online": "Çevrimiçi",
+    "offline": "Çevrimdışı",
+    "maintenance": "Bakım"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Disk",
+    "status": "Durum",
+    "no_issues": "Sorun tespit edilmedi",
+    "just_now": "Şimdi",
+    "ago": "önce"
+  },
+  "no_results": {
+    "title": "Makine bulunamadı",
+    "description": "Filtrelerinizi veya arama terimlerinizi ayarlamayı deneyin"
+  }
+}

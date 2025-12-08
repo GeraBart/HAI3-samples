@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Monitorování strojů",
+      "description": "Sledování systémových metrik a procesů"
+    },
+    "machines-list": {
+      "title": "Flotila strojů",
+      "description": "Přehled všech spravovaných hostitelů a virtuálních strojů"
+    }
+  }
+}

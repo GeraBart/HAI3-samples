@@ -1,0 +1,62 @@
+{
+  "title": "ناوگان ماشین‌ها",
+  "subtitle": "تمام میزبان‌ها و ماشین‌های مجازی زیرساخت خود را نظارت کنید",
+  "showing": "نمایش",
+  "of": "از",
+  "machines": "ماشین",
+  "stats": {
+    "title": "نمای کلی ناوگان",
+    "total_machines": "کل ماشین‌ها",
+    "online": "آنلاین",
+    "offline": "آفلاین",
+    "maintenance": "تعمیرات",
+    "machine_types": "انواع ماشین",
+    "physical": "فیزیکی",
+    "virtual": "مجازی",
+    "by_location": "بر اساس مکان"
+  },
+  "issues": {
+    "title": "نمای کلی مشکلات",
+    "critical": "بحرانی",
+    "warning": "هشدار",
+    "info": "اطلاعات",
+    "hardware": "سخت‌افزار",
+    "software": "نرم‌افزار",
+    "security": "امنیت",
+    "backup": "پشتیبان‌گیری",
+    "network": "شبکه"
+  },
+  "filter": {
+    "search_placeholder": "جستجو بر اساس نام، hostname، IP یا برچسب...",
+    "location": "مکان",
+    "all_locations": "همه مکان‌ها",
+    "status": "وضعیت",
+    "all_status": "همه وضعیت‌ها",
+    "issue_type": "نوع مشکل",
+    "all_issues": "همه مشکلات",
+    "reset": "بازنشانی"
+  },
+  "location": {
+    "datacenter": "مرکز داده",
+    "cloud": "ابر",
+    "office": "دفتر",
+    "remote": "راه دور"
+  },
+  "status": {
+    "online": "آنلاین",
+    "offline": "آفلاین",
+    "maintenance": "تعمیرات"
+  },
+  "machine": {
+    "ram": "رم",
+    "disk": "دیسک",
+    "status": "وضعیت",
+    "no_issues": "مشکلی شناسایی نشد",
+    "just_now": "همین الان",
+    "ago": "پیش"
+  },
+  "no_results": {
+    "title": "ماشینی یافت نشد",
+    "description": "سعی کنید فیلترها یا عبارات جستجو را تنظیم کنید"
+  }
+}

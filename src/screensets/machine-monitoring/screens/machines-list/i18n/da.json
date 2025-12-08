@@ -1,0 +1,62 @@
+{
+  "title": "Maskinflåde",
+  "subtitle": "Overvåg alle værter og virtuelle maskiner i din infrastruktur",
+  "showing": "Viser",
+  "of": "af",
+  "machines": "maskiner",
+  "stats": {
+    "title": "Flådeoversigt",
+    "total_machines": "Totalt antal maskiner",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Vedligeholdelse",
+    "machine_types": "Maskintyper",
+    "physical": "Fysiske",
+    "virtual": "Virtuelle",
+    "by_location": "Efter placering"
+  },
+  "issues": {
+    "title": "Problemoversigt",
+    "critical": "Kritisk",
+    "warning": "Advarsel",
+    "info": "Information",
+    "hardware": "Hardware",
+    "software": "Software",
+    "security": "Sikkerhed",
+    "backup": "Backup",
+    "network": "Netværk"
+  },
+  "filter": {
+    "search_placeholder": "Søg efter navn, hostname, IP eller tag...",
+    "location": "Placering",
+    "all_locations": "Alle placeringer",
+    "status": "Status",
+    "all_status": "Alle statusser",
+    "issue_type": "Problemtype",
+    "all_issues": "Alle problemer",
+    "reset": "Nulstil"
+  },
+  "location": {
+    "datacenter": "Datacenter",
+    "cloud": "Cloud",
+    "office": "Kontor",
+    "remote": "Fjern"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Vedligeholdelse"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Disk",
+    "status": "Status",
+    "no_issues": "Ingen problemer fundet",
+    "just_now": "Lige nu",
+    "ago": "siden"
+  },
+  "no_results": {
+    "title": "Ingen maskiner fundet",
+    "description": "Prøv at justere dine filtre eller søgeord"
+  }
+}

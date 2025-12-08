@@ -1,0 +1,62 @@
+{
+  "title": "Flotta Macchine",
+  "subtitle": "Monitora tutti gli host e le macchine virtuali nella tua infrastruttura",
+  "showing": "Visualizzazione",
+  "of": "di",
+  "machines": "macchine",
+  "stats": {
+    "title": "Panoramica Flotta",
+    "total_machines": "Totale Macchine",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Manutenzione",
+    "machine_types": "Tipi di Macchine",
+    "physical": "Fisiche",
+    "virtual": "Virtuali",
+    "by_location": "Per Posizione"
+  },
+  "issues": {
+    "title": "Panoramica Problemi",
+    "critical": "Critico",
+    "warning": "Avviso",
+    "info": "Informazione",
+    "hardware": "Hardware",
+    "software": "Software",
+    "security": "Sicurezza",
+    "backup": "Backup",
+    "network": "Rete"
+  },
+  "filter": {
+    "search_placeholder": "Cerca per nome, hostname, IP o tag...",
+    "location": "Posizione",
+    "all_locations": "Tutte le Posizioni",
+    "status": "Stato",
+    "all_status": "Tutti gli Stati",
+    "issue_type": "Tipo di Problema",
+    "all_issues": "Tutti i Problemi",
+    "reset": "Reimposta"
+  },
+  "location": {
+    "datacenter": "Data Center",
+    "cloud": "Cloud",
+    "office": "Ufficio",
+    "remote": "Remoto"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Manutenzione"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Disco",
+    "status": "Stato",
+    "no_issues": "Nessun problema rilevato",
+    "just_now": "Proprio ora",
+    "ago": "fa"
+  },
+  "no_results": {
+    "title": "Nessuna macchina trovata",
+    "description": "Prova a modificare i filtri o i termini di ricerca"
+  }
+}

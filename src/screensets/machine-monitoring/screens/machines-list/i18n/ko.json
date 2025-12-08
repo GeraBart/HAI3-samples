@@ -1,0 +1,62 @@
+{
+  "title": "머신 플릿",
+  "subtitle": "인프라 전체의 모든 호스트와 가상 머신을 모니터링하세요",
+  "showing": "표시 중",
+  "of": "/",
+  "machines": "대",
+  "stats": {
+    "title": "플릿 개요",
+    "total_machines": "전체 머신",
+    "online": "온라인",
+    "offline": "오프라인",
+    "maintenance": "유지보수",
+    "machine_types": "머신 유형",
+    "physical": "물리적",
+    "virtual": "가상",
+    "by_location": "위치별"
+  },
+  "issues": {
+    "title": "문제 개요",
+    "critical": "심각",
+    "warning": "경고",
+    "info": "정보",
+    "hardware": "하드웨어",
+    "software": "소프트웨어",
+    "security": "보안",
+    "backup": "백업",
+    "network": "네트워크"
+  },
+  "filter": {
+    "search_placeholder": "이름, 호스트명, IP 또는 태그로 검색...",
+    "location": "위치",
+    "all_locations": "모든 위치",
+    "status": "상태",
+    "all_status": "모든 상태",
+    "issue_type": "문제 유형",
+    "all_issues": "모든 문제",
+    "reset": "초기화"
+  },
+  "location": {
+    "datacenter": "데이터센터",
+    "cloud": "클라우드",
+    "office": "사무실",
+    "remote": "원격"
+  },
+  "status": {
+    "online": "온라인",
+    "offline": "오프라인",
+    "maintenance": "유지보수"
+  },
+  "machine": {
+    "ram": "메모리",
+    "disk": "디스크",
+    "status": "상태",
+    "no_issues": "문제가 감지되지 않음",
+    "just_now": "방금",
+    "ago": "전"
+  },
+  "no_results": {
+    "title": "머신을 찾을 수 없음",
+    "description": "필터 또는 검색어를 조정해 보세요"
+  }
+}

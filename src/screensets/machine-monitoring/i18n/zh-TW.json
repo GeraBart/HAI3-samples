@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "機器監控",
+      "description": "監控系統指標和進程"
+    },
+    "machines-list": {
+      "title": "機器叢集",
+      "description": "所有託管主機和虛擬機概覽"
+    }
+  }
+}

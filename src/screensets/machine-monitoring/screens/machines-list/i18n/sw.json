@@ -1,0 +1,62 @@
+{
+  "title": "Msafara wa Mashine",
+  "subtitle": "Fuatilia wenyeji wote na mashine pepe katika miundombinu yako",
+  "showing": "Inaonyesha",
+  "of": "kati ya",
+  "machines": "mashine",
+  "stats": {
+    "title": "Muhtasari wa Msafara",
+    "total_machines": "Jumla ya Mashine",
+    "online": "Mtandaoni",
+    "offline": "Nje ya Mtandao",
+    "maintenance": "Matengenezo",
+    "machine_types": "Aina za Mashine",
+    "physical": "Halisi",
+    "virtual": "Pepe",
+    "by_location": "Kwa Eneo"
+  },
+  "issues": {
+    "title": "Muhtasari wa Matatizo",
+    "critical": "Muhimu",
+    "warning": "Onyo",
+    "info": "Taarifa",
+    "hardware": "Vifaa",
+    "software": "Programu",
+    "security": "Usalama",
+    "backup": "Hifadhi Rudufu",
+    "network": "Mtandao"
+  },
+  "filter": {
+    "search_placeholder": "Tafuta kwa jina, hostname, IP au lebo...",
+    "location": "Eneo",
+    "all_locations": "Maeneo Yote",
+    "status": "Hali",
+    "all_status": "Hali Zote",
+    "issue_type": "Aina ya Tatizo",
+    "all_issues": "Matatizo Yote",
+    "reset": "Weka Upya"
+  },
+  "location": {
+    "datacenter": "Kituo cha Data",
+    "cloud": "Wingu",
+    "office": "Ofisi",
+    "remote": "Mbali"
+  },
+  "status": {
+    "online": "Mtandaoni",
+    "offline": "Nje ya Mtandao",
+    "maintenance": "Matengenezo"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Diski",
+    "status": "Hali",
+    "no_issues": "Hakuna matatizo yaliyogunduliwa",
+    "just_now": "Sasa hivi",
+    "ago": "iliyopita"
+  },
+  "no_results": {
+    "title": "Hakuna mashine zilizopatikana",
+    "description": "Jaribu kurekebisha vichujio au maneno ya kutafuta"
+  }
+}

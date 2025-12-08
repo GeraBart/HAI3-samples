@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "マシン監視",
+      "description": "システムメトリクスとプロセスを監視"
+    },
+    "machines-list": {
+      "title": "マシンフリート",
+      "description": "管理対象のすべてのホストと仮想マシンの概要"
+    }
+  }
+}

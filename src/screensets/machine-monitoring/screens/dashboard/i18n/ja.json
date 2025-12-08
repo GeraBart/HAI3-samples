@@ -1,0 +1,56 @@
+{
+  "title": "マシン監視ダッシュボード",
+  "subtitle": "システムメトリクスと実行中のプロセスをリアルタイムで監視",
+  "machine_selector": {
+    "label": "マシンを選択",
+    "placeholder": "監視するマシンを選択してください"
+  },
+  "metrics": {
+    "cpu": "CPU使用率",
+    "ram": "メモリ使用率",
+    "disk": "ディスク使用率",
+    "network": "ネットワーク",
+    "gpu": "GPU使用率",
+    "in": "受信",
+    "out": "送信"
+  },
+  "summary": {
+    "title": "マシン概要",
+    "os": "オペレーティングシステム",
+    "uptime": "稼働時間",
+    "cpu_model": "CPUモデル",
+    "gpu_model": "GPUモデル",
+    "total_ram": "総メモリ",
+    "total_disk": "総ディスク",
+    "days": "日",
+    "hours": "時間",
+    "minutes": "分"
+  },
+  "processes": {
+    "title": "実行中のプロセス",
+    "search_placeholder": "PIDまたはコマンドで検索...",
+    "pid": "PID",
+    "name": "名前",
+    "cpu": "CPU %",
+    "rss": "RSSメモリ",
+    "virtual": "仮想メモリ",
+    "start_time": "開始時刻",
+    "command": "コマンド",
+    "status": "ステータス",
+    "sort_by": "並べ替え",
+    "no_results": "検索に一致するプロセスが見つかりません"
+  },
+  "chart": {
+    "past_week": "過去1週間のメトリクス",
+    "time": "時間",
+    "usage": "使用率 (%)",
+    "mbps": "Mbps"
+  },
+  "time_range": {
+    "label": "時間範囲",
+    "30min": "30分",
+    "4hours": "4時間",
+    "1day": "1日",
+    "7days": "7日"
+  }
+}

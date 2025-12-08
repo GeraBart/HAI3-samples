@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Koneiden valvonta",
+      "description": "Seuraa järjestelmän mittareita ja prosesseja"
+    },
+    "machines-list": {
+      "title": "Konelaivasto",
+      "description": "Yleiskatsaus kaikkiin hallittuihin isäntiin ja virtuaalikoneisiin"
+    }
+  }
+}

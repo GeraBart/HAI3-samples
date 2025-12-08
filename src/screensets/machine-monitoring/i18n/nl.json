@@ -1,0 +1,12 @@
+{
+  "screens": {
+    "dashboard": {
+      "title": "Machinemonitoring",
+      "description": "Monitor systeemmetrieken en processen"
+    },
+    "machines-list": {
+      "title": "Machinevloot",
+      "description": "Overzicht van alle beheerde hosts en virtuele machines"
+    }
+  }
+}

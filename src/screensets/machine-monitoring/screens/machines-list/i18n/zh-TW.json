@@ -1,0 +1,62 @@
+{
+  "title": "機器叢集",
+  "subtitle": "監控基礎設施中的所有主機和虛擬機",
+  "showing": "顯示",
+  "of": "/",
+  "machines": "台機器",
+  "stats": {
+    "title": "叢集概覽",
+    "total_machines": "機器總數",
+    "online": "線上",
+    "offline": "離線",
+    "maintenance": "維護中",
+    "machine_types": "機器類型",
+    "physical": "實體機",
+    "virtual": "虛擬機",
+    "by_location": "按位置"
+  },
+  "issues": {
+    "title": "問題概覽",
+    "critical": "嚴重",
+    "warning": "警告",
+    "info": "資訊",
+    "hardware": "硬體",
+    "software": "軟體",
+    "security": "安全",
+    "backup": "備份",
+    "network": "網路"
+  },
+  "filter": {
+    "search_placeholder": "按名稱、主機名、IP或標籤搜尋...",
+    "location": "位置",
+    "all_locations": "所有位置",
+    "status": "狀態",
+    "all_status": "所有狀態",
+    "issue_type": "問題類型",
+    "all_issues": "所有問題",
+    "reset": "重設"
+  },
+  "location": {
+    "datacenter": "資料中心",
+    "cloud": "雲端",
+    "office": "辦公室",
+    "remote": "遠端"
+  },
+  "status": {
+    "online": "線上",
+    "offline": "離線",
+    "maintenance": "維護中"
+  },
+  "machine": {
+    "ram": "記憶體",
+    "disk": "磁碟",
+    "status": "狀態",
+    "no_issues": "未偵測到問題",
+    "just_now": "剛剛",
+    "ago": "前"
+  },
+  "no_results": {
+    "title": "未找到機器",
+    "description": "請嘗試調整篩選條件或搜尋詞"
+  }
+}

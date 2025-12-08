@@ -1,0 +1,82 @@
+{
+  "title": "Machines Fleet",
+  "subtitle": "Monitor all hosts and virtual machines across your infrastructure",
+  "showing": "Showing",
+  "of": "of",
+  "machines": "machines",
+  "stats": {
+    "title": "Fleet Overview",
+    "total_machines": "Total Machines",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Maintenance",
+    "machine_types": "Machine Types",
+    "physical": "Physical",
+    "virtual": "Virtual",
+    "by_location": "By Location"
+  },
+  "issues": {
+    "title": "Issues Overview",
+    "critical": "Critical",
+    "warning": "Warning",
+    "info": "Info",
+    "hardware": "Hardware",
+    "software": "Software",
+    "security": "Security",
+    "backup": "Backup",
+    "network": "Network"
+  },
+  "filter": {
+    "search_placeholder": "Search by name, hostname, IP, or tag...",
+    "location": "Location",
+    "all_locations": "All Locations",
+    "status": "Status",
+    "all_status": "All Status",
+    "issue_type": "Issue Type",
+    "all_issues": "All Issues",
+    "reset": "Reset"
+  },
+  "location": {
+    "datacenter": "Datacenter",
+    "cloud": "Cloud",
+    "office": "Office",
+    "remote": "Remote"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Maintenance"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Disk",
+    "status": "Status",
+    "no_issues": "No issues detected",
+    "just_now": "Just now",
+    "ago": "ago"
+  },
+  "no_results": {
+    "title": "No machines found",
+    "description": "Try adjusting your filters or search terms"
+  },
+  "view": {
+    "grid": "Grid view",
+    "table": "Table view"
+  },
+  "table": {
+    "name": "Name",
+    "ip": "IP Address",
+    "os": "OS",
+    "type": "Type",
+    "location": "Location",
+    "ram": "RAM",
+    "disk": "Disk",
+    "uptime": "Uptime",
+    "issues": "Issues"
+  },
+  "ssh": {
+    "connect": "Connect via SSH",
+    "hint": "Type 'help' for available commands",
+    "credentials": "Credentials"
+  }
+}

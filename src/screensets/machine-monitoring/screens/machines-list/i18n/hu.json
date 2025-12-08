@@ -1,0 +1,62 @@
+{
+  "title": "Gépflotta",
+  "subtitle": "Figyelje az összes gazdagépet és virtuális gépet az infrastruktúrában",
+  "showing": "Megjelenítve",
+  "of": "/",
+  "machines": "gép",
+  "stats": {
+    "title": "Flotta áttekintés",
+    "total_machines": "Összes gép",
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Karbantartás",
+    "machine_types": "Géptípusok",
+    "physical": "Fizikai",
+    "virtual": "Virtuális",
+    "by_location": "Hely szerint"
+  },
+  "issues": {
+    "title": "Problémák áttekintése",
+    "critical": "Kritikus",
+    "warning": "Figyelmeztetés",
+    "info": "Információ",
+    "hardware": "Hardver",
+    "software": "Szoftver",
+    "security": "Biztonság",
+    "backup": "Biztonsági mentés",
+    "network": "Hálózat"
+  },
+  "filter": {
+    "search_placeholder": "Keresés név, hostname, IP vagy címke alapján...",
+    "location": "Hely",
+    "all_locations": "Összes hely",
+    "status": "Állapot",
+    "all_status": "Összes állapot",
+    "issue_type": "Probléma típusa",
+    "all_issues": "Összes probléma",
+    "reset": "Visszaállítás"
+  },
+  "location": {
+    "datacenter": "Adatközpont",
+    "cloud": "Felhő",
+    "office": "Iroda",
+    "remote": "Távoli"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "maintenance": "Karbantartás"
+  },
+  "machine": {
+    "ram": "RAM",
+    "disk": "Lemez",
+    "status": "Állapot",
+    "no_issues": "Nem észlelt probléma",
+    "just_now": "Most",
+    "ago": "ezelőtt"
+  },
+  "no_results": {
+    "title": "Nem található gép",
+    "description": "Próbálja módosítani a szűrőket vagy a keresési feltételeket"
+  }
+}
