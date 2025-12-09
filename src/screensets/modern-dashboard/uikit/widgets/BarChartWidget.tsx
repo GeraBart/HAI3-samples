@@ -7,11 +7,11 @@ interface BarChartWidgetProps {
 }
 
 const DEFAULT_COLORS = [
-  '#2668C5',
-  '#408BEA',
-  '#6BA3F0',
-  '#9CBDF5',
-  '#C5D7FA',
+  'hsl(var(--primary))',
+  'hsl(var(--primary) / 0.8)',
+  'hsl(var(--primary) / 0.6)',
+  'hsl(var(--primary) / 0.4)',
+  'hsl(var(--primary) / 0.2)',
 ];
 
 /**

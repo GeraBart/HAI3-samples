@@ -41,10 +41,8 @@ import { NEW_TEST_SCREENSET_ID, OVERVIEW_SCREEN_ID } from '../../ids';
 import { DashboardWidgetsGrid, AddWidgetPanel, CustomWidgetConfig } from './components/DashboardWidgets';
 import { SidebarSections, SectionItem } from './components/SidebarSections';
 
-// Import aiDashboard screenset for Analytics section
-// This import ensures the slice and effects are registered
-import '../../../aiDashboard/aiDashboardScreenset';
-import { HomeScreen as AiDashboardHomeScreen } from '../../../aiDashboard/screens/home/HomeScreen';
+// NOTE: Analytics section temporarily disabled - cross-screenset imports violate architecture rules
+// To enable Analytics, create a local implementation or use a shared component approach
 
 /**
  * Screen-level translations (loaded lazily when screen mounts)
@@ -342,9 +340,14 @@ export const OverviewScreen: React.FC = () => {
 
       {/* Main Content Area */}
       <div className="flex flex-1 flex-col">
-        {/* Render aiDashboard when Analytics section is active */}
+        {/* NOTE: Analytics section temporarily shows placeholder - cross-screenset imports were removed */}
         {activeSectionId === 'analytics' ? (
-          <AiDashboardHomeScreen />
+          <div className="flex flex-1 items-center justify-center">
+            <div className="text-center text-muted-foreground">
+              <p className="text-lg font-medium">Analytics</p>
+              <p className="text-sm">Coming soon - implementation pending</p>
+            </div>
+          </div>
         ) : (
         <>
         {/* Dashboard Header */}

@@ -68,7 +68,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                 rounded-t transition-colors
                 ${isActive 
                   ? 'bg-background' 
-                  : 'bg-[#f5f7fb] hover:bg-[#ebeef3]'
+                  : 'bg-muted hover:bg-muted/80'
                 }
               `}
               style={{
@@ -104,7 +104,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                         e.stopPropagation();
                       }}
                     >
-                      <MoreHorizontal className="h-4 w-4 text-[#2668c5]" />
+                      <MoreHorizontal className="h-4 w-4 text-primary" />
                     </button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
@@ -118,7 +118,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                         onClick={() => onTabRename(tab.id)}
                         className="gap-4 px-4 py-2"
                       >
-                        <Edit3 className="h-4 w-4 text-[#2668c5]" />
+                        <Edit3 className="h-4 w-4 text-primary" />
                         <span
                           className="text-[#2668c5] font-semibold"
                           style={{
@@ -138,7 +138,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                         onClick={() => onTabClone(tab.id)}
                         className="gap-4 px-4 py-2"
                       >
-                        <Copy className="h-4 w-4 text-[#2668c5]" />
+                        <Copy className="h-4 w-4 text-primary" />
                         <span
                           className="text-[#2668c5] font-semibold"
                           style={{
@@ -161,7 +161,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                         disabled={isFirst}
                         className="gap-4 px-4 py-2"
                       >
-                        <ArrowLeft className="h-4 w-4 text-[#2668c5]" />
+                        <ArrowLeft className="h-4 w-4 text-primary" />
                         <span
                           className="text-[#2668c5] font-semibold"
                           style={{
@@ -182,7 +182,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                         disabled={isLast}
                         className="gap-4 px-4 py-2"
                       >
-                        <ArrowRight className="h-4 w-4 text-[#2668c5]" />
+                        <ArrowRight className="h-4 w-4 text-primary" />
                         <span
                           className="text-[#2668c5] font-semibold"
                           style={{
@@ -202,7 +202,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                         onClick={() => onTabDelete(tab.id)}
                         className="gap-4 px-4 py-2"
                       >
-                        <Trash2 className="h-4 w-4 text-[#2668c5]" />
+                        <Trash2 className="h-4 w-4 text-primary" />
                         <span
                           className="text-[#2668c5] font-semibold"
                           style={{

@@ -39,10 +39,10 @@ const StatCardMini: React.FC<{ metric: TemplateMetric }> = ({ metric }) => {
   const isPositive = metric.changePercent >= 0;
   return (
     <div className="flex flex-col min-w-0">
-      <span className="text-[10px] text-[#243143]/60 truncate leading-tight">{metric.label}</span>
+      <span className="text-[10px] text-foreground/60 truncate leading-tight">{metric.label}</span>
       <div className="flex items-baseline gap-1 flex-wrap">
-        <span className="text-base font-semibold text-[#243143] leading-tight">{metric.value}</span>
-        <span className={`text-[10px] leading-tight ${isPositive ? 'text-[#22C55E]' : 'text-[#EF4444]'}`}>
+        <span className="text-base font-semibold text-foreground leading-tight">{metric.value}</span>
+        <span className={`text-[10px] leading-tight ${isPositive ? 'text-green-500' : 'text-destructive'}`}>
           {isPositive ? '+' : ''}{metric.changePercent}%
         </span>
       </div>
@@ -55,7 +55,7 @@ const StatCardMini: React.FC<{ metric: TemplateMetric }> = ({ metric }) => {
  */
 const BarChartWithLegend: React.FC<{ data?: number[]; legend?: LegendItem[] }> = ({ 
   data = [40, 55, 35, 65, 50, 40, 60, 45, 55, 50, 35, 45, 60, 70, 55],
-  legend = [{ label: 'Google', percent: 45, color: '#2668C5' }, { label: 'Social', percent: 23, color: '#408BEA' }]
+  legend = [{ label: 'Google', percent: 45, color: 'hsl(var(--primary))' }, { label: 'Social', percent: 23, color: 'hsl(var(--primary) / 0.7)' }]
 }) => {
   const maxValue = Math.max(...data);
   return (

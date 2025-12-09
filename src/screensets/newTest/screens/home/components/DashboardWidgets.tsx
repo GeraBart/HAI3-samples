@@ -58,8 +58,12 @@ const ChartIcon: React.FC<{ type: ChartType }> = ({ type }) => {
       return (
         <div className="w-14 h-14 flex items-center justify-center gap-1">
           <div className="relative w-8 h-8">
-            <div className="w-8 h-8 rounded-full" style={{ background: 'conic-gradient(#22C55E 0deg 120deg, #F97316 120deg 240deg, #EF4444 240deg 360deg)' }} />
-            <div className="absolute inset-1.5 bg-white rounded-full" />
+            <svg className="w-8 h-8" viewBox="0 0 32 32">
+              <circle cx="16" cy="16" r="12" fill="none" className="stroke-green-500" strokeWidth="8" strokeDasharray="25.13 75.4" strokeDashoffset="0" transform="rotate(-90 16 16)" />
+              <circle cx="16" cy="16" r="12" fill="none" className="stroke-orange-500" strokeWidth="8" strokeDasharray="25.13 75.4" strokeDashoffset="-25.13" transform="rotate(-90 16 16)" />
+              <circle cx="16" cy="16" r="12" fill="none" className="stroke-red-500" strokeWidth="8" strokeDasharray="25.13 75.4" strokeDashoffset="-50.26" transform="rotate(-90 16 16)" />
+            </svg>
+            <div className="absolute inset-2 bg-white rounded-full" />
           </div>
           <div className="flex flex-col gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
@@ -1144,7 +1148,7 @@ const CustomWidget: React.FC<{ config: CustomWidgetConfig; onAiClick?: () => voi
   const processedData = React.useMemo(() => {
     if (!mockData.length || !labelField || !valueField) return null;
     
-    let sortedData = [...mockData];
+    const sortedData = [...mockData];
     if (sortField === 'value') {
       sortedData.sort((a, b) => {
         const aVal = Number(a[valueField]) || 0;
@@ -1165,9 +1169,29 @@ const CustomWidget: React.FC<{ config: CustomWidgetConfig; onAiClick?: () => voi
     const displayTotal = displayItems.reduce((sum, item) => sum + (Number(item[valueField]) || 0), 0);
     const otherTotal = total - displayTotal;
     
-    const defaultColors = ['#3b82f6', '#ef4444', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16'];
-    const severityColors: Record<string, string> = { critical: '#ef4444', error: '#f97316', warning: '#f59e0b', info: '#3b82f6' };
-    const statusColors: Record<string, string> = { protected: '#10b981', unprotected: '#ef4444', managed: '#3b82f6', unknown: '#9ca3af' };
+    // Chart colors using CSS variable format for theme compatibility
+    const defaultColors = [
+      'hsl(var(--primary))',
+      'hsl(var(--destructive))', 
+      'hsl(var(--warning, 38 92% 50%))',
+      'hsl(var(--success, 142 71% 45%))',
+      'hsl(var(--chart-1, 262 83% 58%))',
+      'hsl(var(--chart-2, 330 81% 60%))',
+      'hsl(var(--chart-3, 187 86% 47%))',
+      'hsl(var(--chart-4, 84 81% 44%))'
+    ];
+    const severityColors: Record<string, string> = { 
+      critical: 'hsl(var(--destructive))', 
+      error: 'hsl(var(--warning, 24 95% 53%))', 
+      warning: 'hsl(var(--warning, 38 92% 50%))', 
+      info: 'hsl(var(--primary))' 
+    };
+    const statusColors: Record<string, string> = { 
+      protected: 'hsl(var(--success, 142 71% 45%))', 
+      unprotected: 'hsl(var(--destructive))', 
+      managed: 'hsl(var(--primary))', 
+      unknown: 'hsl(var(--muted-foreground))' 
+    };
     
     const getColor = (item: Record<string, unknown>, index: number) => {
       if (colourScheme === 'severity' && item.severity) {
@@ -1223,7 +1247,7 @@ const CustomWidget: React.FC<{ config: CustomWidgetConfig; onAiClick?: () => voi
                         cy="50"
                         r={radius}
                         fill="none"
-                        stroke="#9ca3af"
+                        stroke="hsl(var(--muted-foreground))"
                         strokeWidth="12"
                         strokeDasharray={`${otherPercent * circumference} ${circumference}`}
                         strokeDashoffset={-cumulativePercent * circumference}
@@ -1284,8 +1308,17 @@ const CustomWidget: React.FC<{ config: CustomWidgetConfig; onAiClick?: () => voi
           const groupField = config.groupField || '';
           const chartHeight = 112; // h-28 = 112px
           
-          // Stacked bar colors
-          const stackColors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4'];
+          // Stacked bar colors using CSS variables
+          const stackColors = [
+            'hsl(var(--destructive))',
+            'hsl(var(--warning, 24 95% 53%))',
+            'hsl(var(--warning, 48 96% 53%))',
+            'hsl(var(--success, 142 71% 45%))',
+            'hsl(var(--primary))',
+            'hsl(var(--chart-1, 262 83% 58%))',
+            'hsl(var(--chart-2, 330 81% 60%))',
+            'hsl(var(--chart-3, 187 86% 47%))'
+          ];
           
           // For stacked bars, group data by groupField and calculate totals
           let barData: { label: string; segments: { value: number; color: string; groupLabel: string }[] }[] = [];
@@ -1850,7 +1883,7 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
     if (!mockData.length || !labelField || !valueField) return null;
     
     // Sort the data
-    let sortedData = [...mockData];
+    const sortedData = [...mockData];
     if (sortField === 'value') {
       sortedData.sort((a, b) => {
         const aVal = Number(a[valueField]) || 0;
@@ -1874,11 +1907,30 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
     const displayTotal = displayItems.reduce((sum, item) => sum + (Number(item[valueField]) || 0), 0);
     const otherTotal = total - displayTotal;
     
-    // Get color based on scheme
+    // Get color based on scheme - using CSS variables for theme compatibility
     const getColor = (item: Record<string, unknown>, index: number) => {
-      const defaultColors = ['#3b82f6', '#ef4444', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16'];
-      const severityColors: Record<string, string> = { critical: '#ef4444', error: '#f97316', warning: '#f59e0b', info: '#3b82f6' };
-      const statusColors: Record<string, string> = { protected: '#10b981', unprotected: '#ef4444', managed: '#3b82f6', unknown: '#9ca3af' };
+      const defaultColors = [
+        'hsl(var(--primary))',
+        'hsl(var(--destructive))',
+        'hsl(var(--warning, 38 92% 50%))',
+        'hsl(var(--success, 142 71% 45%))',
+        'hsl(var(--chart-1, 262 83% 58%))',
+        'hsl(var(--chart-2, 330 81% 60%))',
+        'hsl(var(--chart-3, 187 86% 47%))',
+        'hsl(var(--chart-4, 84 81% 44%))'
+      ];
+      const severityColors: Record<string, string> = { 
+        critical: 'hsl(var(--destructive))', 
+        error: 'hsl(var(--warning, 24 95% 53%))', 
+        warning: 'hsl(var(--warning, 38 92% 50%))', 
+        info: 'hsl(var(--primary))' 
+      };
+      const statusColors: Record<string, string> = { 
+        protected: 'hsl(var(--success, 142 71% 45%))', 
+        unprotected: 'hsl(var(--destructive))', 
+        managed: 'hsl(var(--primary))', 
+        unknown: 'hsl(var(--muted-foreground))' 
+      };
       
       if (colourScheme === 'severity' && item.severity) {
         return severityColors[String(item.severity).toLowerCase()] || defaultColors[index % defaultColors.length];
@@ -2054,7 +2106,7 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
                             cy="50"
                             r={radius}
                             fill="none"
-                            stroke="#9ca3af"
+                            stroke="hsl(var(--muted-foreground))"
                             strokeWidth="10"
                             strokeDasharray={strokeDasharray}
                             strokeDashoffset={strokeDashoffset}
@@ -2068,7 +2120,7 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
                 ) : (
                   // Skeleton circle
                   <svg className="h-full w-full -rotate-90" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="40" fill="none" stroke="#e0e7ff" strokeWidth="10" />
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="hsl(var(--primary) / 0.2)" strokeWidth="10" />
                   </svg>
                 )}
                 {/* Center summary */}
@@ -2104,8 +2156,7 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
                       {previewData.otherTotal > 0 && (
                         <div className="flex items-center gap-2 text-xs">
                           <div 
-                            className="h-2 w-2 rounded-full flex-shrink-0" 
-                            style={{ backgroundColor: '#9ca3af' }}
+                            className="h-2 w-2 rounded-full flex-shrink-0 bg-muted-foreground" 
                           />
                           <span className="truncate flex-1">Other</span>
                           <span className="font-medium flex-shrink-0">{previewData.otherTotal}</span>
@@ -2145,8 +2196,17 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
                 const isStacked = stacked && groupField;
                 const chartHeight = 128; // h-32 = 128px
                 
-                // Stacked bar colors
-                const stackColors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4'];
+                // Stacked bar colors using CSS variables
+                const stackColors = [
+                  'hsl(var(--destructive))',
+                  'hsl(var(--warning, 24 95% 53%))',
+                  'hsl(var(--warning, 48 96% 53%))',
+                  'hsl(var(--success, 142 71% 45%))',
+                  'hsl(var(--primary))',
+                  'hsl(var(--chart-1, 262 83% 58%))',
+                  'hsl(var(--chart-2, 330 81% 60%))',
+                  'hsl(var(--chart-3, 187 86% 47%))'
+                ];
                 
                 // For stacked bars, group data and calculate totals
                 let barData: { label: string; segments: { value: number; color: string; groupLabel: string }[] }[] = [];

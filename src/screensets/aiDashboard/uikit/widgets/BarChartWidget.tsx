@@ -13,11 +13,11 @@ interface BarChartWidgetProps {
 }
 
 const DEFAULT_COLORS = [
-  '#ef4444', // red
-  '#f97316', // orange
-  '#eab308', // yellow
-  '#22c55e', // green
-  '#3b82f6', // blue
+  'hsl(var(--destructive))', // red
+  'hsl(var(--warning, 24 95% 53%))', // orange
+  'hsl(var(--warning, 48 96% 53%))', // yellow
+  'hsl(var(--success, 142 71% 45%))', // green
+  'hsl(var(--primary))', // blue
 ];
 
 export const BarChartWidget: React.FC<BarChartWidgetProps> = ({

@@ -36,8 +36,8 @@ export const AiSparkleIcon: React.FC<AiSparkleIconProps> = ({
           x2="100%"
           y2="100%"
         >
-          <stop offset="0%" stopColor="#8B5CF6" />
-          <stop offset="100%" stopColor="#3B82F6" />
+          <stop offset="0%" className="[stop-color:hsl(var(--chart-1,262_83%_58%))]" />
+          <stop offset="100%" className="[stop-color:hsl(var(--primary))]" />
         </linearGradient>
       </defs>
       <path

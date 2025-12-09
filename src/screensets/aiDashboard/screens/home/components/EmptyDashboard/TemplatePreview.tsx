@@ -52,10 +52,10 @@ export const TemplatePreview: React.FC<TemplatePreviewProps> = ({ type }) => {
         <div className="flex flex-1 gap-1">
           <div className="flex-1 rounded border border-gray-200 p-1">
             <div className="text-[6px] text-gray-500">Ticket Volume</div>
-            <svg className="h-full w-full" viewBox="0 0 100 40" preserveAspectRatio="none">
+            <svg className="h-full w-full text-primary/50" viewBox="0 0 100 40" preserveAspectRatio="none">
               <path
                 d="M 0,30 L 20,25 L 40,28 L 60,18 L 80,22 L 100,15"
-                stroke="#93c5fd"
+                stroke="currentColor"
                 strokeWidth="2"
                 fill="none"
               />
@@ -108,13 +108,13 @@ export const TemplatePreview: React.FC<TemplatePreviewProps> = ({ type }) => {
           <div className="text-[6px] text-gray-500">Health</div>
           <div className="relative h-10 w-10">
             <svg className="h-full w-full" viewBox="0 0 40 40">
-              <circle cx="20" cy="20" r="16" fill="none" stroke="#e5e7eb" strokeWidth="4" />
+              <circle cx="20" cy="20" r="16" fill="none" className="stroke-border" strokeWidth="4" />
               <circle
                 cx="20"
                 cy="20"
                 r="16"
                 fill="none"
-                stroke="#3b82f6"
+                className="stroke-primary"
                 strokeWidth="4"
                 strokeDasharray="75 100"
                 transform="rotate(-90 20 20)"

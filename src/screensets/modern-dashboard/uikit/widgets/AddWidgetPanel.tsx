@@ -38,9 +38,9 @@ interface AddWidgetPanelProps {
  * Custom Widget Icon
  */
 const CustomWidgetIcon: React.FC = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
     <path d="M12 3L14.5 8.5L20 9.5L16 14L17 20L12 17L7 20L8 14L4 9.5L9.5 8.5L12 3Z" 
-      stroke="#2668C5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
   </svg>
 );
 
@@ -48,11 +48,11 @@ const CustomWidgetIcon: React.FC = () => (
  * Catalog Icon
  */
 const CatalogIcon: React.FC = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="3" y="3" width="7" height="9" rx="1" stroke="#2668C5" strokeWidth="2"/>
-    <rect x="14" y="3" width="7" height="5" rx="1" stroke="#2668C5" strokeWidth="2"/>
-    <rect x="14" y="12" width="7" height="9" rx="1" stroke="#2668C5" strokeWidth="2"/>
-    <rect x="3" y="16" width="7" height="5" rx="1" stroke="#2668C5" strokeWidth="2"/>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
+    <rect x="3" y="3" width="7" height="9" rx="1" stroke="currentColor" strokeWidth="2"/>
+    <rect x="14" y="3" width="7" height="5" rx="1" stroke="currentColor" strokeWidth="2"/>
+    <rect x="14" y="12" width="7" height="9" rx="1" stroke="currentColor" strokeWidth="2"/>
+    <rect x="3" y="16" width="7" height="5" rx="1" stroke="currentColor" strokeWidth="2"/>
   </svg>
 );
 
