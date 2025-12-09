@@ -1,0 +1,8 @@
+{
+  "name": "Modern Dashboard",
+  "screens": {
+    "dashboard": {
+      "title": "Dashboard"
+    }
+  }
+}

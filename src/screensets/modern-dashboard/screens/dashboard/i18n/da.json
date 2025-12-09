@@ -1,0 +1,24 @@
+{
+  "title": "Dashboard",
+  "ai_section": {
+    "title": "Describe your dashboard, and we'll build it.",
+    "subtitle": "Skip manual setup. Tell us what you want to track, and our AI builds a full dashboard for you.",
+    "placeholder": "Ask AI to help build your dashboard... e.g. \"Generate a dashboard showing vulnerabilities\""
+  },
+  "templates": {
+    "title": "Start with default dashboard templates",
+    "see_more": "See more"
+  },
+  "options": {
+    "title": "Or consider additional options",
+    "upload": {
+      "title": "Drag & drop JSON files,",
+      "link": "or browse",
+      "subtitle": "to create a dashboard."
+    },
+    "manual": {
+      "title": "Start building your dashboard manually",
+      "subtitle": "by adding a widget."
+    }
+  }
+}
