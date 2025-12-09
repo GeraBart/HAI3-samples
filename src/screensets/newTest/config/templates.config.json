@@ -1,0 +1,103 @@
+{
+  "templates": [
+    {
+      "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.table.v1.0",
+      "name": "Table",
+      "icon": "table",
+      "configSchema": {
+        "title": { "type": "string" },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "field": { "type": "string" },
+              "label": { "type": "string" },
+              "width": { "type": "number" },
+              "sortable": { "type": "boolean", "default": false },
+              "hidden": { "type": "boolean", "default": false }
+            },
+            "required": ["field"]
+          }
+        },
+        "group_field": { "type": "string", "description": "Field name for grouping" },
+        "alignment": { "type": "string", "enum": ["left", "center", "right"], "default": "left" },
+        "striped": { "type": "boolean", "default": false }
+      },
+      "dataSchema": { "items": [] }
+    },
+    {
+      "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.pie_chart.v1.0",
+      "name": "Pie chart",
+      "icon": "donut",
+      "configSchema": {
+        "title": { "type": "string" },
+        "label_field": { "type": "string", "description": "Field name for labels" },
+        "value_field": { "type": "string", "description": "Field name for values" },
+        "sort_field": { "type": "string", "enum": ["value", "label"], "default": "value" },
+        "sort_order": { "type": "string", "enum": ["asc", "desc"], "default": "desc" },
+        "color_scheme": { "type": "string", "enum": ["default", "severity", "status"], "default": "default" },
+        "summary": { "type": "boolean", "default": true },
+        "legend": { "type": "boolean", "default": true }
+      },
+      "dataSchema": { "items": [] }
+    },
+    {
+      "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.bar_chart.v1.0",
+      "name": "Bar chart",
+      "icon": "bar",
+      "configSchema": {
+        "title": { "type": "string" },
+        "label_field": { "type": "string", "description": "Field name for labels" },
+        "value_field": { "type": "string", "description": "Field name for values" },
+        "group_field": { "type": "string", "description": "Field name for groups" },
+        "color_scheme": { "type": "string", "enum": ["default", "severity", "status"], "default": "default" },
+        "bar_thickness": { "type": "number", "default": 12 },
+        "stacked": { "type": "boolean", "default": false },
+        "legend": { "type": "boolean", "default": true }
+      },
+      "dataSchema": { "items": [] }
+    },
+    {
+      "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.line_chart.v1.0",
+      "name": "Line chart",
+      "icon": "list",
+      "configSchema": {
+        "title": { "type": "string" },
+        "label_field": { "type": "string", "description": "Field name for labels" },
+        "value_field": { "type": "string", "description": "Field name for values" },
+        "color_scheme": { "type": "string", "enum": ["default"], "default": "default" },
+        "x_grid": { "type": "boolean", "default": true },
+        "y_grid": { "type": "boolean", "default": true },
+        "stepped": { "type": "boolean", "default": false },
+        "legend": { "type": "boolean", "default": true }
+      },
+      "dataSchema": { "items": [] }
+    },
+    {
+      "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.list.v1.0",
+      "name": "List",
+      "icon": "list",
+      "configSchema": {
+        "title": { "type": "string" },
+        "label_field": { "type": "string", "description": "Field name for labels" },
+        "value_field": { "type": "string", "description": "Field name for values" },
+        "color_field": { "type": "string", "description": "Field name for color coding" },
+        "max_items": { "type": "number", "default": 10 }
+      },
+      "dataSchema": { "items": [] }
+    },
+    {
+      "id": "cti.a.p.wr.template.v1.0~a.p.widget.v1.0~a.p.treemap.v1.0",
+      "name": "Treemap",
+      "icon": "treemap",
+      "configSchema": {
+        "title": { "type": "string" },
+        "label_field": { "type": "string", "description": "Field name for labels" },
+        "value_field": { "type": "string", "description": "Field name for values" },
+        "color_scheme": { "type": "string", "enum": ["default", "severity"], "default": "default" }
+      },
+      "dataSchema": { "items": [] }
+    }
+  ]
+}
