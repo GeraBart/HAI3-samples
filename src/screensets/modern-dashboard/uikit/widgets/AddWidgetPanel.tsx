@@ -205,8 +205,8 @@ I've created a clean dashboard empty state following Figma's approach! The layou
             onClick={onClose}
             className="p-2 hover:bg-[#F4F7FC] rounded-md transition-colors"
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M12 4L4 12M4 4L12 12" stroke="#243143" strokeWidth="2" strokeLinecap="round"/>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-foreground">
+              <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
           </button>
         </div>
@@ -326,35 +326,35 @@ I've created a clean dashboard empty state following Figma's approach! The layou
 
                     {/* Action Icons */}
                     <div className="flex items-center gap-2 mt-3">
-                      <button className="p-2 hover:bg-[#F4F7FC] rounded transition-colors" title="Regenerate">
+                      <button className="p-2 hover:bg-muted rounded transition-colors text-primary" title="Regenerate">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M13.5 8.5L12 10M12 10L10.5 8.5M12 10V6C12 4.89543 11.1046 4 10 4H6M2.5 7.5L4 6M4 6L5.5 7.5M4 6V10C4 11.1046 4.89543 12 6 12H10" stroke="#2668C5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M13.5 8.5L12 10M12 10L10.5 8.5M12 10V6C12 4.89543 11.1046 4 10 4H6M2.5 7.5L4 6M4 6L5.5 7.5M4 6V10C4 11.1046 4.89543 12 6 12H10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </button>
-                      <button className="p-2 hover:bg-[#F4F7FC] rounded transition-colors" title="Pin">
+                      <button className="p-2 hover:bg-muted rounded transition-colors text-primary" title="Pin">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M9.5 6.5L6.5 9.5M10 3L13 6L9.5 9.5L6.5 9.5L6.5 6.5L10 3Z" stroke="#2668C5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M6.5 9.5L3 13" stroke="#2668C5" strokeWidth="1.5" strokeLinecap="round"/>
+                          <path d="M9.5 6.5L6.5 9.5M10 3L13 6L9.5 9.5L6.5 9.5L6.5 6.5L10 3Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M6.5 9.5L3 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                         </svg>
                       </button>
-                      <button className="p-2 hover:bg-[#F4F7FC] rounded transition-colors" title="Bookmark">
+                      <button className="p-2 hover:bg-muted rounded transition-colors text-primary" title="Bookmark">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M4 3H12V13L8 10L4 13V3Z" stroke="#2668C5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M4 3H12V13L8 10L4 13V3Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </button>
-                      <button className="p-2 hover:bg-[#F4F7FC] rounded transition-colors" title="Download">
+                      <button className="p-2 hover:bg-muted rounded transition-colors text-primary" title="Download">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M8 3V10M8 10L5 7M8 10L11 7M3 13H13" stroke="#2668C5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M8 3V10M8 10L5 7M8 10L11 7M3 13H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </button>
-                      <button className="p-2 hover:bg-[#F4F7FC] rounded transition-colors" title="Like">
+                      <button className="p-2 hover:bg-muted rounded transition-colors text-primary" title="Like">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M4 7V13H2V7H4ZM6 13C5.44772 13 5 12.5523 5 12V7.5L8.5 2H9.5C10.0523 2 10.5 2.44772 10.5 3V6H13C13.5523 6 14 6.44772 14 7V8L12 13H6Z" stroke="#2668C5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M4 7V13H2V7H4ZM6 13C5.44772 13 5 12.5523 5 12V7.5L8.5 2H9.5C10.0523 2 10.5 2.44772 10.5 3V6H13C13.5523 6 14 6.44772 14 7V8L12 13H6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </button>
-                      <button className="p-2 hover:bg-[#F4F7FC] rounded transition-colors" title="Dislike">
+                      <button className="p-2 hover:bg-muted rounded transition-colors text-primary" title="Dislike">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M12 9V3H14V9H12ZM10 3C10.5523 3 11 3.44772 11 4V8.5L7.5 14H6.5C5.94772 14 5.5 13.5523 5.5 13V10H3C2.44772 10 2 9.55228 2 9V8L4 3H10Z" stroke="#2668C5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M12 9V3H14V9H12ZM10 3C10.5523 3 11 3.44772 11 4V8.5L7.5 14H6.5C5.94772 14 5.5 13.5523 5.5 13V10H3C2.44772 10 2 9.55228 2 9V8L4 3H10Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </button>
                     </div>

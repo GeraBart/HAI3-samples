@@ -11,7 +11,6 @@ export interface DashboardMetric {
 export interface LegendItem {
   label: string;
   percent: number;
-  color: string;
 }
 
 export interface ProgressItem {
@@ -40,10 +39,12 @@ export interface GetDashboardTemplatesResponse {
 }
 
 // Widget data types
+export type DataStatus = 'success' | 'warning' | 'error' | 'info';
+
 export interface WidgetDataPoint {
   label: string;
   value: number;
-  color?: string;
+  status?: DataStatus;
 }
 
 export type WidgetType = 'bar' | 'line' | 'area' | 'pie' | 'table';

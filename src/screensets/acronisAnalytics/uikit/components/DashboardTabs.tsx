@@ -70,27 +70,17 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                   ? 'bg-background' 
                   : 'bg-muted hover:bg-muted/80'
                 }
+                rounded-t
               `}
-              style={{
-                borderTopLeftRadius: '4px',
-                borderTopRightRadius: '4px',
-              }}
             >
               <span
                 className={`
-                  text-sm font-semibold whitespace-nowrap
+                  text-sm font-semibold whitespace-nowrap leading-6 tracking-wide font-inter
                   ${isActive 
-                    ? 'text-[#243143]' 
-                    : 'text-[#243143]/70'
+                    ? 'text-foreground' 
+                    : 'text-foreground/70'
                   }
                 `}
-                style={{
-                  fontSize: '14px',
-                  lineHeight: '24px',
-                  letterSpacing: '0.3px',
-                  fontFamily: 'Inter, sans-serif',
-                  fontWeight: 600,
-                }}
               >
                 {tab.name}
               </span>
@@ -108,10 +98,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                     </button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
-                    className="w-[135px] bg-white border-[#2668c5]"
-                    style={{
-                      boxShadow: '0px 10px 20px 0px rgba(36,49,67,0.2)',
-                    }}
+                    className="w-[135px] bg-background border-primary shadow-lg"
                   >
                     {onTabRename && (
                       <DropdownMenuItem
@@ -119,15 +106,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                         className="gap-4 px-4 py-2"
                       >
                         <Edit3 className="h-4 w-4 text-primary" />
-                        <span
-                          className="text-[#2668c5] font-semibold"
-                          style={{
-                            fontSize: '14px',
-                            lineHeight: '24px',
-                            fontFamily: 'Inter, sans-serif',
-                            fontWeight: 600,
-                          }}
-                        >
+                        <span className="text-primary font-semibold text-sm leading-6">
                           Rename
                         </span>
                       </DropdownMenuItem>
@@ -139,21 +118,13 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                         className="gap-4 px-4 py-2"
                       >
                         <Copy className="h-4 w-4 text-primary" />
-                        <span
-                          className="text-[#2668c5] font-semibold"
-                          style={{
-                            fontSize: '14px',
-                            lineHeight: '24px',
-                            fontFamily: 'Inter, sans-serif',
-                            fontWeight: 600,
-                          }}
-                        >
+                        <span className="text-primary font-semibold text-sm leading-6">
                           Clone
                         </span>
                       </DropdownMenuItem>
                     )}
                     
-                    <DropdownMenuSeparator className="bg-[rgba(38,104,197,0.1)]" />
+                    <DropdownMenuSeparator className="bg-primary/10" />
                     
                     {onTabMoveLeft && (
                       <DropdownMenuItem
@@ -162,15 +133,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                         className="gap-4 px-4 py-2"
                       >
                         <ArrowLeft className="h-4 w-4 text-primary" />
-                        <span
-                          className="text-[#2668c5] font-semibold"
-                          style={{
-                            fontSize: '14px',
-                            lineHeight: '24px',
-                            fontFamily: 'Inter, sans-serif',
-                            fontWeight: 600,
-                          }}
-                        >
+                        <span className="text-primary font-semibold text-sm leading-6">
                           Move left
                         </span>
                       </DropdownMenuItem>
@@ -183,15 +146,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                         className="gap-4 px-4 py-2"
                       >
                         <ArrowRight className="h-4 w-4 text-primary" />
-                        <span
-                          className="text-[#2668c5] font-semibold"
-                          style={{
-                            fontSize: '14px',
-                            lineHeight: '24px',
-                            fontFamily: 'Inter, sans-serif',
-                            fontWeight: 600,
-                          }}
-                        >
+                        <span className="text-primary font-semibold text-sm leading-6">
                           Move right
                         </span>
                       </DropdownMenuItem>
@@ -203,15 +158,7 @@ export const DashboardTabs: React.FC<DashboardTabsProps> = ({
                         className="gap-4 px-4 py-2"
                       >
                         <Trash2 className="h-4 w-4 text-primary" />
-                        <span
-                          className="text-[#2668c5] font-semibold"
-                          style={{
-                            fontSize: '14px',
-                            lineHeight: '24px',
-                            fontFamily: 'Inter, sans-serif',
-                            fontWeight: 600,
-                          }}
-                        >
+                        <span className="text-primary font-semibold text-sm leading-6">
                           Delete
                         </span>
                       </DropdownMenuItem>

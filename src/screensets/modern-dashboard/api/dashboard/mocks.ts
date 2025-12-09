@@ -19,8 +19,8 @@ const standardTemplate: DashboardTemplate = {
   ],
   chartData: [60, 80, 45, 90, 70, 55, 85, 40, 75, 65, 50, 70],
   legend: [
-    { label: 'Google', percent: 45, color: 'hsl(var(--primary))' },
-    { label: 'Social', percent: 23, color: 'hsl(var(--primary) / 0.7)' },
+    { label: 'Google', percent: 45 },
+    { label: 'Social', percent: 23 },
   ],
 };
 
@@ -101,13 +101,13 @@ const generatedActivitiesWidget: WidgetConfig = {
   period: '7 days',
   yAxisMax: 135,
   data: [
-    { label: '8 Jul', value: 95, color: 'hsl(var(--success, 142 71% 45%))' },
-    { label: '', value: 115, color: 'hsl(var(--success, 142 71% 45%))' },
-    { label: '10 Jul', value: 70, color: 'hsl(var(--warning, 48 96% 53%))' },
-    { label: '', value: 105, color: 'hsl(var(--success, 142 71% 45%))' },
-    { label: '12 Jul', value: 85, color: 'hsl(var(--destructive))' },
-    { label: '', value: 110, color: 'hsl(var(--success, 142 71% 45%))' },
-    { label: '14 Jul', value: 95, color: 'hsl(var(--warning, 48 96% 53%))' },
+    { label: '8 Jul', value: 95, status: 'success' },
+    { label: '', value: 115, status: 'success' },
+    { label: '10 Jul', value: 70, status: 'warning' },
+    { label: '', value: 105, status: 'success' },
+    { label: '12 Jul', value: 85, status: 'error' },
+    { label: '', value: 110, status: 'success' },
+    { label: '14 Jul', value: 95, status: 'warning' },
   ],
 };
 

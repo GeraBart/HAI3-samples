@@ -20,7 +20,7 @@ export const StatusChartWidget: React.FC<StatusChartWidgetProps> = ({
   const percentage = data.total > 0 ? (data.value / data.total) * 100 : 0;
   const circumference = 2 * Math.PI * 40;
   const strokeDasharray = `${(percentage / 100) * circumference} ${circumference}`;
-  const color = data.color || '#2668c5';
+  const color = data.color || 'hsl(var(--primary))';
 
   return (
     <WidgetContainer title={title} className={className}>

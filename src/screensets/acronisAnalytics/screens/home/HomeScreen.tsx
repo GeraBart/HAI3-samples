@@ -189,20 +189,9 @@ export const HomeScreen: React.FC = () => {
             <button
               onClick={handleAddDashboard}
               className="flex items-center gap-2 px-2 py-1 rounded transition-colors hover:bg-muted"
-              style={{
-                borderRadius: '4px',
-              }}
             >
-              <Plus className="h-4 w-4 text-[#2668c5]" />
-              <span
-                className="text-[#2668c5] font-semibold whitespace-nowrap"
-                style={{
-                  fontSize: '14px',
-                  lineHeight: '24px',
-                  fontFamily: 'Inter, sans-serif',
-                  fontWeight: 600,
-                }}
-              >
+              <Plus className="h-4 w-4 text-primary" />
+              <span className="text-primary font-semibold whitespace-nowrap text-sm leading-6">
                 <TextLoader skeletonClassName="h-4 w-16">
                   {t(`screen.${ACRONIS_ANALYTICS_SCREENSET_ID}.${HOME_SCREEN_ID}:add_dashboard`)}
                 </TextLoader>
@@ -233,35 +222,22 @@ export const HomeScreen: React.FC = () => {
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <DialogContent className="sm:max-w-[512px] p-0">
           {/* Header */}
-          <DialogHeader className="px-5 py-4 border-b border-[rgba(38,104,197,0.1)]">
+          <DialogHeader className="px-5 py-4 border-b border-primary/10">
             <div className="flex items-center justify-between">
-              <DialogTitle
-                className="text-[#243143] font-normal"
-                style={{
-                  fontSize: '24px',
-                  lineHeight: '32px',
-                  fontFamily: 'Inter, sans-serif',
-                  fontWeight: 400,
-                }}
-              >
+              <DialogTitle className="text-foreground font-normal text-2xl leading-8">
                 Delete tab &quot;{dashboards.find((d) => d.id === dashboardToDelete)?.name}&quot;
               </DialogTitle>
               <button
                 onClick={cancelDelete}
                 className="p-1 hover:bg-muted rounded transition-colors"
               >
-                <X className="h-6 w-6 text-[#243143]" />
+                <X className="h-6 w-6 text-foreground" />
               </button>
             </div>
           </DialogHeader>
 
           {/* Body */}
-          <DialogDescription className="px-6 py-6 text-[#243143]" style={{
-            fontSize: '14px',
-            lineHeight: '24px',
-            fontFamily: 'Inter, sans-serif',
-            fontWeight: 400,
-          }}>
+          <DialogDescription className="px-6 py-6 text-foreground text-sm leading-6">
             This action cannot be undone. This will permanently delete the tab and all its content, including widgets, charts, and any custom configurations.
           </DialogDescription>
 
@@ -269,27 +245,13 @@ export const HomeScreen: React.FC = () => {
           <DialogFooter className="px-6 py-4 flex items-center justify-end gap-4">
             <button
               onClick={cancelDelete}
-              className="px-2 py-1 border border-[#2668c5] rounded text-[#2668c5] font-semibold hover:bg-[#2668c5]/5 transition-colors"
-              style={{
-                fontSize: '14px',
-                lineHeight: '24px',
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 600,
-                borderRadius: '4px',
-              }}
+              className="px-2 py-1 border border-primary rounded text-primary font-semibold text-sm leading-6 hover:bg-primary/5 transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={confirmDelete}
-              className="px-2 py-1 bg-[#c62020] rounded text-white font-semibold hover:bg-[#a01818] transition-colors"
-              style={{
-                fontSize: '14px',
-                lineHeight: '24px',
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 600,
-                borderRadius: '4px',
-              }}
+              className="px-2 py-1 bg-destructive rounded text-white font-semibold text-sm leading-6 hover:bg-destructive/90 transition-colors"
             >
               Delete
             </button>

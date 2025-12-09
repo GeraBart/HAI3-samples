@@ -16,7 +16,7 @@ export const DataChartWidget: React.FC<DataChartWidgetProps> = ({
   widget,
   className = '',
 }) => {
-  const { title, data, chartType = 'line', color = '#2668c5' } = widget;
+  const { title, data, chartType = 'line', color = 'hsl(var(--primary))' } = widget;
 
   if (data.length === 0) {
     return (
