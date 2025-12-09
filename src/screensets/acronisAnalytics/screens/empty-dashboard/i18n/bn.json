@@ -1,0 +1,18 @@
+{
+  "ai_heading": "Describe your dashboard, and we'll build it.",
+  "ai_description": "Skip manual setup. Tell us what you want to track, and our AI builds a full dashboard for you.",
+  "ai_placeholder": "Ask AI to help build your dashboard... e.g. \" Generate a dashboard showing vulnerabilities\"",
+  "templates_heading": "Start with default dashboard templates",
+  "templates_see_more": "See more",
+  "template_standard_title": "Standard",
+  "template_standard_description": "Track website traffic, user behavior, and conversion rates",
+  "template_sales_title": "Sales",
+  "template_sales_description": "Monitor revenue, pipeline, and sales team performance",
+  "template_customer_support_title": "Customer support",
+  "template_customer_support_description": "Track tickets, response times, and satisfaction scores",
+  "options_heading": "Or consider additional options",
+  "import_title": "Drag & drop JSON files,",
+  "import_browse": "or browse",
+  "import_description": "to create a dashboard.",
+  "manual_title": "Start building your dashboard manually by adding a widget."
+}
