@@ -1,11 +1,11 @@
 /**
- * WidgetSettingsSidebar
- * Slide-out panel for configuring widget settings
+ * WidgetSettingsSidebarView
+ * Pure presentational slide-out panel for configuring widget settings
+ * UIKit pattern: value/onChange, no Redux hooks, no side effects
  * Based on Figma design 123-23622
  */
 
 import React from 'react';
-import { useTranslation, TextLoader, useAppSelector } from '@hai3/uicore';
 import { Button } from '@hai3/uikit';
 import { ButtonVariant } from '@hai3/uikit-contracts';
 import {
@@ -16,77 +16,103 @@ import {
   SelectValue,
 } from '@hai3/uikit';
 import { X } from 'lucide-react';
-import { AI_DASHBOARD_SCREENSET_ID, HOME_SCREEN_ID } from '../../ids';
-import { selectAiDashboardState } from '../../slices/aiDashboardSlice';
-import { closeWidgetSettings, updateWidgetConfig } from '../../actions/aiDashboardActions';
-import type { WidgetConfig } from '../../types';
+import type { WidgetConfig, WidgetType } from '../../types';
 import { WidgetTypeSelector } from './WidgetTypeSelector';
-import { GeneralSection } from './GeneralSection';
-import { PropertiesSection } from './PropertiesSection';
-import { FiltersSection } from './FiltersSection';
+import { GeneralSectionView } from './GeneralSection';
+import { PropertiesSectionView } from './PropertiesSection';
+import { FiltersSectionView } from './FiltersSection';
 
-const DATA_SOURCES = ['All data', 'Protected machines', 'Alerts', 'Activities', 'Backups'];
+interface DataSource {
+  id: string;
+  label: string;
+}
 
-export const WidgetSettingsSidebar: React.FC = () => {
-  const { t } = useTranslation();
-  const { activeSettingsWidgetId, widgetConfigs } = useAppSelector(selectAiDashboardState);
+export interface WidgetSettingsSidebarViewProps {
+  /** Whether the sidebar is visible */
+  isOpen: boolean;
+  /** Current widget configuration */
+  config: WidgetConfig;
+  /** Available data sources */
+  dataSources: DataSource[];
+  /** Title text */
+  title: React.ReactNode;
+  /** Data source placeholder text */
+  dataSourcePlaceholder: string;
+  /** Cancel button text */
+  cancelText: React.ReactNode;
+  /** Apply button text */
+  applyText: React.ReactNode;
+  /** Called when close button clicked */
+  onClose: () => void;
+  /** Called when apply button clicked */
+  onApply: () => void;
+  /** Called when data source changes */
+  onDataSourceChange: (value: string) => void;
+  /** Called when widget type changes */
+  onWidgetTypeChange: (type: WidgetType | undefined) => void;
+  /** Called when name changes */
+  onNameChange: (value: string) => void;
+  /** Called when description changes */
+  onDescriptionChange: (value: string) => void;
+  /** Called when save to catalog changes */
+  onSaveToCustomCatalogChange: (value: boolean) => void;
+  /** Called when label changes */
+  onLabelChange: (value: string) => void;
+  /** Called when value changes */
+  onValueChange: (value: string) => void;
+  /** Called when sort changes */
+  onSortChange: (value: string) => void;
+  /** Called when sort order changes */
+  onSortOrderChange: (value: 'asc' | 'desc') => void;
+  /** Called when color scheme changes */
+  onColorSchemeChange: (value: string) => void;
+  /** Called when show summary changes */
+  onShowSummaryChange: (value: boolean) => void;
+  /** Called when show legend changes */
+  onShowLegendChange: (value: boolean) => void;
+  /** Called when filters change */
+  onFiltersChange: (filters: WidgetConfig['filters']) => void;
+}
 
-  const [localConfig, setLocalConfig] = React.useState<WidgetConfig>({
-    dataSource: '',
-    widgetType: undefined,
-    name: '',
-    description: '',
-    saveToCustomCatalog: false,
-    label: '',
-    value: '',
-    sort: '',
-    sortOrder: 'asc',
-    colorScheme: '',
-    showSummary: false,
-    showLegend: false,
-    filters: [
-      { id: '1', field: '', operator: '', value: '' },
-      { id: '2', field: '', operator: '', value: '' },
-    ],
-  });
-
-  React.useEffect(() => {
-    if (activeSettingsWidgetId && widgetConfigs[activeSettingsWidgetId]) {
-      setLocalConfig((prev) => ({
-        ...prev,
-        ...widgetConfigs[activeSettingsWidgetId],
-      }));
-    }
-  }, [activeSettingsWidgetId, widgetConfigs]);
-
-  if (!activeSettingsWidgetId) {
+/**
+ * WidgetSettingsSidebarView - Presentational widget settings panel
+ * Receives all data and callbacks as props
+ */
+export const WidgetSettingsSidebarView: React.FC<WidgetSettingsSidebarViewProps> = ({
+  isOpen,
+  config,
+  dataSources,
+  title,
+  dataSourcePlaceholder,
+  cancelText,
+  applyText,
+  onClose,
+  onApply,
+  onDataSourceChange,
+  onWidgetTypeChange,
+  onNameChange,
+  onDescriptionChange,
+  onSaveToCustomCatalogChange,
+  onLabelChange,
+  onValueChange,
+  onSortChange,
+  onSortOrderChange,
+  onColorSchemeChange,
+  onShowSummaryChange,
+  onShowLegendChange,
+  onFiltersChange,
+}) => {
+  if (!isOpen) {
     return null;
   }
-
-  const handleClose = () => {
-    closeWidgetSettings();
-  };
-
-  const handleApply = () => {
-    if (activeSettingsWidgetId) {
-      updateWidgetConfig(activeSettingsWidgetId, localConfig);
-      closeWidgetSettings();
-    }
-  };
-
-  const updateConfig = <K extends keyof WidgetConfig>(key: K, value: WidgetConfig[K]) => {
-    setLocalConfig((prev) => ({ ...prev, [key]: value }));
-  };
 
   return (
     <div className="flex h-full w-96 flex-col border-l border-border bg-background">
       <div className="flex items-center justify-between border-b border-border px-5 py-4">
         <h2 className="text-lg font-semibold">
-          <TextLoader>
-            {t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_title`)}
-          </TextLoader>
+          {title}
         </h2>
-        <Button variant={ButtonVariant.Ghost} onClick={handleClose}>
+        <Button variant={ButtonVariant.Ghost} onClick={onClose}>
           <X className="h-5 w-5" />
         </Button>
       </div>
@@ -94,75 +120,71 @@ export const WidgetSettingsSidebar: React.FC = () => {
       <div className="flex-1 overflow-y-auto">
         <div className="px-5 py-4">
           <Select
-            value={localConfig.dataSource}
-            onValueChange={(v) => updateConfig('dataSource', v)}
+            value={config.dataSource}
+            onValueChange={onDataSourceChange}
           >
             <SelectTrigger>
-              <SelectValue placeholder={t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_data_source`)} />
+              <SelectValue placeholder={dataSourcePlaceholder} />
             </SelectTrigger>
             <SelectContent>
-              {DATA_SOURCES.map((source) => (
-                <SelectItem key={source} value={source.toLowerCase().replace(' ', '-')}>
-                  {source}
+              {dataSources.map((source) => (
+                <SelectItem key={source.id} value={source.id}>
+                  {source.label}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
 
           <WidgetTypeSelector
-            value={localConfig.widgetType}
-            onChange={(type) => updateConfig('widgetType', type)}
+            value={config.widgetType}
+            onChange={onWidgetTypeChange}
           />
         </div>
 
-        <GeneralSection
-          name={localConfig.name || ''}
-          description={localConfig.description || ''}
-          saveToCustomCatalog={localConfig.saveToCustomCatalog || false}
-          onNameChange={(v) => updateConfig('name', v)}
-          onDescriptionChange={(v) => updateConfig('description', v)}
-          onSaveToCustomCatalogChange={(v) => updateConfig('saveToCustomCatalog', v)}
+        <GeneralSectionView
+          name={config.name || ''}
+          description={config.description || ''}
+          saveToCustomCatalog={config.saveToCustomCatalog || false}
+          onNameChange={onNameChange}
+          onDescriptionChange={onDescriptionChange}
+          onSaveToCustomCatalogChange={onSaveToCustomCatalogChange}
         />
 
-        <PropertiesSection
-          label={localConfig.label || ''}
-          value={localConfig.value || ''}
-          sort={localConfig.sort || ''}
-          sortOrder={localConfig.sortOrder || 'asc'}
-          colorScheme={localConfig.colorScheme || ''}
-          showSummary={localConfig.showSummary || false}
-          showLegend={localConfig.showLegend || false}
-          onLabelChange={(v) => updateConfig('label', v)}
-          onValueChange={(v) => updateConfig('value', v)}
-          onSortChange={(v) => updateConfig('sort', v)}
-          onSortOrderChange={(v) => updateConfig('sortOrder', v)}
-          onColorSchemeChange={(v) => updateConfig('colorScheme', v)}
-          onShowSummaryChange={(v) => updateConfig('showSummary', v)}
-          onShowLegendChange={(v) => updateConfig('showLegend', v)}
+        <PropertiesSectionView
+          label={config.label || ''}
+          value={config.value || ''}
+          sort={config.sort || ''}
+          sortOrder={config.sortOrder || 'asc'}
+          colorScheme={config.colorScheme || ''}
+          showSummary={config.showSummary || false}
+          showLegend={config.showLegend || false}
+          onLabelChange={onLabelChange}
+          onValueChange={onValueChange}
+          onSortChange={onSortChange}
+          onSortOrderChange={onSortOrderChange}
+          onColorSchemeChange={onColorSchemeChange}
+          onShowSummaryChange={onShowSummaryChange}
+          onShowLegendChange={onShowLegendChange}
         />
 
-        <FiltersSection
-          filters={localConfig.filters || []}
-          onFiltersChange={(v) => updateConfig('filters', v)}
+        <FiltersSectionView
+          filters={config.filters || []}
+          onFiltersChange={onFiltersChange}
         />
       </div>
 
       <div className="flex gap-3 border-t border-border px-5 py-4">
-        <Button variant={ButtonVariant.Secondary} onClick={handleClose} className="flex-1">
-          <TextLoader>
-            {t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_cancel`)}
-          </TextLoader>
+        <Button variant={ButtonVariant.Secondary} onClick={onClose} className="flex-1">
+          {cancelText}
         </Button>
-        <Button variant={ButtonVariant.Default} onClick={handleApply} className="flex-1">
-          <TextLoader>
-            {t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_add_widget`)}
-          </TextLoader>
+        <Button variant={ButtonVariant.Default} onClick={onApply} className="flex-1">
+          {applyText}
         </Button>
       </div>
     </div>
   );
 };
 
-WidgetSettingsSidebar.displayName = 'WidgetSettingsSidebar';
+WidgetSettingsSidebarView.displayName = 'WidgetSettingsSidebarView';
 
-export default WidgetSettingsSidebar;
+export default WidgetSettingsSidebarView;

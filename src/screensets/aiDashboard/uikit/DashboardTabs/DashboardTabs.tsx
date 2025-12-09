@@ -1,65 +1,59 @@
 /**
- * DashboardTabs
- * Container component orchestrating all tab components
+ * DashboardTabsView
+ * Pure presentational component for dashboard tabs
+ * UIKit pattern: value/onChange, no hooks, no side effects
  */
 
 import React from 'react';
-import { useAppSelector } from '@hai3/uicore';
-import { selectAiDashboardState } from '../../slices/aiDashboardSlice';
 import type { DashboardTab } from '../../types';
-import {
-  addNewTab,
-  selectTab,
-  renameTab,
-  cloneTab,
-  moveTabLeft,
-  moveTabRight,
-  startEditingTab,
-  cancelEditingTab,
-  openDeleteDialog,
-} from '../../actions/aiDashboardActions';
 import { TabItem } from './TabItem';
 import { AddTabButton } from './AddTabButton';
 
-export const DashboardTabs: React.FC = () => {
-  const { tabs, activeTabId, editingTabId } = useAppSelector(selectAiDashboardState);
+export interface DashboardTabsViewProps {
+  /** Array of tabs */
+  tabs: DashboardTab[];
+  /** Currently active tab ID */
+  activeTabId: string | null;
+  /** Tab currently being edited */
+  editingTabId: string | null;
+  /** Called when add tab button clicked */
+  onAddTab: () => void;
+  /** Called when a tab is selected */
+  onSelectTab: (tabId: string) => void;
+  /** Called when a tab is renamed */
+  onRenameTab: (tabId: string, name: string) => void;
+  /** Called when edit mode starts */
+  onStartEdit: (tabId: string) => void;
+  /** Called when edit mode is cancelled */
+  onCancelEdit: () => void;
+  /** Called when a tab is cloned */
+  onCloneTab: (tabId: string) => void;
+  /** Called when a tab is moved left */
+  onMoveLeft: (tabId: string) => void;
+  /** Called when a tab is moved right */
+  onMoveRight: (tabId: string) => void;
+  /** Called when a tab is deleted */
+  onDeleteTab: (tabId: string) => void;
+}
 
-  const handleAddTab = () => {
-    addNewTab();
-  };
-
-  const handleSelectTab = (tabId: string) => {
-    selectTab(tabId);
-  };
-
-  const handleRenameTab = (tabId: string, name: string) => {
-    renameTab(tabId, name);
-  };
-
-  const handleStartEdit = (tabId: string) => {
-    startEditingTab(tabId);
-  };
-
-  const handleCancelEdit = () => {
-    cancelEditingTab();
-  };
-
-  const handleCloneTab = (tabId: string) => {
-    cloneTab(tabId);
-  };
-
-  const handleMoveLeft = (tabId: string) => {
-    moveTabLeft(tabId);
-  };
-
-  const handleMoveRight = (tabId: string) => {
-    moveTabRight(tabId);
-  };
-
-  const handleDeleteTab = (tabId: string) => {
-    openDeleteDialog(tabId);
-  };
-
+/**
+ * DashboardTabsView - Presentational tabs component
+ * Receives all data and callbacks as props
+ */
+export const DashboardTabsView: React.FC<DashboardTabsViewProps> = ({
+  tabs,
+  activeTabId,
+  editingTabId,
+  onAddTab,
+  onSelectTab,
+  onRenameTab,
+  onStartEdit,
+  onCancelEdit,
+  onCloneTab,
+  onMoveLeft,
+  onMoveRight,
+  onDeleteTab,
+}) => {
   return (
     <div className="flex items-center gap-6 border-b px-6">
       {tabs.map((tab: DashboardTab, index: number) => (
@@ -71,23 +65,23 @@ export const DashboardTabs: React.FC = () => {
           isFirst={index === 0}
           isLast={index === tabs.length - 1}
           canDelete={tabs.length > 1}
-          onSelect={() => handleSelectTab(tab.id)}
-          onRename={(name) => handleRenameTab(tab.id, name)}
-          onStartEdit={() => handleStartEdit(tab.id)}
-          onCancelEdit={handleCancelEdit}
-          onClone={() => handleCloneTab(tab.id)}
-          onMoveLeft={() => handleMoveLeft(tab.id)}
-          onMoveRight={() => handleMoveRight(tab.id)}
-          onDelete={() => handleDeleteTab(tab.id)}
+          onSelect={() => onSelectTab(tab.id)}
+          onRename={(name) => onRenameTab(tab.id, name)}
+          onStartEdit={() => onStartEdit(tab.id)}
+          onCancelEdit={onCancelEdit}
+          onClone={() => onCloneTab(tab.id)}
+          onMoveLeft={() => onMoveLeft(tab.id)}
+          onMoveRight={() => onMoveRight(tab.id)}
+          onDelete={() => onDeleteTab(tab.id)}
         />
       ))}
       <div className="flex items-center pt-2">
-        <AddTabButton onClick={handleAddTab} />
+        <AddTabButton onClick={onAddTab} />
       </div>
     </div>
   );
 };
 
-DashboardTabs.displayName = 'DashboardTabs';
+DashboardTabsView.displayName = 'DashboardTabsView';
 
-export default DashboardTabs;
+export default DashboardTabsView;

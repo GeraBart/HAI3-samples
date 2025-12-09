@@ -1,62 +1,57 @@
 import React from 'react';
-import { uikitRegistry } from '@hai3/uicore';
-import { UPLOAD_ICON_ID } from '../icons/UploadIcon';
-import { GRID_ICON_ID } from '../icons/GridIcon';
-
-type OptionCardType = 'upload' | 'manual';
 
 interface OptionCardProps {
-  type: OptionCardType;
+  /** Icon element to display */
+  icon: React.ReactNode;
+  /** Main title text */
+  title: string;
+  /** Optional link text (styled as primary) */
+  linkText?: string;
+  /** Subtitle text */
+  subtitle: string;
+  /** Border style variant */
+  variant?: 'dashed' | 'solid';
+  /** Click handler */
   onClick?: () => void;
 }
 
-const OPTION_CONFIG = {
-  upload: {
-    iconId: UPLOAD_ICON_ID,
-    title: 'Drag & drop JSON files,',
-    linkText: 'or browse',
-    subtitle: 'to create a dashboard.',
-    borderStyle: 'border-dashed',
-  },
-  manual: {
-    iconId: GRID_ICON_ID,
-    title: 'Start building your dashboard manually',
-    linkText: '',
-    subtitle: 'by adding a widget.',
-    borderStyle: 'border-solid',
-  },
-};
-
 /**
- * OptionCard - Action option card matching Figma design
- * Types: upload (dashed border), manual (solid border)
+ * OptionCard - Presentational action option card
+ * Receives icon as prop for UIKit presentational pattern
  */
-export const OptionCard: React.FC<OptionCardProps> = ({ type, onClick }) => {
-  const config = OPTION_CONFIG[type];
+export const OptionCard: React.FC<OptionCardProps> = ({ 
+  icon,
+  title,
+  linkText,
+  subtitle,
+  variant = 'solid',
+  onClick,
+}) => {
+  const borderStyle = variant === 'dashed' ? 'border-dashed' : 'border-solid';
 
   return (
     <button
       onClick={onClick}
       className={`
         flex items-center gap-4 p-4 w-full
-        border ${config.borderStyle} border-[#2668C5]/30 rounded-md
-        hover:border-[#2668C5] hover:shadow-md hover:bg-[#F4F7FC]/50
+        border ${borderStyle} border-primary/30 rounded-md
+        hover:border-primary hover:shadow-md hover:bg-muted/50
         transition-all duration-200
         text-left
       `}
     >
       {/* Icon Container */}
-      <div className="flex items-center justify-center w-12 h-12 bg-[#ECF3FD] rounded-md shrink-0">
-        {uikitRegistry.getIcon(config.iconId)}
+      <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-md shrink-0">
+        {icon}
       </div>
 
       {/* Text */}
-      <div className="text-sm text-[#243143]">
-        <span>{config.title}</span>
-        {config.linkText && (
-          <span className="text-[#2668C5] font-semibold"> {config.linkText}</span>
+      <div className="text-sm text-foreground">
+        <span>{title}</span>
+        {linkText && (
+          <span className="text-primary font-semibold"> {linkText}</span>
         )}
-        <span> {config.subtitle}</span>
+        <span> {subtitle}</span>
       </div>
     </button>
   );

@@ -1,7 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { uikitRegistry } from '@hai3/uicore';
-import { AI_ICON_ID } from '../icons/AIIcon';
-import { SEND_ICON_ID } from '../icons/SendIcon';
 import { dashboardMockMap } from '../../api/dashboard/mocks';
 
 interface WidgetSuggestion {
@@ -32,6 +29,10 @@ interface AddWidgetPanelProps {
   onClose: () => void;
   onWidgetCreate?: (widgetId: string) => void;
   onStepChange?: (step: CreationStep, isCreating: boolean) => void;
+  /** AI icon element */
+  aiIcon?: React.ReactNode;
+  /** Send button icon element */
+  sendIcon?: React.ReactNode;
 }
 
 /**
@@ -64,6 +65,8 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({
   onClose,
   onWidgetCreate,
   onStepChange,
+  aiIcon,
+  sendIcon,
 }) => {
   const [prompt, setPrompt] = useState('');
   const [suggestions, setSuggestions] = useState<WidgetSuggestion[]>([]);
@@ -218,7 +221,7 @@ I've created a clean dashboard empty state following Figma's approach! The layou
               {/* AI Section */}
               <div className="flex flex-col items-center text-center mb-6">
                 <div className="mb-3">
-                  {uikitRegistry.getIcon(AI_ICON_ID)}
+                  {aiIcon}
                 </div>
                 <p className="text-sm text-[#243143]">
                   Describe the widget you need, and we will build it instantly
@@ -260,7 +263,7 @@ I've created a clean dashboard empty state following Figma's approach! The layou
                   onClick={handleSubmit}
                   className="absolute right-2 top-1/2 -translate-y-1/2 p-2 hover:bg-[#2668C5]/10 rounded"
                 >
-                  {uikitRegistry.getIcon(SEND_ICON_ID)}
+                  {sendIcon}
                 </button>
               </div>
 
@@ -304,7 +307,7 @@ I've created a clean dashboard empty state following Figma's approach! The layou
                 ))}
                 {isThinking && (
                   <div className="flex items-center gap-2 text-sm text-[#2668C5]">
-                    {uikitRegistry.getIcon(AI_ICON_ID)}
+                    {aiIcon}
                     <span>Thinking...</span>
                   </div>
                 )}
@@ -376,7 +379,7 @@ I've created a clean dashboard empty state following Figma's approach! The layou
                   onClick={handleSubmit}
                   className="absolute right-2 top-1/2 translate-y-[-25%] p-2 hover:bg-[#2668C5]/10 rounded"
                 >
-                  {uikitRegistry.getIcon(SEND_ICON_ID)}
+                  {sendIcon}
                 </button>
               </div>
             </div>

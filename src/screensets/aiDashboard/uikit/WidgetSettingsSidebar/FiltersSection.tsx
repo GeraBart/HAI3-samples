@@ -1,10 +1,10 @@
 /**
- * FiltersSection
- * Expandable filters with multiple filter rows
+ * FiltersSectionView
+ * Pure presentational expandable filters with multiple filter rows
+ * UIKit pattern: value/onChange, no hooks, no side effects
  */
 
 import React from 'react';
-import { useTranslation, TextLoader } from '@hai3/uicore';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import {
   Select,
@@ -13,7 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@hai3/uikit';
-import { AI_DASHBOARD_SCREENSET_ID, HOME_SCREEN_ID } from '../../ids';
 
 interface Filter {
   id: string;
@@ -22,18 +21,41 @@ interface Filter {
   value: string;
 }
 
-interface FiltersSectionProps {
+interface FilterField {
+  id: string;
+  label: string;
+}
+
+export interface FiltersSectionViewProps {
   filters: Filter[];
+  /** Section header text */
+  sectionTitle?: React.ReactNode;
+  /** Field placeholder */
+  fieldPlaceholder?: string;
+  /** Available filter fields */
+  filterFields?: FilterField[];
   onFiltersChange: (filters: Filter[]) => void;
 }
 
-const FILTER_FIELDS = ['Status', 'Type', 'Date', 'Value', 'Category'];
+const DEFAULT_FILTER_FIELDS: FilterField[] = [
+  { id: 'status', label: 'Status' },
+  { id: 'type', label: 'Type' },
+  { id: 'date', label: 'Date' },
+  { id: 'value', label: 'Value' },
+  { id: 'category', label: 'Category' },
+];
 
-export const FiltersSection: React.FC<FiltersSectionProps> = ({
+/**
+ * FiltersSectionView - Presentational filters section
+ * Receives all data and callbacks as props
+ */
+export const FiltersSectionView: React.FC<FiltersSectionViewProps> = ({
   filters,
+  sectionTitle = 'Filters',
+  fieldPlaceholder = 'Select field',
+  filterFields = DEFAULT_FILTER_FIELDS,
   onFiltersChange,
 }) => {
-  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = React.useState(true);
 
   const handleFilterChange = (index: number, field: keyof Filter, value: string) => {
@@ -49,9 +71,7 @@ export const FiltersSection: React.FC<FiltersSectionProps> = ({
         onClick={() => setIsExpanded(!isExpanded)}
         className="flex w-full items-center justify-between px-5 py-4 text-sm font-medium"
       >
-        <TextLoader>
-          {t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_filters`)}
-        </TextLoader>
+        {sectionTitle}
         <ChevronUp className={`h-4 w-4 transition-transform ${isExpanded ? '' : 'rotate-180'}`} />
       </button>
       {isExpanded && (
@@ -71,12 +91,12 @@ export const FiltersSection: React.FC<FiltersSectionProps> = ({
                   onValueChange={(v) => handleFilterChange(index, 'field', v)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Select field" />
+                    <SelectValue placeholder={fieldPlaceholder} />
                   </SelectTrigger>
                   <SelectContent>
-                    {FILTER_FIELDS.map((field) => (
-                      <SelectItem key={field} value={field.toLowerCase()}>
-                        {field}
+                    {filterFields.map((field) => (
+                      <SelectItem key={field.id} value={field.id}>
+                        {field.label}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -90,6 +110,6 @@ export const FiltersSection: React.FC<FiltersSectionProps> = ({
   );
 };
 
-FiltersSection.displayName = 'FiltersSection';
+FiltersSectionView.displayName = 'FiltersSectionView';
 
-export default FiltersSection;
+export default FiltersSectionView;

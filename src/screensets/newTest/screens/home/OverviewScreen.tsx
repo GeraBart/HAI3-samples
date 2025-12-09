@@ -11,9 +11,8 @@ import {
   useScreenTranslations,
   I18nRegistry,
   Language,
-  useAppDispatch,
-  setMenuConfig,
 } from '@hai3/uicore';
+import { setMenuVisibility } from '../../actions/newTestActions';
 import {
   Button,
   ButtonVariant,
@@ -109,11 +108,10 @@ export const OverviewScreen: React.FC = () => {
   useScreenTranslations(NEW_TEST_SCREENSET_ID, OVERVIEW_SCREEN_ID, translations);
 
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
 
   // Hide the framework menu/sidebar - we use our own custom sidebar
   useEffect(() => {
-    dispatch(setMenuConfig({ visible: false }));
+    setMenuVisibility(false);
     
     // Find and hide the framework sidebar element directly
     const hideSidebar = () => {
@@ -134,13 +132,13 @@ export const OverviewScreen: React.FC = () => {
     // Restore menu visibility when component unmounts
     return () => {
       clearTimeout(timer);
-      dispatch(setMenuConfig({ visible: true }));
+      setMenuVisibility(true);
       const sidebars = document.querySelectorAll('aside');
       sidebars.forEach(sidebar => {
         (sidebar as HTMLElement).style.display = '';
       });
     };
-  }, [dispatch]);
+  }, []);
 
   // Tab state management - use hardcoded default name, will be translated in render
   const [tabs, setTabs] = useState<Tab[]>([

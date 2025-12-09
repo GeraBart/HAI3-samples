@@ -1,12 +1,10 @@
 /**
- * WidgetGrid
- * 3-column grid layout for dashboard widgets with drag-and-drop reordering
+ * WidgetGridView
+ * Pure presentational 3-column grid layout for dashboard widgets with drag-and-drop reordering
+ * UIKit pattern: value/onChange, no Redux hooks, no side effects
  */
 
 import React, { useCallback, useState } from 'react';
-import { useAppSelector } from '@hai3/uicore';
-import { selectAiDashboardState } from '../../slices/aiDashboardSlice';
-import { openWidgetSettings, updateWidgetPosition } from '../../actions/aiDashboardActions';
 import type { Widget, WidgetColumnSpan } from '../../types';
 import { StatusChartWidget } from './StatusChartWidget';
 import { DataChartWidget } from './DataChartWidget';
@@ -15,9 +13,27 @@ import { TableWidget } from './TableWidget';
 import { MetricCardWidget } from './MetricCardWidget';
 import { WidgetContainer } from './WidgetContainer';
 
-interface WidgetGridProps {
+/** Widget layout position */
+export interface WidgetLayout {
+  row: number;
+  column: number;
+  columnSpan: WidgetColumnSpan;
+}
+
+export interface WidgetGridViewProps {
+  /** Array of widgets to display */
   widgets: Widget[];
+  /** Layout configurations keyed by widget ID */
+  widgetLayouts: Record<string, WidgetLayout>;
+  /** Whether to hide the grid (when editing a widget) */
+  isHidden?: boolean;
+  /** Called when widgets are reordered */
   onReorder?: (widgets: Widget[]) => void;
+  /** Called when edit button is clicked */
+  onEditWidget?: (widgetId: string) => void;
+  /** Called when widget position changes */
+  onUpdatePosition?: (widgetId: string, layout: WidgetLayout) => void;
+  /** Additional CSS classes */
   className?: string;
 }
 
@@ -38,18 +54,21 @@ const renderWidgetContent = (widget: Widget): React.ReactNode => {
   }
 };
 
-export const WidgetGrid: React.FC<WidgetGridProps> = ({
+/**
+ * WidgetGridView - Presentational widget grid component
+ * Receives all data and callbacks as props
+ */
+export const WidgetGridView: React.FC<WidgetGridViewProps> = ({
   widgets,
+  widgetLayouts,
+  isHidden = false,
   onReorder,
+  onEditWidget,
+  onUpdatePosition,
   className = '',
 }) => {
-  const { widgetLayouts, activeSettingsWidgetId } = useAppSelector(selectAiDashboardState);
   const [draggedId, setDraggedId] = useState<string | null>(null);
   const [dragOverId, setDragOverId] = useState<string | null>(null);
-
-  const handleEditWidget = useCallback((widgetId: string) => {
-    openWidgetSettings(widgetId);
-  }, []);
 
   const getColumnSpanClass = (widgetId: string): string => {
     const span: WidgetColumnSpan = widgetLayouts[widgetId]?.columnSpan || 1;
@@ -105,7 +124,7 @@ export const WidgetGrid: React.FC<WidgetGridProps> = ({
     onReorder?.(newWidgets);
 
     newWidgets.forEach((widget, index) => {
-      updateWidgetPosition(widget.id, {
+      onUpdatePosition?.(widget.id, {
         row: Math.floor(index / 3),
         column: index % 3,
         columnSpan: widgetLayouts[widget.id]?.columnSpan || 1,
@@ -113,14 +132,14 @@ export const WidgetGrid: React.FC<WidgetGridProps> = ({
     });
 
     setDraggedId(null);
-  }, [draggedId, widgets, onReorder, widgetLayouts]);
+  }, [draggedId, widgets, onReorder, onUpdatePosition, widgetLayouts]);
 
   const handleDragEnd = useCallback(() => {
     setDraggedId(null);
     setDragOverId(null);
   }, []);
 
-  if (activeSettingsWidgetId) {
+  if (isHidden) {
     return null;
   }
 
@@ -144,7 +163,7 @@ export const WidgetGrid: React.FC<WidgetGridProps> = ({
           <WidgetContainer
             title={widget.title}
             widgetId={widget.id}
-            onEdit={handleEditWidget}
+            onEdit={onEditWidget}
           >
             {renderWidgetContent(widget)}
           </WidgetContainer>
@@ -154,6 +173,6 @@ export const WidgetGrid: React.FC<WidgetGridProps> = ({
   );
 };
 
-WidgetGrid.displayName = 'WidgetGrid';
+WidgetGridView.displayName = 'WidgetGridView';
 
-export default WidgetGrid;
+export default WidgetGridView;

@@ -4,22 +4,18 @@
  * Following Flux: Effects subscribe to events and update their own slice only
  */
 
-import { type AppDispatch } from '@hai3/uicore';
-// import { eventBus } from '@hai3/uicore';
-// import { NewTestEvents } from '../events/newTestEvents';
-// import { } from '../slices/newTestSlice';
+import { type AppDispatch, eventBus, setMenuConfig } from '@hai3/uicore';
+import { NewTestEvents } from '../events/newTestEvents';
 
 /**
  * Initialize effects
  * Called once during slice registration
  */
-export const initializeNewTestEffects = (_appDispatch: AppDispatch): void => {
-  // Store dispatch for use in event listeners
-  // const dispatch = _appDispatch;
+export const initializeNewTestEffects = (appDispatch: AppDispatch): void => {
+  const dispatch = appDispatch;
 
-  // Add your event listeners here
-  // Example:
-  // eventBus.on(NewTestEvents.Selected, ({ id }) => {
-  //   dispatch(setSelectedId(id));
-  // });
+  // Listen to menu visibility changes and update menu config
+  eventBus.on(NewTestEvents.MenuVisibilityChanged, ({ visible }) => {
+    dispatch(setMenuConfig({ visible }));
+  });
 };

@@ -12,8 +12,8 @@ import {
 } from '@hai3/uicore';
 import { AI_DASHBOARD_SCREENSET_ID, HOME_SCREEN_ID } from '../../ids';
 import { selectAiDashboardState } from '../../slices/aiDashboardSlice';
-import { DashboardTabs } from '../../uikit/DashboardTabs';
-import { DeleteTabDialog } from '../../uikit/DeleteTabDialog';
+import { DashboardTabs } from '../../components/DashboardTabs';
+import { DeleteTabDialog } from '../../components/DeleteTabDialog';
 import { EmptyDashboard, GeneratingDashboard, DashboardPreview } from './components';
 
 /**

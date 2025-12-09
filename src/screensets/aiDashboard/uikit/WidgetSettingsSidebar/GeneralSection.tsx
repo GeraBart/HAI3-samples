@@ -1,55 +1,80 @@
 /**
- * GeneralSection
- * Name, Description, and Save to catalog checkbox
+ * GeneralSectionView
+ * Pure presentational component for Name, Description, and Save to catalog checkbox
+ * UIKit pattern: value/onChange, no hooks, no side effects
  */
 
 import React from 'react';
-import { useTranslation, TextLoader } from '@hai3/uicore';
 import { Input, Textarea } from '@hai3/uikit';
 import { ChevronUp } from 'lucide-react';
-import { AI_DASHBOARD_SCREENSET_ID, HOME_SCREEN_ID } from '../../ids';
 
-interface GeneralSectionProps {
+export interface GeneralSectionViewProps {
   name: string;
   description: string;
   saveToCustomCatalog: boolean;
+  /** Section header text */
+  sectionTitle?: React.ReactNode;
+  /** Name input placeholder */
+  namePlaceholder?: string;
+  /** Description input placeholder */
+  descriptionPlaceholder?: string;
+  /** Save to catalog label */
+  saveToCatalogLabel?: React.ReactNode;
+  /** Whether section is expanded */
+  isExpanded?: boolean;
+  /** Called when expansion state changes */
+  onExpandedChange?: (expanded: boolean) => void;
   onNameChange: (name: string) => void;
   onDescriptionChange: (description: string) => void;
   onSaveToCustomCatalogChange: (save: boolean) => void;
 }
 
-export const GeneralSection: React.FC<GeneralSectionProps> = ({
+/**
+ * GeneralSectionView - Presentational general settings section
+ * Receives all data and callbacks as props
+ */
+export const GeneralSectionView: React.FC<GeneralSectionViewProps> = ({
   name,
   description,
   saveToCustomCatalog,
+  sectionTitle = 'General',
+  namePlaceholder = 'Name',
+  descriptionPlaceholder = 'Description',
+  saveToCatalogLabel = 'Save to custom catalog',
+  isExpanded: controlledExpanded,
+  onExpandedChange,
   onNameChange,
   onDescriptionChange,
   onSaveToCustomCatalogChange,
 }) => {
-  const { t } = useTranslation();
-  const [isExpanded, setIsExpanded] = React.useState(true);
+  const [internalExpanded, setInternalExpanded] = React.useState(true);
+  const isExpanded = controlledExpanded ?? internalExpanded;
+
+  const handleToggle = () => {
+    const newValue = !isExpanded;
+    setInternalExpanded(newValue);
+    onExpandedChange?.(newValue);
+  };
 
   return (
     <div className="border-b border-border">
       <button
         type="button"
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={handleToggle}
         className="flex w-full items-center justify-between px-5 py-4 text-sm font-medium"
       >
-        <TextLoader>
-          {t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_general`)}
-        </TextLoader>
+        {sectionTitle}
         <ChevronUp className={`h-4 w-4 transition-transform ${isExpanded ? '' : 'rotate-180'}`} />
       </button>
       {isExpanded && (
         <div className="flex flex-col gap-4 px-5 pb-4">
           <Input
-            placeholder={t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_name`)}
+            placeholder={namePlaceholder}
             value={name}
             onChange={(e) => onNameChange(e.target.value)}
           />
           <Textarea
-            placeholder={t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_description`)}
+            placeholder={descriptionPlaceholder}
             value={description}
             onChange={(e) => onDescriptionChange(e.target.value)}
             rows={3}
@@ -63,9 +88,7 @@ export const GeneralSection: React.FC<GeneralSectionProps> = ({
               className="h-4 w-4 rounded border-border"
             />
             <label htmlFor="save-to-catalog" className="text-sm">
-              <TextLoader>
-                {t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_save_to_catalog`)}
-              </TextLoader>
+              {saveToCatalogLabel}
             </label>
           </div>
         </div>
@@ -74,6 +97,6 @@ export const GeneralSection: React.FC<GeneralSectionProps> = ({
   );
 };
 
-GeneralSection.displayName = 'GeneralSection';
+GeneralSectionView.displayName = 'GeneralSectionView';
 
-export default GeneralSection;
+export default GeneralSectionView;

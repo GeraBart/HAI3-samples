@@ -5,6 +5,10 @@ import { AIPromptSection } from '../../uikit/widgets/AIPromptSection';
 import { CategoryFilter } from '../../uikit/widgets/CategoryFilter';
 import { DashboardTemplateCard } from '../../uikit/widgets/DashboardTemplateCard';
 import { OptionCard } from '../../uikit/widgets/OptionCard';
+import { UploadIcon } from '../../uikit/icons/UploadIcon';
+import { GridIcon } from '../../uikit/icons/GridIcon';
+import { AIIcon } from '../../uikit/icons/AIIcon';
+import { SendIcon } from '../../uikit/icons/SendIcon';
 import { AddWidgetPanel } from '../../uikit/widgets/AddWidgetPanel';
 import { CreatingWidgetOverlay, type CreationStep } from '../../uikit/widgets/CreatingWidgetOverlay';
 import { GeneratedWidgetPreview } from '../../uikit/widgets/GeneratedWidgetPreview';
@@ -150,14 +154,21 @@ export const DashboardScreen: React.FC = () => {
         <>
           {/* AI Prompt Section */}
           <section className="py-8">
-            <AIPromptSection onSubmit={handleAIPromptSubmit} />
+            <AIPromptSection
+              aiIcon={<AIIcon className="text-primary" />}
+              sendIcon={<SendIcon className="text-primary" />}
+              title={t(tKey('ai.title'))}
+              subtitle={t(tKey('ai.subtitle'))}
+              placeholder={t(tKey('ai.placeholder'))}
+              onSubmit={handleAIPromptSubmit}
+            />
           </section>
 
           {/* Templates Section */}
           <section>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-4">
-                <h3 className="text-sm font-medium text-[#243143]">
+                <h3 className="text-sm font-medium text-foreground">
                   {t(tKey('templates.title'))}
                 </h3>
                 <CategoryFilter
@@ -191,12 +202,24 @@ export const DashboardScreen: React.FC = () => {
 
           {/* Options Section */}
           <section>
-            <h3 className="text-sm font-medium text-[#243143] mb-4">
+            <h3 className="text-sm font-medium text-foreground mb-4">
               {t(tKey('options.title'))}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <OptionCard type="upload" />
-              <OptionCard type="manual" onClick={handleManualBuildClick} />
+              <OptionCard
+                icon={<UploadIcon className="text-primary" />}
+                title="Drag & drop JSON files,"
+                linkText="or browse"
+                subtitle="to create a dashboard."
+                variant="dashed"
+              />
+              <OptionCard
+                icon={<GridIcon className="text-primary" />}
+                title="Start building your dashboard manually"
+                subtitle="by adding a widget."
+                variant="solid"
+                onClick={handleManualBuildClick}
+              />
             </div>
           </section>
         </>
@@ -208,6 +231,8 @@ export const DashboardScreen: React.FC = () => {
         onClose={() => { setIsAddWidgetOpen(false); setIsCreatingWidget(false); }}
         onWidgetCreate={handleWidgetCreate}
         onStepChange={handleStepChange}
+        aiIcon={<AIIcon className="text-primary" />}
+        sendIcon={<SendIcon className="text-primary" />}
       />
     </div>
   );

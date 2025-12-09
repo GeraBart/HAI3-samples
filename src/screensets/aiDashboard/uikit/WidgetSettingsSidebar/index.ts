@@ -2,8 +2,12 @@
  * WidgetSettingsSidebar Components
  */
 
-export { WidgetSettingsSidebar } from './WidgetSettingsSidebar';
+export { WidgetSettingsSidebarView } from './WidgetSettingsSidebar';
+export type { WidgetSettingsSidebarViewProps } from './WidgetSettingsSidebar';
 export { WidgetTypeSelector } from './WidgetTypeSelector';
-export { GeneralSection } from './GeneralSection';
-export { PropertiesSection } from './PropertiesSection';
-export { FiltersSection } from './FiltersSection';
+export { GeneralSectionView } from './GeneralSection';
+export type { GeneralSectionViewProps } from './GeneralSection';
+export { PropertiesSectionView } from './PropertiesSection';
+export type { PropertiesSectionViewProps } from './PropertiesSection';
+export { FiltersSectionView } from './FiltersSection';
+export type { FiltersSectionViewProps } from './FiltersSection';

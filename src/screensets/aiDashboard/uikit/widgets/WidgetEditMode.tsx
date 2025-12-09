@@ -1,12 +1,11 @@
 /**
- * WidgetEditMode
- * Container that displays a widget centered when in edit mode
+ * WidgetEditModeView
+ * Pure presentational component that displays a widget centered when in edit mode
  * with settings sidebar on the right
+ * UIKit pattern: value/onChange, no hooks, no side effects
  */
 
 import React from 'react';
-import { useAppSelector } from '@hai3/uicore';
-import { selectAiDashboardState } from '../../slices/aiDashboardSlice';
 import type { Widget } from '../../types';
 import { StatusChartWidget } from './StatusChartWidget';
 import { DataChartWidget } from './DataChartWidget';
@@ -14,8 +13,12 @@ import { BarChartWidget } from './BarChartWidget';
 import { TableWidget } from './TableWidget';
 import { MetricCardWidget } from './MetricCardWidget';
 
-interface WidgetEditModeProps {
+export interface WidgetEditModeViewProps {
+  /** All available widgets */
   widgets: Widget[];
+  /** ID of the widget currently being edited (null if not in edit mode) */
+  activeWidgetId: string | null;
+  /** Sidebar content */
   children?: React.ReactNode;
 }
 
@@ -36,15 +39,18 @@ const renderWidget = (widget: Widget): React.ReactNode => {
   }
 };
 
-export const WidgetEditMode: React.FC<WidgetEditModeProps> = ({
+/**
+ * WidgetEditModeView - Presentational widget edit mode container
+ * Receives activeWidgetId as prop instead of reading from Redux
+ */
+export const WidgetEditModeView: React.FC<WidgetEditModeViewProps> = ({
   widgets,
+  activeWidgetId,
   children,
 }) => {
-  const { activeSettingsWidgetId } = useAppSelector(selectAiDashboardState);
+  const activeWidget = widgets.find((w) => w.id === activeWidgetId);
 
-  const activeWidget = widgets.find((w) => w.id === activeSettingsWidgetId);
-
-  if (!activeSettingsWidgetId || !activeWidget) {
+  if (!activeWidgetId || !activeWidget) {
     return <>{children}</>;
   }
 
@@ -60,6 +66,6 @@ export const WidgetEditMode: React.FC<WidgetEditModeProps> = ({
   );
 };
 
-WidgetEditMode.displayName = 'WidgetEditMode';
+WidgetEditModeView.displayName = 'WidgetEditModeView';
 
-export default WidgetEditMode;
+export default WidgetEditModeView;

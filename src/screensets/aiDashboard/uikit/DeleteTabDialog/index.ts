@@ -2,4 +2,5 @@
  * DeleteTabDialog Components
  */
 
-export { DeleteTabDialog } from './DeleteTabDialog';
+export { DeleteTabDialogView } from './DeleteTabDialog';
+export type { DeleteTabDialogViewProps } from './DeleteTabDialog';

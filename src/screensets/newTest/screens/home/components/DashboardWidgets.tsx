@@ -1130,10 +1130,16 @@ const CustomWidget: React.FC<{ config: CustomWidgetConfig; onAiClick?: () => voi
   onAiClick,
   onClose 
 }) => {
-  // Get mock data from config
+  // Get mock data from config - wrap in useMemo to prevent re-creation on every render
   const { getMockData, getAvailableFields } = useWidgetConfigData();
-  const mockData = config.datasource ? getMockData(config.datasource) : [];
-  const availableFields = config.datasource ? getAvailableFields(config.datasource) : [];
+  const mockData = React.useMemo(
+    () => (config.datasource ? getMockData(config.datasource) : []),
+    [config.datasource, getMockData]
+  );
+  const availableFields = React.useMemo(
+    () => (config.datasource ? getAvailableFields(config.datasource) : []),
+    [config.datasource, getAvailableFields]
+  );
   
   // Prepare data for rendering
   const labelField = config.labelField || '';
@@ -1852,11 +1858,17 @@ export const AddWidgetPanel: React.FC<AddWidgetPanelProps> = ({ isOpen, onClose,
   // Get datasources from config
   const { datasourceNames, datasources, getAvailableFields, getMockData, saveWidgetToCatalog, catalogWidgets } = useWidgetConfigData();
   
-  // Get available fields when datasource changes
-  const availableFields = selectedDatasource ? getAvailableFields(selectedDatasource) : [];
+  // Get available fields when datasource changes - wrap in useMemo to prevent re-creation on every render
+  const availableFields = React.useMemo(
+    () => (selectedDatasource ? getAvailableFields(selectedDatasource) : []),
+    [selectedDatasource, getAvailableFields]
+  );
   
-  // Get mock data for preview
-  const mockData = selectedDatasource ? getMockData(selectedDatasource) : [];
+  // Get mock data for preview - wrap in useMemo to prevent re-creation on every render
+  const mockData = React.useMemo(
+    () => (selectedDatasource ? getMockData(selectedDatasource) : []),
+    [selectedDatasource, getMockData]
+  );
   
   // Auto-select label and value fields when datasource changes
   React.useEffect(() => {

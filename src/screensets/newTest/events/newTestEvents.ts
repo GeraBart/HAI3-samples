@@ -14,7 +14,7 @@ const DOMAIN_ID = 'newTest';
  * EventName = `${NEW_TEST_SCREENSET_ID}/${DOMAIN_ID}/eventName`
  */
 export enum NewTestEvents {
-  // Example: Selected = `${NEW_TEST_SCREENSET_ID}/${DOMAIN_ID}/selected`,
+  MenuVisibilityChanged = `${NEW_TEST_SCREENSET_ID}/${DOMAIN_ID}/menuVisibilityChanged`,
 }
 
 // These are used in the event enum pattern above
@@ -27,6 +27,6 @@ void DOMAIN_ID;
  */
 declare module '@hai3/uicore' {
   interface EventPayloadMap {
-    // Example: [NewTestEvents.Selected]: { id: string };
+    [NewTestEvents.MenuVisibilityChanged]: { visible: boolean };
   }
 }

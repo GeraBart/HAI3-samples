@@ -13,8 +13,7 @@ import { selectAiDashboardState } from '../../../../slices/aiDashboardSlice';
 import { toggleAiInsights } from '../../../../actions/aiDashboardActions';
 import { AI_DASHBOARD_SCREENSET_ID, HOME_SCREEN_ID } from '../../../../ids';
 import { AiInsightsPanel } from './AiInsightsPanel';
-import { WidgetGrid, WidgetEditMode } from '../../../../uikit/widgets';
-import { WidgetSettingsSidebar } from '../../../../uikit/WidgetSettingsSidebar';
+import { WidgetGrid, WidgetEditMode, WidgetSettingsSidebar } from '../../../../components';
 
 export const DashboardPreview: React.FC = () => {
   const { t } = useTranslation();

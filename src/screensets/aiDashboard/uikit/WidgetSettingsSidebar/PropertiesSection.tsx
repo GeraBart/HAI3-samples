@@ -1,10 +1,10 @@
 /**
- * PropertiesSection
- * Label, Value, Sort, Sort order, Colour scheme, Show summary, Show legend
+ * PropertiesSectionView
+ * Pure presentational component for Label, Value, Sort, Sort order, Colour scheme, Show summary, Show legend
+ * UIKit pattern: value/onChange, no hooks, no side effects
  */
 
 import React from 'react';
-import { useTranslation, TextLoader } from '@hai3/uicore';
 import { Input } from '@hai3/uikit';
 import {
   Select,
@@ -14,9 +14,13 @@ import {
   SelectValue,
 } from '@hai3/uikit';
 import { ChevronUp } from 'lucide-react';
-import { AI_DASHBOARD_SCREENSET_ID, HOME_SCREEN_ID } from '../../ids';
 
-interface PropertiesSectionProps {
+interface SelectOption {
+  id: string;
+  label: string;
+}
+
+export interface PropertiesSectionViewProps {
   label: string;
   value: string;
   sort: string;
@@ -24,6 +28,26 @@ interface PropertiesSectionProps {
   colorScheme: string;
   showSummary: boolean;
   showLegend: boolean;
+  /** Section header text */
+  sectionTitle?: React.ReactNode;
+  /** Label placeholder */
+  labelPlaceholder?: string;
+  /** Value placeholder */
+  valuePlaceholder?: string;
+  /** Sort placeholder */
+  sortPlaceholder?: string;
+  /** Sort order placeholder */
+  sortOrderPlaceholder?: string;
+  /** Color scheme placeholder */
+  colorSchemePlaceholder?: string;
+  /** Show summary label */
+  showSummaryLabel?: React.ReactNode;
+  /** Show legend label */
+  showLegendLabel?: React.ReactNode;
+  /** Sort options */
+  sortOptions?: SelectOption[];
+  /** Color scheme options */
+  colorSchemeOptions?: SelectOption[];
   onLabelChange: (label: string) => void;
   onValueChange: (value: string) => void;
   onSortChange: (sort: string) => void;
@@ -33,10 +57,27 @@ interface PropertiesSectionProps {
   onShowLegendChange: (show: boolean) => void;
 }
 
-const SORT_OPTIONS = ['Default', 'Alphabetical', 'Numeric', 'Date'];
-const COLOR_SCHEMES = ['Default', 'Blue', 'Green', 'Red', 'Purple', 'Orange'];
+const DEFAULT_SORT_OPTIONS: SelectOption[] = [
+  { id: 'default', label: 'Default' },
+  { id: 'alphabetical', label: 'Alphabetical' },
+  { id: 'numeric', label: 'Numeric' },
+  { id: 'date', label: 'Date' },
+];
 
-export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
+const DEFAULT_COLOR_SCHEMES: SelectOption[] = [
+  { id: 'default', label: 'Default' },
+  { id: 'blue', label: 'Blue' },
+  { id: 'green', label: 'Green' },
+  { id: 'red', label: 'Red' },
+  { id: 'purple', label: 'Purple' },
+  { id: 'orange', label: 'Orange' },
+];
+
+/**
+ * PropertiesSectionView - Presentational properties section
+ * Receives all data and callbacks as props
+ */
+export const PropertiesSectionView: React.FC<PropertiesSectionViewProps> = ({
   label,
   value,
   sort,
@@ -44,6 +85,16 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
   colorScheme,
   showSummary,
   showLegend,
+  sectionTitle = 'Properties',
+  labelPlaceholder = 'Label',
+  valuePlaceholder = 'Value',
+  sortPlaceholder = 'Sort',
+  sortOrderPlaceholder = 'Sort order',
+  colorSchemePlaceholder = 'Colour scheme',
+  showSummaryLabel = 'Show summary',
+  showLegendLabel = 'Show legend',
+  sortOptions = DEFAULT_SORT_OPTIONS,
+  colorSchemeOptions = DEFAULT_COLOR_SCHEMES,
   onLabelChange,
   onValueChange,
   onSortChange,
@@ -52,7 +103,6 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
   onShowSummaryChange,
   onShowLegendChange,
 }) => {
-  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = React.useState(true);
 
   return (
@@ -62,21 +112,19 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
         onClick={() => setIsExpanded(!isExpanded)}
         className="flex w-full items-center justify-between px-5 py-4 text-sm font-medium"
       >
-        <TextLoader>
-          {t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_properties`)}
-        </TextLoader>
+        {sectionTitle}
         <ChevronUp className={`h-4 w-4 transition-transform ${isExpanded ? '' : 'rotate-180'}`} />
       </button>
       {isExpanded && (
         <div className="flex flex-col gap-4 px-5 pb-4">
           <Input
-            placeholder={t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_label`)}
+            placeholder={labelPlaceholder}
             value={label}
             onChange={(e) => onLabelChange(e.target.value)}
           />
           <Select value={value} onValueChange={onValueChange}>
             <SelectTrigger>
-              <SelectValue placeholder={t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_value`)} />
+              <SelectValue placeholder={valuePlaceholder} />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="count">Count</SelectItem>
@@ -88,19 +136,19 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
           </Select>
           <Select value={sort} onValueChange={onSortChange}>
             <SelectTrigger>
-              <SelectValue placeholder={t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_sort`)} />
+              <SelectValue placeholder={sortPlaceholder} />
             </SelectTrigger>
             <SelectContent>
-              {SORT_OPTIONS.map((option) => (
-                <SelectItem key={option} value={option.toLowerCase()}>
-                  {option}
+              {sortOptions.map((option) => (
+                <SelectItem key={option.id} value={option.id}>
+                  {option.label}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
           <Select value={sortOrder} onValueChange={(v) => onSortOrderChange(v as 'asc' | 'desc')}>
             <SelectTrigger>
-              <SelectValue placeholder={t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_sort_order`)} />
+              <SelectValue placeholder={sortOrderPlaceholder} />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="asc">Ascending</SelectItem>
@@ -109,12 +157,12 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
           </Select>
           <Select value={colorScheme} onValueChange={onColorSchemeChange}>
             <SelectTrigger>
-              <SelectValue placeholder={t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_color_scheme`)} />
+              <SelectValue placeholder={colorSchemePlaceholder} />
             </SelectTrigger>
             <SelectContent>
-              {COLOR_SCHEMES.map((scheme) => (
-                <SelectItem key={scheme} value={scheme.toLowerCase()}>
-                  {scheme}
+              {colorSchemeOptions.map((scheme) => (
+                <SelectItem key={scheme.id} value={scheme.id}>
+                  {scheme.label}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -128,9 +176,7 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
               className="h-4 w-4 rounded border-border"
             />
             <label htmlFor="show-summary" className="text-sm">
-              <TextLoader>
-                {t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_show_summary`)}
-              </TextLoader>
+              {showSummaryLabel}
             </label>
           </div>
           <div className="flex items-center gap-2">
@@ -142,9 +188,7 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
               className="h-4 w-4 rounded border-border"
             />
             <label htmlFor="show-legend" className="text-sm">
-              <TextLoader>
-                {t(`screen.${AI_DASHBOARD_SCREENSET_ID}.${HOME_SCREEN_ID}:widget_settings_show_legend`)}
-              </TextLoader>
+              {showLegendLabel}
             </label>
           </div>
         </div>
@@ -153,6 +197,6 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
   );
 };
 
-PropertiesSection.displayName = 'PropertiesSection';
+PropertiesSectionView.displayName = 'PropertiesSectionView';
 
-export default PropertiesSection;
+export default PropertiesSectionView;
