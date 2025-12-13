@@ -3,18 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=25.1.0"
+  },
   "workspaces": [
     "eslint-plugin-local"
   ],
   "scripts": {
     "dev": "npm run generate:colors && vite",
+    "check:mcp": "npx tsx scripts/check-mcp.ts",
     "build": "npm run generate:colors && vite build",
     "preview": "vite preview",
     "lint": "npm run build --workspace=eslint-plugin-local && eslint . --max-warnings 0",
-    "type-check": "tsc --noEmit",
-    "generate:colors": "npx tsx presets/standalone/scripts/generate-colors.ts",
-    "arch:check": "npx tsx presets/standalone/scripts/test-architecture.ts",
-    "arch:deps": "npx dependency-cruiser src/ --config .dependency-cruiser.cjs --output-type err-long"
+    "type-check": "npm run generate:colors && tsc --noEmit",
+    "generate:colors": "npx tsx scripts/generate-colors.ts",
+    "arch:check": "npx tsx scripts/test-architecture.ts",
+    "arch:deps": "npx dependency-cruiser src/ --config .dependency-cruiser.cjs --output-type err-long",
+    "prek:install": "npx prek install",
+    "prek:run": "npx prek run --all-files",
+    "postinstall": "npx prek install"
   },
   "dependencies": {
     "@hai3/uicore": "^0.1.0-alpha.1",
@@ -31,8 +38,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
-    "@hai3/cli": "^0.1.0-alpha.20",
+    "@hai3/cli": "^0.1.0-alpha.22",
     "@hai3/studio": "^0.1.0-alpha.1",
+    "@j178/prek": "^0.2.21",
     "@types/lodash": "^4.17.20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -46,6 +54,7 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.12.0",
     "postcss": "^8.4.35",
+    "postcss-load-config": "^6.0.1",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.19.0",
     "typescript": "^5.4.2",
